@@ -34,31 +34,12 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-destructive: var(--destructive);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b1220;
-    --foreground: #e2e8f0;
-    --card: #111827;
-    --card-foreground: #e2e8f0;
-    --primary: #3b82f6;
-    --primary-foreground: #eff6ff;
-    --secondary: #1f2937;
-    --secondary-foreground: #e2e8f0;
-    --muted: #1f2937;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --input: #334155;
-    --ring: #60a5fa;
-    --destructive: #f87171;
-  }
+  --font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-sans);
 }
