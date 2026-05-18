@@ -14,9 +14,11 @@ import { Input } from "@/components/ui/input"
 
 export default function LeadPopup() {
   const [open, setOpen] = useState(false)
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [mobile, setMobile] = useState("")
+
   const [emailError, setEmailError] = useState("")
   const [mobileError, setMobileError] = useState("")
 
@@ -26,31 +28,42 @@ export default function LeadPopup() {
     if (!alreadyShown) {
       const timer = window.setTimeout(() => {
         setOpen(true)
+        localStorage.setItem("leadPopupShown", "true")
       }, 1000)
-
-      localStorage.setItem("leadPopupShown", "true")
 
       return () => window.clearTimeout(timer)
     }
   }, [])
 
-  const validateEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  const validateEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 
   const handleEmailChange = (value: string) => {
     setEmail(value)
-    setEmailError(value && !validateEmail(value) ? "Please enter a valid email" : "")
+
+    setEmailError(
+      value && !validateEmail(value)
+        ? "Please enter a valid email"
+        : ""
+    )
   }
 
   const handleMobileChange = (value: string) => {
     const onlyNumbers = value.replace(/[^0-9]/g, "")
+
     setMobile(onlyNumbers)
+
     setMobileError(
-      onlyNumbers && onlyNumbers.length !== 10 ? "Mobile must be 10 digits" : ""
+      onlyNumbers && onlyNumbers.length !== 10
+        ? "Mobile must be 10 digits"
+        : ""
     )
   }
 
   const isFormValid =
-    name.trim().length > 0 && validateEmail(email) && mobile.length === 10
+    name.trim().length > 0 &&
+    validateEmail(email) &&
+    mobile.length === 10
 
   const handleSubmit = () => {
     localStorage.setItem("userRegistered", "true")
@@ -59,7 +72,13 @@ export default function LeadPopup() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="rounded-2xl bg-white p-8 shadow-xl sm:max-w-lg">
+      <DialogContent
+        id="lead-registration-modal"
+        data-testid="lead-registration-modal"
+        data-state={open ? "open" : "closed"}
+        aria-label="Lead registration modal"
+        className="rounded-2xl bg-white p-8 shadow-xl sm:max-w-lg"
+      >
         <DialogHeader>
           <DialogTitle className="text-center text-3xl font-semibold text-gray-800">
             Join Selenium Practice
@@ -71,53 +90,112 @@ export default function LeadPopup() {
         </DialogHeader>
 
         <div className="mt-6 space-y-5">
+          {/* Name Input */}
           <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
-            <FaUser className="mr-3 text-gray-400" />
+            <FaUser
+              className="mr-3 text-gray-400"
+              aria-hidden="true"
+            />
+
             <Input
-              id="name"
+              id="lead-name-input"
+              name="leadName"
+              type="text"
+              autoComplete="name"
+              data-testid="lead-name-input"
+              aria-label="Lead name"
               placeholder="Enter your name"
               className="border-0 focus-visible:ring-0"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) =>
+                setName(e.target.value.trimStart())
+              }
             />
           </div>
 
+          {/* Email Input */}
           <div>
             <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
-              <FaEnvelope className="mr-3 text-gray-400" />
+              <FaEnvelope
+                className="mr-3 text-gray-400"
+                aria-hidden="true"
+              />
+
               <Input
-                id="email"
+                id="lead-email-input"
                 type="email"
+                name="leadEmail"
+                autoComplete="email"
+                data-testid="lead-email-input"
+                aria-label="Lead email"
                 placeholder="Enter your email"
                 className="border-0 focus-visible:ring-0"
                 value={email}
-                onChange={(e) => handleEmailChange(e.target.value)}
+                onChange={(e) =>
+                  handleEmailChange(e.target.value)
+                }
               />
             </div>
-            {emailError && <p className="mt-1 text-sm text-red-500">{emailError}</p>}
+
+            {emailError && (
+              <p
+                role="alert"
+                id="lead-email-error"
+                data-testid="lead-email-error"
+                className="mt-1 text-sm text-red-500"
+              >
+                {emailError}
+              </p>
+            )}
           </div>
 
+          {/* Mobile Input */}
           <div>
             <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
-              <FaPhone className="mr-3 text-gray-400" />
+              <FaPhone
+                className="mr-3 text-gray-400"
+                aria-hidden="true"
+              />
+
               <Input
-                id="mobile"
+                id="lead-mobile-input"
+                type="tel"
+                name="leadMobile"
+                autoComplete="tel"
                 inputMode="numeric"
+                data-testid="lead-mobile-input"
+                aria-label="Lead mobile number"
                 placeholder="Enter your mobile number"
                 className="border-0 focus-visible:ring-0"
                 value={mobile}
                 maxLength={10}
-                onChange={(e) => handleMobileChange(e.target.value)}
+                onChange={(e) =>
+                  handleMobileChange(e.target.value)
+                }
               />
             </div>
-            {mobileError && <p className="mt-1 text-sm text-red-500">{mobileError}</p>}
+
+            {mobileError && (
+              <p
+                role="alert"
+                id="lead-mobile-error"
+                data-testid="lead-mobile-error"
+                className="mt-1 text-sm text-red-500"
+              >
+                {mobileError}
+              </p>
+            )}
           </div>
 
+          {/* Submit Button */}
           <Button
-            id="submitBtn"
+            id="lead-register-button"
+            name="leadRegister"
+            data-testid="lead-register-button"
+            aria-label="Register now"
             disabled={!isFormValid}
             onClick={handleSubmit}
-            className="w-full rounded-lg bg-blue-600 py-5 text-white hover:bg-blue-700 disabled:opacity-50"
+            className="w-full rounded-lg bg-blue-600 py-5 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Register Now
           </Button>

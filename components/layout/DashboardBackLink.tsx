@@ -12,9 +12,13 @@ export default function DashboardBackLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center rounded-lg bg-gray-800 px-5 py-2 text-white transition hover:bg-black"
+      id="dashboard-back-link"
+      data-testid="dashboard-back-link"
+      aria-label={label}
+      title={label}
+      className="inline-flex items-center rounded-lg bg-gray-800 px-5 py-2 text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500"
     >
-      {`<- ${label}`}
+      ← {label}
     </Link>
   )
 }

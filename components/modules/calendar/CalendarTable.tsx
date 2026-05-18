@@ -2,115 +2,342 @@
 
 import { useState } from "react"
 
-type Props = {
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+]
+
+const WEEK_DAYS = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat"
+]
+
+type CalendarTableProps = {
   selectedDate: string
-  setSelectedDate: React.Dispatch<React.SetStateAction<string>>
+  setSelectedDate: React.Dispatch<
+    React.SetStateAction<string>
+  >
 }
 
-export default function CalendarTable({ selectedDate, setSelectedDate }: Props) {
-
+export default function CalendarTable({
+  selectedDate,
+  setSelectedDate
+}: CalendarTableProps) {
   const today = new Date()
-  const [currentDate, setCurrentDate] = useState(new Date())
+
+  const [currentDate, setCurrentDate] =
+    useState(new Date())
 
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
-  const months = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
-  ]
+  const firstDay = new Date(
+    year,
+    month,
+    1
+  ).getDay()
 
-  const firstDay = new Date(year, month, 1).getDay()
-  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const daysInMonth = new Date(
+    year,
+    month + 1,
+    0
+  ).getDate()
 
   const days: (number | null)[] = []
 
-  for (let i = 0; i < firstDay; i++) days.push(null)
-  for (let i = 1; i <= daysInMonth; i++) days.push(i)
+  for (let i = 0; i < firstDay; i++) {
+    days.push(null)
+  }
 
-  const prevYear = () => setCurrentDate(new Date(year - 1, month, 1))
-  const nextYear = () => setCurrentDate(new Date(year + 1, month, 1))
-
-  const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
-  const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
+  for (let i = 1; i <= daysInMonth; i++) {
+    days.push(i)
+  }
 
   const formatDate = (day: number) =>
-    `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+    `${year}-${String(month + 1).padStart(
+      2,
+      "0"
+    )}-${String(day).padStart(2, "0")}`
+
+  const updateMonth = (offset: number) => {
+    setCurrentDate(
+      new Date(year, month + offset, 1)
+    )
+  }
+
+  const updateYear = (offset: number) => {
+    setCurrentDate(
+      new Date(year + offset, month, 1)
+    )
+  }
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-md border">
-
-      <h2 className="text-lg font-semibold mb-4 text-blue-600">
-        📆 Calendar (Advanced)
+    <section
+      id="calendar-table-card"
+      data-testid="calendar-table-card"
+      data-component="calendar-table"
+      aria-labelledby="calendar-table-title"
+      className="
+        rounded-2xl border bg-white p-6 shadow-sm
+      "
+    >
+      <h2
+        id="calendar-table-title"
+        data-testid="calendar-table-title"
+        className="
+          mb-4 text-lg font-semibold text-blue-700
+        "
+      >
+        Calendar (Advanced)
       </h2>
 
-      {/* YEAR */}
-      <div className="flex justify-between items-center mb-2">
-        <button onClick={prevYear} className="px-3 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200">←</button>
-        <h3 className="font-bold text-blue-700 text-lg">Year: {year}</h3>
-        <button onClick={nextYear} className="px-3 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200">→</button>
+      <div
+        className="
+          mb-3 flex items-center justify-between
+        "
+      >
+        <button
+          type="button"
+          id="previous-year-button"
+          data-testid="previous-year-button"
+          aria-label="Go to previous year"
+          onClick={() => updateYear(-1)}
+          className="
+            rounded-md bg-blue-100 px-3 py-1
+            text-blue-700 transition-colors
+            hover:bg-blue-200
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-blue-500
+            focus-visible:ring-offset-2
+          "
+        >
+          ←
+        </button>
+
+        <p
+          id="calendar-current-year"
+          data-testid="calendar-current-year"
+          className="
+            text-lg font-semibold text-blue-700
+          "
+        >
+          {year}
+        </p>
+
+        <button
+          type="button"
+          id="next-year-button"
+          data-testid="next-year-button"
+          aria-label="Go to next year"
+          onClick={() => updateYear(1)}
+          className="
+            rounded-md bg-blue-100 px-3 py-1
+            text-blue-700 transition-colors
+            hover:bg-blue-200
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-blue-500
+            focus-visible:ring-offset-2
+          "
+        >
+          →
+        </button>
       </div>
 
-      {/* MONTH */}
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={prevMonth} className="px-3 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200">←</button>
-        <h3 className="font-semibold text-blue-600 text-lg">Month: {months[month]}</h3>
-        <button onClick={nextMonth} className="px-3 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200">→</button>
+      <div
+        className="
+          mb-4 flex items-center justify-between
+        "
+      >
+        <button
+          type="button"
+          id="previous-month-button"
+          data-testid="previous-month-button"
+          aria-label="Go to previous month"
+          onClick={() => updateMonth(-1)}
+          className="
+            rounded-md bg-blue-100 px-3 py-1
+            text-blue-700 transition-colors
+            hover:bg-blue-200
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-blue-500
+            focus-visible:ring-offset-2
+          "
+        >
+          ←
+        </button>
+
+        <p
+          id="calendar-current-month"
+          data-testid="calendar-current-month"
+          className="
+            text-lg font-semibold text-blue-700
+          "
+        >
+          {MONTHS[month]}
+        </p>
+
+        <button
+          type="button"
+          id="next-month-button"
+          data-testid="next-month-button"
+          aria-label="Go to next month"
+          onClick={() => updateMonth(1)}
+          className="
+            rounded-md bg-blue-100 px-3 py-1
+            text-blue-700 transition-colors
+            hover:bg-blue-200
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-blue-500
+            focus-visible:ring-offset-2
+          "
+        >
+          →
+        </button>
       </div>
 
-      <table className="w-full border text-center">
-
+      <table
+        id="calendar-date-table"
+        data-testid="calendar-date-table"
+        aria-label="Calendar date table"
+        className="
+          w-full border-collapse text-center
+        "
+      >
         <thead className="bg-blue-100">
           <tr>
-            {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map((d) => (
-              <th key={d} className="border px-2 py-2 text-blue-700">{d}</th>
+            {WEEK_DAYS.map((day) => (
+              <th
+                key={day}
+                scope="col"
+                className="
+                  border px-2 py-2 text-blue-700
+                "
+              >
+                {day}
+              </th>
             ))}
           </tr>
         </thead>
 
         <tbody>
-          {[...Array(Math.ceil(days.length / 7))].map((_, rowIndex) => (
+          {Array.from({
+            length: Math.ceil(days.length / 7)
+          }).map((_, rowIndex) => (
             <tr key={rowIndex}>
-              {days.slice(rowIndex * 7, rowIndex * 7 + 7).map((day, i) => {
-
-                const fullDate = day ? formatDate(day) : ""
-
-                const isToday =
-                  day &&
-                  today.getDate() === day &&
-                  today.getMonth() === month &&
-                  today.getFullYear() === year
-
-                const isSelected = day && selectedDate === fullDate
-
-                return (
-                  <td
-                    key={i}
-                    onClick={() => day && setSelectedDate(fullDate)}
-                    data-testid={day ? `day-${day}` : undefined}
-                    data-date={fullDate}
-                    data-today={isToday ? "true" : "false"}
-
-                    className={`border px-2 py-2 cursor-pointer transition
-                      ${day ? "hover:bg-blue-100" : ""}
-                      ${isSelected ? "bg-green-500 text-white font-bold" : ""}
-                      ${isToday && !isSelected ? "border-2 border-yellow-500 font-semibold" : ""}
-                    `}
-                  >
-                    {day || ""}
-                  </td>
+              {days
+                .slice(
+                  rowIndex * 7,
+                  rowIndex * 7 + 7
                 )
-              })}
+                .map((day, index) => {
+                  const fullDate = day
+                    ? formatDate(day)
+                    : ""
+
+                  const isToday =
+                    !!day &&
+                    today.getDate() === day &&
+                    today.getMonth() === month &&
+                    today.getFullYear() === year
+
+                  const isSelected =
+                    !!day &&
+                    selectedDate === fullDate
+
+                  return (
+                    <td
+                      key={index}
+                      className="border p-1"
+                    >
+                      {day ? (
+                        <button
+                          type="button"
+                          id={`calendar-day-${day}`}
+                          data-testid={`calendar-day-${day}`}
+                          data-date={fullDate}
+                          data-today={
+                            isToday
+                              ? "true"
+                              : "false"
+                          }
+                          aria-label={`Select ${fullDate}`}
+                          aria-pressed={isSelected}
+                          onClick={() =>
+                            setSelectedDate(
+                              fullDate
+                            )
+                          }
+                          className={`
+                            h-10 w-10 rounded-md
+                            transition-colors
+                            hover:bg-blue-100
+                            focus-visible:outline-none
+                            focus-visible:ring-2
+                            focus-visible:ring-blue-500
+                            focus-visible:ring-offset-2
+                            ${
+                              isSelected
+                                ? "bg-green-600 font-bold text-white"
+                                : ""
+                            }
+                            ${
+                              isToday &&
+                              !isSelected
+                                ? "border-2 border-yellow-500 font-semibold"
+                                : ""
+                            }
+                          `}
+                        >
+                          {day}
+                        </button>
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className="block h-10"
+                        />
+                      )}
+                    </td>
+                  )
+                })}
             </tr>
           ))}
         </tbody>
-
       </table>
 
-      <p className="mt-3 text-green-600 font-medium">
-        Selected: {selectedDate || "None"}
-      </p>
-
-    </div>
+      <div
+        id="calendar-selected-date-value"
+        data-testid="calendar-selected-date-value"
+        aria-live="polite"
+        className="
+          mt-4 rounded-md border bg-gray-50
+          px-3 py-2 text-sm font-medium text-green-700
+        "
+      >
+        Selected:
+        {" "}
+        {selectedDate || "None"}
+      </div>
+    </section>
   )
 }
+
+CalendarTable.displayName = "CalendarTable"

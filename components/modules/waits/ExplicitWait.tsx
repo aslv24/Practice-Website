@@ -2,215 +2,463 @@
 
 import { useEffect, useState } from "react"
 
+type StatusType =
+  | "idle"
+  | "waiting"
+  | "completed"
+
+interface ScenarioState {
+  counter: number | null
+  status: StatusType
+}
+
 export default function ExplicitWait() {
   // Alert
-  const [alertCounter, setAlertCounter] = useState<number | null>(null)
+  const [alertScenario, setAlertScenario] =
+    useState<ScenarioState>({
+      counter: null,
+      status: "idle",
+    })
 
   // Text
+  const [textScenario, setTextScenario] =
+    useState<ScenarioState>({
+      counter: null,
+      status: "idle",
+    })
+
   const [text, setText] = useState("site")
-  const [textCounter, setTextCounter] = useState<number | null>(null)
 
   // Display Button
-  const [showButton, setShowButton] = useState(false)
-  const [displayCounter, setDisplayCounter] = useState<number | null>(null)
+  const [displayScenario, setDisplayScenario] =
+    useState<ScenarioState>({
+      counter: null,
+      status: "idle",
+    })
+
+  const [showButton, setShowButton] =
+    useState(false)
 
   // Enable Button
-  const [enableButton, setEnableButton] = useState(false)
-  const [enableCounter, setEnableCounter] = useState<number | null>(null)
+  const [enableScenario, setEnableScenario] =
+    useState<ScenarioState>({
+      counter: null,
+      status: "idle",
+    })
+
+  const [enableButton, setEnableButton] =
+    useState(false)
 
   // Checkbox
-  const [checked, setChecked] = useState(false)
-  const [checkboxCounter, setCheckboxCounter] = useState<number | null>(null)
+  const [checkboxScenario, setCheckboxScenario] =
+    useState<ScenarioState>({
+      counter: null,
+      status: "idle",
+    })
 
-  // Common Countdown Logic
-  useEffect(() => {
-    const timers: NodeJS.Timeout[] = []
+  const [checked, setChecked] =
+    useState(false)
 
-    const runCounter = (
-      counter: number | null,
-      setCounter: React.Dispatch<React.SetStateAction<number | null>>,
-      callback?: () => void
-    ) => {
-      if (counter === null) return
+  // Generic Countdown Effect
+  const useCountdown = (
+    scenario: ScenarioState,
+    setScenario: React.Dispatch<
+      React.SetStateAction<ScenarioState>
+    >,
+    callback?: () => void
+  ) => {
+    useEffect(() => {
+      if (
+        scenario.status !== "waiting" ||
+        scenario.counter === null
+      ) {
+        return
+      }
 
-      if (counter <= 0) {
+      if (scenario.counter <= 0) {
         callback?.()
+
+        setScenario({
+          counter: 0,
+          status: "completed",
+        })
+
         return
       }
 
       const timer = setTimeout(() => {
-        setCounter((prev) => (prev !== null ? prev - 1 : null))
+        setScenario((prev) => ({
+          ...prev,
+          counter:
+            prev.counter !== null
+              ? prev.counter - 1
+              : null,
+        }))
       }, 1000)
 
-      timers.push(timer)
+      return () => clearTimeout(timer)
+    }, [scenario.counter, scenario.status])
+  }
+
+  // Alert
+  useCountdown(
+    alertScenario,
+    setAlertScenario,
+    () => {
+      alert("Alert Opened Successfully")
     }
+  )
 
-    // Alert
-    runCounter(alertCounter, setAlertCounter, () => {
-      alert("Alert Opened After 5 Seconds")
-      setAlertCounter(null)
-    })
+  // Text
+  useCountdown(
+    textScenario,
+    setTextScenario,
+    () => {
+      setText("Selenium WebDriver")
+    }
+  )
 
-    // Text
-    runCounter(textCounter, setTextCounter, () => {
-      setText("Selenium Webdriver")
-      setTextCounter(null)
-    })
-
-    // Display Button
-    runCounter(displayCounter, setDisplayCounter, () => {
+  // Display Button
+  useCountdown(
+    displayScenario,
+    setDisplayScenario,
+    () => {
       setShowButton(true)
-      setDisplayCounter(null)
-    })
-
-    // Enable Button
-    runCounter(enableCounter, setEnableCounter, () => {
-      setEnableButton(true)
-      setEnableCounter(null)
-    })
-
-    // Checkbox
-    runCounter(checkboxCounter, setCheckboxCounter, () => {
-      setChecked(true)
-      setCheckboxCounter(null)
-    })
-
-    return () => {
-      timers.forEach(clearTimeout)
     }
-  }, [
-    alertCounter,
-    textCounter,
-    displayCounter,
-    enableCounter,
-    checkboxCounter,
-  ])
+  )
+
+  // Enable Button
+  useCountdown(
+    enableScenario,
+    setEnableScenario,
+    () => {
+      setEnableButton(true)
+    }
+  )
+
+  // Checkbox
+  useCountdown(
+    checkboxScenario,
+    setCheckboxScenario,
+    () => {
+      setChecked(true)
+    }
+  )
+
+  const startScenario = (
+    seconds: number,
+    setter: React.Dispatch<
+      React.SetStateAction<ScenarioState>
+    >
+  ) => {
+    setter({
+      counter: seconds,
+      status: "waiting",
+    })
+  }
+
+  const getStatusColor = (
+    status: StatusType
+  ) => {
+    switch (status) {
+      case "waiting":
+        return "text-yellow-600"
+
+      case "completed":
+        return "text-green-600"
+
+      default:
+        return "text-gray-500"
+    }
+  }
+
+  const renderRemainingTime = (
+    scenario: ScenarioState
+  ) => {
+    if (scenario.status === "waiting") {
+      return (
+        <p className="text-sm font-medium text-blue-600">
+          Remaining Time:{" "}
+          {scenario.counter ?? 0}s
+        </p>
+      )
+    }
+
+    if (scenario.status === "completed") {
+      return (
+        <p className="text-sm font-medium text-green-600">
+          Remaining Time: 0s
+        </p>
+      )
+    }
+
+    return (
+      <p className="text-sm font-medium text-gray-500">
+        Remaining Time: --
+      </p>
+    )
+  }
 
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-md">
-      <h2 className="mb-6 text-lg font-semibold text-blue-600">
-        Explicit Wait Scenario
-      </h2>
+    <section
+      id="explicit-wait-card"
+      data-testid="explicit-wait-card"
+      data-component="explicit-wait"
+      aria-label="Explicit wait scenarios"
+      className="rounded-2xl border bg-white p-6 shadow-sm"
+    >
+      <header className="mb-8">
+        <h1 className="text-2xl font-bold text-blue-600">
+          Explicit Wait Scenarios
+        </h1>
 
-      {/* Alert Section */}
-      <div className="mb-8">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+        <p className="mt-2 text-sm text-gray-600">
+          Practice Selenium explicit waits
+          using delayed rendering, alerts,
+          state changes, and dynamic updates.
+        </p>
+      </header>
+
+      {/* ALERT */}
+      <div className="mb-8 rounded-xl border p-5">
+        <h2 className="text-lg font-semibold">
+          Delayed Alert
+        </h2>
+
+        <p className="mt-2 text-sm text-gray-600">
+          Alert appears after 5 seconds.
+        </p>
+
+        <div className="mt-4 flex flex-col gap-3">
           <button
-            onClick={() => setAlertCounter(5)}
-            className="rounded bg-green-500 px-5 py-2 text-white hover:bg-green-600"
+            id="open-alert-delay-button"
+            data-testid="open-alert-delay-button"
+            onClick={() =>
+              startScenario(
+                5,
+                setAlertScenario
+              )
+            }
+            className="w-fit rounded-lg bg-green-500 px-5 py-2 text-white hover:bg-green-600"
           >
-            Open Alert after 5 seconds
+            Open Alert
           </button>
 
-          <p className="font-medium text-gray-700">
-            Alert opens in :
-            <span className="ml-2 font-bold text-green-600">
-              {alertCounter ?? 0}
-            </span>{" "}
-            seconds
+          <p
+            className={`text-sm font-medium ${getStatusColor(
+              alertScenario.status
+            )}`}
+          >
+            Status: {alertScenario.status}
           </p>
+
+          {renderRemainingTime(
+            alertScenario
+          )}
         </div>
       </div>
 
-      {/* Text Change */}
-      <div className="mb-8">
-        <p className="mb-3 text-gray-700">
-          Selenium Webdriver will replace "site" in{" "}
-          <span className="font-bold text-blue-600">
-            {textCounter ?? 10}
-          </span>{" "}
-          seconds
+      {/* TEXT */}
+      <div className="mb-8 rounded-xl border p-5">
+        <h2 className="text-lg font-semibold">
+          Dynamic Text Change
+        </h2>
+
+        <p className="mt-2 text-sm text-gray-600">
+          Text changes after delay.
         </p>
 
         <button
-          onClick={() => setTextCounter(10)}
-          className="rounded bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+          id="change-text-button"
+          data-testid="change-text-button"
+          onClick={() =>
+            startScenario(
+              10,
+              setTextScenario
+            )
+          }
+          className="mt-4 rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
         >
           Change Text
         </button>
 
-        <h2 className="mt-4 text-3xl font-bold">{text}</h2>
-      </div>
-
-      {/* Display Button */}
-      <div className="mb-8">
-        <p className="mb-3 text-gray-700">
-          Button will display in{" "}
-          <span className="font-bold text-blue-600">
-            {displayCounter ?? 10}
-          </span>{" "}
-          seconds
-        </p>
-
-        <button
-          onClick={() => setDisplayCounter(10)}
-          className="rounded bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
-        >
-          Display Button
-        </button>
-
-        {showButton && (
-          <button className="ml-4 mt-3 rounded bg-green-500 px-5 py-2 text-white lg:mt-0">
-            New Button
-          </button>
-        )}
-      </div>
-
-      {/* Enable Button */}
-      <div className="mb-8">
-        <p className="mb-3 text-gray-700">
-          Button will enable in{" "}
-          <span className="font-bold text-blue-600">
-            {enableCounter ?? 10}
-          </span>{" "}
-          seconds
-        </p>
-
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <button
-            onClick={() => setEnableCounter(10)}
-            className="rounded bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+        <div className="mt-4 space-y-2">
+          <p
+            id="delayed-text-value"
+            data-testid="delayed-text-value"
+            className="text-3xl font-bold text-blue-600"
           >
-            Enable Button
-          </button>
+            {text}
+          </p>
 
-          <button
-            disabled={!enableButton}
-            className={`rounded px-5 py-2 text-white ${
-              enableButton
-                ? "bg-green-500"
-                : "cursor-not-allowed bg-gray-400"
-            }`}
+          <p
+            className={`text-sm font-medium ${getStatusColor(
+              textScenario.status
+            )}`}
           >
-            Button
-          </button>
+            Status: {textScenario.status}
+          </p>
+
+          {renderRemainingTime(
+            textScenario
+          )}
         </div>
       </div>
 
-      {/* Checkbox */}
-      <div>
-        <p className="mb-3 text-gray-700">
-          Checkbox will check in{" "}
-          <span className="font-bold text-blue-600">
-            {checkboxCounter ?? 10}
-          </span>{" "}
-          seconds
-        </p>
+      {/* DISPLAY */}
+      <div className="mb-8 rounded-xl border p-5">
+        <h2 className="text-lg font-semibold">
+          Delayed Display
+        </h2>
 
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+        <div className="mt-4 flex flex-col gap-3">
           <button
-            onClick={() => setCheckboxCounter(10)}
-            className="rounded bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+            id="display-button-trigger-button"
+            data-testid="display-button-trigger-button"
+            onClick={() =>
+              startScenario(
+                10,
+                setDisplayScenario
+              )
+            }
+            className="w-fit rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+          >
+            Display Button
+          </button>
+
+          <p
+            className={`text-sm font-medium ${getStatusColor(
+              displayScenario.status
+            )}`}
+          >
+            Status: {displayScenario.status}
+          </p>
+
+          {renderRemainingTime(
+            displayScenario
+          )}
+
+          {showButton && (
+            <button
+              id="newly-displayed-button"
+              data-testid="newly-displayed-button"
+              className="w-fit rounded-lg bg-green-500 px-5 py-2 text-white"
+            >
+              New Button
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* ENABLE */}
+      <div className="mb-8 rounded-xl border p-5">
+        <h2 className="text-lg font-semibold">
+          Delayed Enable
+        </h2>
+
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="flex flex-wrap gap-3">
+            <button
+              id="enable-button-trigger-button"
+              data-testid="enable-button-trigger-button"
+              onClick={() =>
+                startScenario(
+                  10,
+                  setEnableScenario
+                )
+              }
+              className="rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+            >
+              Enable Button
+            </button>
+
+            <button
+              id="delayed-enable-button"
+              data-testid="delayed-enable-button"
+              disabled={!enableButton}
+              className={`rounded-lg px-5 py-2 text-white ${
+                enableButton
+                  ? "bg-green-500"
+                  : "cursor-not-allowed bg-gray-400"
+              }`}
+            >
+              Delayed Button
+            </button>
+          </div>
+
+          <p
+            className={`text-sm font-medium ${getStatusColor(
+              enableScenario.status
+            )}`}
+          >
+            Status: {enableScenario.status}
+          </p>
+
+          {renderRemainingTime(
+            enableScenario
+          )}
+        </div>
+      </div>
+
+      {/* CHECKBOX */}
+      <div className="rounded-xl border p-5">
+        <h2 className="text-lg font-semibold">
+          Delayed Checkbox
+        </h2>
+
+        <div className="mt-4 flex flex-col gap-3">
+          <button
+            id="check-checkbox-delay-button"
+            data-testid="check-checkbox-delay-button"
+            onClick={() =>
+              startScenario(
+                10,
+                setCheckboxScenario
+              )
+            }
+            className="w-fit rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
           >
             Check Checkbox
           </button>
 
-          <label className="flex items-center gap-2 text-gray-700">
-            <input type="checkbox" checked={checked} readOnly />
-            Checkbox
+          <label className="flex items-center gap-2">
+            <input
+              id="delayed-checkbox"
+              data-testid="delayed-checkbox"
+              type="checkbox"
+              checked={checked}
+              readOnly
+            />
+
+            Checkbox Status:
+
+            <span
+              className={
+                checked
+                  ? "text-green-600"
+                  : "text-gray-500"
+              }
+            >
+              {checked
+                ? "Checked"
+                : "Unchecked"}
+            </span>
           </label>
+
+          <p
+            className={`text-sm font-medium ${getStatusColor(
+              checkboxScenario.status
+            )}`}
+          >
+            Status:{" "}
+            {checkboxScenario.status}
+          </p>
+
+          {renderRemainingTime(
+            checkboxScenario
+          )}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

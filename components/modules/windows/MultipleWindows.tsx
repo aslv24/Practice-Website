@@ -1,50 +1,127 @@
 "use client"
 
+const WINDOW_LINKS = [
+  {
+    id: "facebook",
+    label: "Facebook Window",
+    url: "/windows/facebook",
+    buttonClass:
+      "bg-blue-600 hover:bg-blue-700"
+  },
+  {
+    id: "instagram",
+    label: "Instagram Window",
+    url: "/windows/instagram",
+    buttonClass:
+      "bg-pink-600 hover:bg-pink-700"
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn Window",
+    url: "/windows/linkedin",
+    buttonClass:
+      "bg-blue-800 hover:bg-blue-900"
+  },
+  {
+    id: "naukri",
+    label: "Naukri Window",
+    url: "/windows/naukri",
+    buttonClass:
+      "bg-yellow-500 hover:bg-yellow-600 text-black"
+  }
+]
+
 export default function MultipleWindows() {
+  const openWindow = (url: string) => {
+    window.open(
+      url,
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition border border-gray-100">
-
-      <h2 className="text-lg font-semibold mb-4 text-gray-800">
-        Multiple Windows (Real Websites)
+    <section
+      id="multiple-windows-card"
+      data-testid="multiple-windows-card"
+      data-component="multiple-windows"
+      aria-labelledby="multiple-windows-title"
+      className="
+        rounded-2xl border border-gray-100
+        bg-white p-6 shadow-sm
+        transition-shadow hover:shadow-md
+      "
+    >
+      <h2
+        id="multiple-windows-title"
+        data-testid="multiple-windows-title"
+        className="
+          mb-4 text-lg font-semibold text-gray-800
+        "
+      >
+        Multiple Windows
       </h2>
 
-      <p className="text-sm text-gray-500 mb-4">
-        Open each website individually (recommended for Selenium)
+      <p
+        id="multiple-windows-description"
+        data-testid="multiple-windows-description"
+        className="
+          mb-4 text-sm text-gray-500
+        "
+      >
+        Opens internal application windows
+        for Selenium window-handling
+        practice.
       </p>
 
-      <div className="flex flex-wrap gap-3">
-
-        <button
-          onClick={() => window.open("https://www.facebook.com", "_blank")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-        >
-          Facebook
-        </button>
-
-        <button
-          onClick={() => window.open("https://www.instagram.com", "_blank")}
-          className="bg-pink-500 text-white px-4 py-2 rounded-lg"
-        >
-          Instagram
-        </button>
-
-        <button
-          onClick={() => window.open("https://www.linkedin.com", "_blank")}
-          className="bg-blue-700 text-white px-4 py-2 rounded-lg"
-        >
-          LinkedIn
-        </button>
-
-        <button
-          onClick={() => window.open("https://www.naukri.com", "_blank")}
-          className="bg-yellow-500 text-black px-4 py-2 rounded-lg"
-        >
-          Naukri
-        </button>
-
+      <div
+        role="group"
+        aria-describedby="multiple-windows-description"
+        className="
+          flex flex-wrap gap-3
+        "
+      >
+        {WINDOW_LINKS.map((windowItem) => (
+          <button
+            key={windowItem.id}
+            type="button"
+            id={`open-${windowItem.id}-button`}
+            name={`open${windowItem.label.replace(/\s/g, "")}`}
+            data-testid={`open-${windowItem.id}-button`}
+            aria-label={`Open ${windowItem.label}`}
+            onClick={() =>
+              openWindow(windowItem.url)
+            }
+            className={`
+              rounded-lg px-4 py-2
+              text-sm font-medium text-white
+              transition-colors
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-offset-2
+              ${windowItem.buttonClass}
+            `}
+          >
+            {windowItem.label}
+          </button>
+        ))}
       </div>
 
-    </div>
+      <div
+        id="multiple-windows-helper-text"
+        data-testid="multiple-windows-helper-text"
+        aria-live="polite"
+        className="
+          mt-5 rounded-md border bg-gray-50
+          px-3 py-2 text-sm text-blue-700
+        "
+      >
+        Use Selenium window handles to switch
+        between tabs and validate page titles.
+      </div>
+    </section>
   )
 }
+
+MultipleWindows.displayName =
+  "MultipleWindows"
