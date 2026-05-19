@@ -3,7 +3,7 @@
 export default function NewWindow() {
   const openWindow = () => {
     window.open(
-      "/windows/popup-window",
+      "https://www.naukri.com/",
       "_blank",
       "width=800,height=600,noopener,noreferrer"
     )

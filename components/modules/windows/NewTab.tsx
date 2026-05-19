@@ -3,7 +3,7 @@
 export default function NewTab() {
   const openTab = () => {
     window.open(
-      "/windows/naukri",
+      "https://www.naukri.com/",
       "_blank",
       "noopener,noreferrer"
     )

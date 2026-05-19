@@ -4,28 +4,28 @@ const WINDOW_LINKS = [
   {
     id: "facebook",
     label: "Facebook Window",
-    url: "/windows/facebook",
+    url: "https://www.facebook.com/",
     buttonClass:
       "bg-blue-600 hover:bg-blue-700"
   },
   {
     id: "instagram",
     label: "Instagram Window",
-    url: "/windows/instagram",
+    url: "https://www.instagram.com/",
     buttonClass:
       "bg-pink-600 hover:bg-pink-700"
   },
   {
     id: "linkedin",
     label: "LinkedIn Window",
-    url: "/windows/linkedin",
+    url: "https://www.linkedin.com/",
     buttonClass:
       "bg-blue-800 hover:bg-blue-900"
   },
   {
     id: "naukri",
     label: "Naukri Window",
-    url: "/windows/naukri",
+    url: "https://www.naukri.com/",
     buttonClass:
       "bg-yellow-500 hover:bg-yellow-600 text-black"
   }
