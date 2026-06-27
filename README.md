@@ -1,25 +1,30 @@
-# Selenium Practice Dashboard
+# Selenium Automation Practice Website
 
-> A production-ready Next.js practice application for learning, demonstrating, and validating Selenium automation workflows.
+> A production-ready Selenium Automation Playground for learning, demonstrating, interviewing, and validating real-world UI automation workflows.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.0-black?logo=nextdotjs)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.4-61DAFB?logo=react&logoColor=000)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?logo=tailwindcss&logoColor=fff)](https://tailwindcss.com/)
 [![ESLint](https://img.shields.io/badge/ESLint-9.x-4B32C3?logo=eslint&logoColor=fff)](https://eslint.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000?logo=vercel)](https://automation-practice-theta.vercel.app/)
+[![License](https://img.shields.io/badge/License-TBD-lightgrey)](#license)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000?logo=vercel)](https://automation-practice-theta.vercel.app/)
 
 ## Overview
 
-Selenium Practice Dashboard is an interactive web application built for automation learners, QA engineers, trainers, and interview preparation workflows. It provides realistic UI scenarios that are commonly automated with Selenium, including alerts, waits, forms, file uploads, frames, dropdowns, calendars, window handling, mouse actions, checkboxes, radio buttons, and suggestion lists.
+Selenium Automation Practice Website is an interactive web application built for automation learners, QA engineers, trainers, and interview preparation workflows. It provides realistic UI scenarios that are commonly automated with Selenium, including alerts, waits, forms, file uploads, frames, dropdowns, calendars, window handling, mouse actions, checkboxes, radio buttons, and suggestion lists.
 
 The application solves a practical training problem: automation engineers need stable, inspectable, repeatable UI elements with predictable selectors and realistic browser behavior. This project centralizes those scenarios into a modern Next.js dashboard, making it easier to practice locator strategies, synchronization, validation, browser APIs, and user interaction flows without depending on third-party demo sites.
+
+Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium WebDriver Practice target, UI Automation Practice Site, or Selenium Interview Practice environment.
 
 ## Features
 
 ### Core Features
 
 - Dashboard landing page with module cards for every automation practice category.
+- Public SaaS-style homepage with module showcase, benefits, production links, and real dashboard imagery.
 - Alerts practice covering simple alerts, confirmation alerts, and prompt alerts.
 - Calendar practice with date input, custom calendar table navigation, and tabular data.
 - Checkbox practice for single checkbox, multiple checkbox, and select-all scenarios.
@@ -43,6 +48,7 @@ The application solves a practical training problem: automation engineers need s
 - Tailwind CSS 4 theme tokens through global CSS variables.
 - Local browser-state examples using `localStorage`.
 - Browser API scenarios for notifications, alerts, file inputs, drag-and-drop, iframes, and windows.
+- SEO-ready metadata, Open Graph images, Twitter Cards, sitemap, robots, web app manifest, app icons, and JSON-LD structured data.
 
 ## Tech Stack
 
@@ -130,6 +136,8 @@ Key architectural decisions:
 - **Static application data:** Dashboard modules and countries are stored as typed data in `data/`.
 - **Client/server separation:** Server-rendered pages are used where possible; browser-dependent behavior is isolated in client components.
 - **Automation-friendly markup:** Components expose stable selectors with `id`, `name`, `aria-label`, and `data-testid` attributes.
+- **Technical SEO:** Root and homepage metadata use the Next.js Metadata API. `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, generated icons, and social images are colocated with App Router metadata routes.
+- **Structured data:** The homepage renders JSON-LD for `EducationalApplication`, `WebSite`, `Organization`, and `BreadcrumbList`.
 
 Design patterns used:
 
@@ -430,6 +438,42 @@ Current optimizations:
 - Static local data for fast module rendering.
 - Tailwind CSS utility classes and theme tokens.
 - Minimal dependency footprint for a frontend training application.
+- Optimized homepage screenshot through `next/image` with priority loading for the primary visual.
+- Generated metadata assets avoid adding large static social image files.
+- Sitemap, robots, manifest, app icons, and Open Graph images are served through cached App Router metadata routes.
+
+## SEO and Discoverability
+
+The homepage is optimized for search and sharing with production metadata for:
+
+- Selenium Practice Website
+- Selenium Automation Playground
+- Selenium Testing Playground
+- Selenium Automation Practice Website
+- UI Automation Practice Site
+- Selenium Interview Practice
+- Selenium WebDriver Practice
+
+Implemented SEO assets:
+
+- Canonical URL: `https://automation-practice-theta.vercel.app`
+- Open Graph metadata and generated image
+- Twitter summary large image card
+- `app/sitemap.ts` with the homepage and all practice routes
+- `app/robots.ts` allowing all crawlers and exposing the sitemap
+- `app/manifest.ts` for web app metadata
+- Generated favicon supplement and Apple touch icon route
+- JSON-LD structured data for educational application discovery
+
+## Accessibility
+
+Accessibility considerations:
+
+- Semantic `main`, `section`, `nav`, `footer`, heading, list, and link structure.
+- Preserved automation-friendly `aria-label`, `id`, and `data-testid` attributes.
+- Visible keyboard focus indicators on primary navigation and calls to action.
+- Descriptive image alt text for the dashboard preview.
+- Screen-reader-friendly module navigation labels.
 
 Recommended future optimizations:
 

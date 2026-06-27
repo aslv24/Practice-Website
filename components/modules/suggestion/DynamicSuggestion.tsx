@@ -36,19 +36,26 @@ export default function DynamicSuggestion() {
 
   useEffect(() => {
     if (!input.trim()) {
-      setFiltered([])
-      setStatus("idle")
-      return
+      const timer = setTimeout(() => {
+        setFiltered([])
+        setStatus("idle")
+      }, 0)
+
+      return () => clearTimeout(timer)
     }
 
-    setStatus("loading")
+    const loadingTimer = setTimeout(() => {
+      setStatus("loading")
+    }, 0)
 
-    // Debounce Simulation
     if (debounceRef.current) {
       clearTimeout(debounceRef.current)
+      debounceRef.current = null
     }
 
     debounceRef.current = setTimeout(() => {
+      clearTimeout(loadingTimer)
+
       const result = countries.filter(
         (item) =>
           item.name
@@ -71,11 +78,27 @@ export default function DynamicSuggestion() {
     }, 800)
 
     return () => {
+      clearTimeout(loadingTimer)
+
       if (debounceRef.current) {
         clearTimeout(debounceRef.current)
       }
     }
   }, [input])
+
+  const handleSearchChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value
+
+    setInput(value)
+
+    if (!value.trim()) {
+      return
+    }
+
+    setStatus("loading")
+  }
 
   const handleSelect = (item: Country) => {
     setInput(`${item.name} (${item.isoCode})`)
@@ -177,7 +200,7 @@ export default function DynamicSuggestion() {
               ? `dynamic-country-option-${activeIndex}`
               : undefined
           }
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleSearchChange}
           onKeyDown={handleKeyboardNavigation}
           className="w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         />

@@ -19,13 +19,11 @@ export default function ImplicitWait() {
     useState(false)
 
   const [status, setStatus] =
-    useState<LoadingStatus>("idle")
+    useState<LoadingStatus>("loading")
 
   const [countdown, setCountdown] = useState(5)
 
   useEffect(() => {
-    setStatus("loading")
-
     // Countdown Timer
     const countdownTimer = window.setInterval(() => {
       setCountdown((prev) => {

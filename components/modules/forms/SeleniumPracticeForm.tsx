@@ -148,8 +148,6 @@ export default function SeleniumPracticeForm() {
   useEffect(() => {
     if (!showSuggestions) return
 
-    setIsSearchingCountries(true)
-
     const timer = setTimeout(() => {
       setIsSearchingCountries(false)
     }, 600)
@@ -722,13 +720,20 @@ export default function SeleniumPracticeForm() {
                 aria-controls="practice-country-suggestions-dropdown"
                 aria-label="Country suggestion"
                 placeholder="Search country"
-                onFocus={() =>
+                onFocus={() => {
+                  setIsSearchingCountries(
+                    true
+                  )
                   setShowSuggestions(
                     true
                   )
-                }
+                }}
                 onChange={(e) => {
                   handleInputChange(e)
+
+                  setIsSearchingCountries(
+                    true
+                  )
 
                   setShowSuggestions(
                     true

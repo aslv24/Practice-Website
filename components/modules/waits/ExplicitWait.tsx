@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 type StatusType =
   | "idle"
@@ -10,6 +10,51 @@ type StatusType =
 interface ScenarioState {
   counter: number | null
   status: StatusType
+}
+
+const useCountdown = (
+  scenario: ScenarioState,
+  setScenario: React.Dispatch<
+    React.SetStateAction<ScenarioState>
+  >,
+  callback?: () => void
+) => {
+  useEffect(() => {
+    if (
+      scenario.status !== "waiting" ||
+      scenario.counter === null
+    ) {
+      return
+    }
+
+    if (scenario.counter <= 0) {
+      callback?.()
+
+      setScenario({
+        counter: 0,
+        status: "completed",
+      })
+
+      return
+    }
+
+    const timer = setTimeout(() => {
+      setScenario((prev) => ({
+        ...prev,
+        counter:
+          prev.counter !== null
+            ? prev.counter - 1
+            : null,
+      }))
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [
+    callback,
+    scenario.counter,
+    scenario.status,
+    setScenario,
+  ])
 }
 
 export default function ExplicitWait() {
@@ -59,90 +104,59 @@ export default function ExplicitWait() {
   const [checked, setChecked] =
     useState(false)
 
-  // Generic Countdown Effect
-  const useCountdown = (
-    scenario: ScenarioState,
-    setScenario: React.Dispatch<
-      React.SetStateAction<ScenarioState>
-    >,
-    callback?: () => void
-  ) => {
-    useEffect(() => {
-      if (
-        scenario.status !== "waiting" ||
-        scenario.counter === null
-      ) {
-        return
-      }
+  const openDelayedAlert = useCallback(() => {
+    alert("Alert Opened Successfully")
+  }, [])
 
-      if (scenario.counter <= 0) {
-        callback?.()
+  const revealDelayedText = useCallback(() => {
+    setText("Selenium WebDriver")
+  }, [])
 
-        setScenario({
-          counter: 0,
-          status: "completed",
-        })
+  const revealDisplayButton = useCallback(() => {
+    setShowButton(true)
+  }, [])
 
-        return
-      }
+  const enableDelayedButton = useCallback(() => {
+    setEnableButton(true)
+  }, [])
 
-      const timer = setTimeout(() => {
-        setScenario((prev) => ({
-          ...prev,
-          counter:
-            prev.counter !== null
-              ? prev.counter - 1
-              : null,
-        }))
-      }, 1000)
-
-      return () => clearTimeout(timer)
-    }, [scenario.counter, scenario.status])
-  }
+  const checkDelayedCheckbox = useCallback(() => {
+    setChecked(true)
+  }, [])
 
   // Alert
   useCountdown(
     alertScenario,
     setAlertScenario,
-    () => {
-      alert("Alert Opened Successfully")
-    }
+    openDelayedAlert
   )
 
   // Text
   useCountdown(
     textScenario,
     setTextScenario,
-    () => {
-      setText("Selenium WebDriver")
-    }
+    revealDelayedText
   )
 
   // Display Button
   useCountdown(
     displayScenario,
     setDisplayScenario,
-    () => {
-      setShowButton(true)
-    }
+    revealDisplayButton
   )
 
   // Enable Button
   useCountdown(
     enableScenario,
     setEnableScenario,
-    () => {
-      setEnableButton(true)
-    }
+    enableDelayedButton
   )
 
   // Checkbox
   useCountdown(
     checkboxScenario,
     setCheckboxScenario,
-    () => {
-      setChecked(true)
-    }
+    checkDelayedCheckbox
   )
 
   const startScenario = (

@@ -89,7 +89,7 @@ export default function MultipleCheckbox({
 
         <div className="space-y-3">
           {CHECKBOX_OPTIONS.map(
-            (option, index) => (
+            (option) => (
               <label
                 key={option.id}
                 htmlFor={`${option.id}-checkbox`}
