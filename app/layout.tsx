@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  verification: {
+    google: "B4-t2bRQ9_i_qdOLvMTZJl0wH5ju62QpjoJ_wKfvFXk",
+  },
   openGraph: {
     title:
       "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
