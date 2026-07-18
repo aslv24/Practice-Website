@@ -6,7 +6,9 @@ import {
   FaStopwatch,
   FaUpload,
   FaWindowMaximize,
-  FaWpforms
+  FaWpforms,
+  FaGhost,
+  FaLink
 } from "react-icons/fa"
 
 import {
@@ -108,5 +110,26 @@ export const modules: PracticeModule[] = [
     icon: FaWindowMaximize,
     color: "bg-rose-100 text-rose-600",
     link: "/windows"
+  },
+  {
+    id: "tables",
+    title: "Web Tables",
+    icon: MdTableChart,
+    color: "bg-amber-100 text-amber-600",
+    link: "/tables"
+  },
+  {
+    id: "shadow-dom",
+    title: "Shadow DOM",
+    icon: FaGhost,
+    color: "bg-zinc-100 text-zinc-600",
+    link: "/shadow-dom"
+  },
+  {
+    id: "broken-links",
+    title: "Broken Links",
+    icon: FaLink,
+    color: "bg-fuchsia-100 text-fuchsia-600",
+    link: "/broken-links"
   }
 ]

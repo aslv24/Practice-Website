@@ -3,7 +3,7 @@
 export default function NewWindow() {
   const openWindow = () => {
     window.open(
-      "https://www.naukri.com/",
+      "/windows/mock?name=naukri",
       "_blank",
       "width=800,height=600,noopener,noreferrer"
     )

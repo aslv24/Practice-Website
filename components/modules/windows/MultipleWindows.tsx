@@ -4,28 +4,28 @@ const WINDOW_LINKS = [
   {
     id: "facebook",
     label: "Facebook Window",
-    url: "https://www.facebook.com/",
+    url: "/windows/mock?name=facebook",
     buttonClass:
       "bg-blue-600 hover:bg-blue-700"
   },
   {
     id: "instagram",
     label: "Instagram Window",
-    url: "https://www.instagram.com/",
+    url: "/windows/mock?name=instagram",
     buttonClass:
       "bg-pink-600 hover:bg-pink-700"
   },
   {
     id: "linkedin",
     label: "LinkedIn Window",
-    url: "https://www.linkedin.com/",
+    url: "/windows/mock?name=linkedin",
     buttonClass:
       "bg-blue-800 hover:bg-blue-900"
   },
   {
     id: "naukri",
     label: "Naukri Window",
-    url: "https://www.naukri.com/",
+    url: "/windows/mock?name=naukri",
     buttonClass:
       "bg-yellow-500 hover:bg-yellow-600 text-black"
   }

@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span style={{ background: "#0f172a", borderRadius: 14, padding: 18 }}>
-            11+ Modules
+            15+ Modules
           </span>
           <span style={{ background: "#047857", borderRadius: 14, padding: 18 }}>
             50+ Scenarios

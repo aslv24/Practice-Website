@@ -3,7 +3,7 @@
 export default function NewTab() {
   const openTab = () => {
     window.open(
-      "https://www.naukri.com/",
+      "/windows/mock?name=naukri",
       "_blank",
       "noopener,noreferrer"
     )

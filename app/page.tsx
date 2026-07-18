@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-import { FaGithub } from "react-icons/fa"
 
 import HomeClientEnhancements from "@/components/layout/HomeClientEnhancements"
 import { modules } from "@/data/modules"
@@ -92,7 +91,13 @@ const moduleDescriptions: Record<string, string> = {
   waits:
     "Build confidence with implicit waits, explicit waits, loading states, and delayed elements.",
   windows:
-    "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling."
+    "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling.",
+  tables:
+    "Sort, filter, paginate, and delete rows in a dynamic HTML table with stable locators.",
+  "shadow-dom":
+    "Locate and interact with elements encapsulated inside an open Shadow DOM boundary.",
+  "broken-links":
+    "Detect broken links and missing images by checking HTTP status codes and load failures."
 }
 
 const stats = [
@@ -199,17 +204,6 @@ export default function Home() {
                 className="inline-flex min-h-12 items-center justify-center rounded-lg bg-slate-950 px-6 text-base font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-500"
               >
                 Start Practicing
-              </Link>
-
-              <Link
-                href={repositoryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-base font-semibold text-slate-900 shadow-sm transition hover:border-slate-500 hover:bg-slate-50 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-500"
-                aria-label="View GitHub Repository for Selenium Automation Practice Website"
-              >
-                <FaGithub aria-hidden="true" />
-                View GitHub Repository
               </Link>
             </div>
           </div>
@@ -364,16 +358,6 @@ export default function Home() {
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <Link
-                  href={repositoryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-400"
-                >
-                  GitHub repository
-                </Link>
-              </li>
-              <li>
-                <Link
                   href={siteUrl}
                   className="hover:text-white focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-400"
                 >
@@ -397,7 +381,7 @@ export default function Home() {
               Author
             </h2>
             <p className="mt-3 text-sm leading-6">
-              Built by aslv24. Copyright {new Date().getFullYear()}.
+              Built by Infomats Technologies. Copyright {new Date().getFullYear()}.
             </p>
           </div>
         </div>

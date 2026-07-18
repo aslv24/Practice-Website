@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type UploadStatus =
   | "idle"
@@ -9,6 +9,8 @@ type UploadStatus =
   | "error"
 
 export default function FileUpload() {
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
   const [fileName, setFileName] =
     useState("")
 
@@ -111,6 +113,9 @@ export default function FileUpload() {
     setProgress(0)
     setErrorMessage("")
     setStatus("idle")
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""
+    }
   }
 
   return (
@@ -147,6 +152,7 @@ export default function FileUpload() {
 
         {/* REAL INPUT */}
         <input
+          ref={fileInputRef}
           type="file"
           id="file-upload-input"
           name="fileUpload"

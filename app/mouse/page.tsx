@@ -1,8 +1,10 @@
 import DashboardBackLink from "@/components/layout/DashboardBackLink"
 import ClickActions from "@/components/modules/mouse/ClickActions"
 import DragDrop from "@/components/modules/mouse/DragDrop"
+import DragAndDrop from "@/components/modules/mouse/DragAndDrop"
 import MouseHover from "@/components/modules/mouse/MouseHover"
 import Slider from "@/components/modules/mouse/Slider"
+import RangeSlider from "@/components/modules/mouse/RangeSlider"
 
 export default function MousePage() {
   return (
@@ -15,11 +17,13 @@ export default function MousePage() {
 
       <DashboardBackLink />
 
-      <div className="mt-6 w-full max-w-2xl space-y-6">
+      <div className="mt-6 w-full max-w-3xl space-y-6">
         <ClickActions />
         <MouseHover />
         <DragDrop />
+        <DragAndDrop />
         <Slider />
+        <RangeSlider />
       </div>
     </div>
   )

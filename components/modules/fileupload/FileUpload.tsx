@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type UploadStatus =
   | "idle"
@@ -9,6 +9,8 @@ type UploadStatus =
   | "error"
 
 export default function SingleFileUpload() {
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
   const [fileName, setFileName] =
     useState("")
 
@@ -104,6 +106,9 @@ export default function SingleFileUpload() {
     setProgress(0)
     setErrorMessage("")
     setStatus("idle")
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""
+    }
   }
 
   return (
@@ -132,6 +137,7 @@ export default function SingleFileUpload() {
       {/* Upload Area */}
       <div className="rounded-xl border border-dashed p-6">
         <input
+          ref={fileInputRef}
           type="file"
           id="single-upload-input"
           name="singleUpload"

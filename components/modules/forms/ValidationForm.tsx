@@ -87,8 +87,14 @@ export default function ValidationForm() {
 
     try {
       // Simulate API Delay
-      await new Promise((resolve) =>
-        setTimeout(resolve, 2000)
+      await new Promise((resolve, reject) =>
+        setTimeout(() => {
+          if (email.toLowerCase().includes("error")) {
+            reject(new Error("Simulated Server Error"))
+          } else {
+            resolve(null)
+          }
+        }, 2000)
       )
 
       setSubmitState("success")
