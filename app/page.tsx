@@ -101,7 +101,7 @@ const moduleDescriptions: Record<string, string> = {
 }
 
 const stats = [
-  { value: "11+", label: "Practice Modules" },
+  { value: "15+", label: "Practice Modules" },
   { value: "50+", label: "Automation Scenarios" },
   { value: "Cross Browser", label: "Compatible" },
   { value: "Framework", label: "Ready" }
