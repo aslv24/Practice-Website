@@ -3,6 +3,7 @@ import type {
   Viewport,
 } from "next"
 
+import { Providers } from "@/app/providers"
 import "./globals.css"
 
 const siteUrl = "https://automation-practice-theta.vercel.app"
@@ -10,9 +11,8 @@ const siteUrl = "https://automation-practice-theta.vercel.app"
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
-    template: "%s | Selenium Automation Practice Website",
+    default: "Selenium Automation Practice",
+    template: "%s | Selenium Automation Practice",
   },
 
   description:
@@ -29,8 +29,7 @@ export const metadata: Metadata = {
     google: "B4-t2bRQ9_i_qdOLvMTZJl0wH5ju62QpjoJ_wKfvFXk",
   },
   openGraph: {
-    title:
-      "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
+    title: "Selenium Automation Practice",
     description:
       "Practice Selenium automation using real-world examples including alerts, forms, dropdowns, waits, file uploads, windows, frames, and more.",
     url: siteUrl,
@@ -74,13 +73,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="h-full antialiased"
+      className="app-root"
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-background text-foreground"
+        className="app-body"
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

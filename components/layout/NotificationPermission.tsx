@@ -2,28 +2,24 @@
 
 import { useEffect } from "react"
 
+import { useModuleContext } from "@/hooks/useModuleContext"
+
 export default function NotificationPermission() {
+  const { userPreferences, setNotificationAsked, setNotificationPermission } =
+    useModuleContext()
+
   useEffect(() => {
     const askPermission = async () => {
       try {
-        const alreadyAsked = localStorage.getItem("notificationAsked")
-
         if (
-          !alreadyAsked &&
+          !userPreferences.notificationAsked &&
           "Notification" in window &&
           Notification.permission === "default"
         ) {
           const permission = await Notification.requestPermission()
 
-          localStorage.setItem(
-            "notificationPermission",
-            permission
-          )
-
-          localStorage.setItem(
-            "notificationAsked",
-            "true"
-          )
+          setNotificationPermission(permission)
+          setNotificationAsked(true)
         }
       } catch (error) {
         console.error(
@@ -34,7 +30,9 @@ export default function NotificationPermission() {
     }
 
     askPermission()
-  }, [])
+  }, [userPreferences.notificationAsked, setNotificationAsked, setNotificationPermission])
 
   return null
 }
+
+NotificationPermission.displayName = "NotificationPermission"

@@ -157,15 +157,15 @@ export default function DynamicSuggestion() {
       data-testid="dynamic-suggestion-card"
       data-component="dynamic-suggestion"
       aria-label="Dynamic suggestion component"
-      className="rounded-2xl border bg-white p-6 shadow-sm"
+      className="dynamic-suggestion"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-blue-600">
+      <header className="dynamic-suggestion__header">
+        <h2 className="dynamic-suggestion__title">
           Dynamic Suggestions
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="dynamic-suggestion__description">
           Practice Selenium autosuggestion handling
           with debounce, async rendering, keyboard
           navigation, and dynamic results.
@@ -173,10 +173,10 @@ export default function DynamicSuggestion() {
       </header>
 
       {/* Search Input */}
-      <div className="space-y-3">
+      <div className="dynamic-suggestion__content">
         <label
           htmlFor="dynamic-country-input"
-          className="text-sm font-medium text-gray-700"
+          className="dynamic-suggestion__label"
         >
           Search Country
         </label>
@@ -202,20 +202,20 @@ export default function DynamicSuggestion() {
           }
           onChange={handleSearchChange}
           onKeyDown={handleKeyboardNavigation}
-          className="w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="dynamic-suggestion__input"
         />
 
         {/* Status Section */}
         <div
           aria-live="polite"
-          className="rounded-lg border bg-gray-50 p-3 text-sm"
+          className="dynamic-suggestion__status"
         >
-          <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+          <div className="dynamic-suggestion__status-content">
             <p
               id="dynamic-suggestion-status"
               data-testid="dynamic-suggestion-status"
               data-status={status}
-              className="font-medium text-gray-700"
+              className="dynamic-suggestion__status-text"
             >
               Status: {status}
             </p>
@@ -224,7 +224,7 @@ export default function DynamicSuggestion() {
               id="dynamic-suggestion-count"
               data-testid="dynamic-suggestion-count"
               data-result-count={filtered.length}
-              className="font-medium text-blue-600"
+              className="dynamic-suggestion__count"
             >
               Results: {filtered.length}
             </p>
@@ -236,12 +236,12 @@ export default function DynamicSuggestion() {
           <div
             id="dynamic-loading-state"
             data-testid="dynamic-loading-state"
-            className="rounded-lg border border-dashed p-3"
+            className="dynamic-suggestion__loading"
           >
-            <div className="flex items-center gap-3">
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+            <div className="dynamic-suggestion__loading-content">
+              <div className="dynamic-suggestion__spinner" />
 
-              <p className="text-sm text-gray-600">
+              <p className="dynamic-suggestion__loading-text">
                 Searching countries...
               </p>
             </div>
@@ -253,9 +253,9 @@ export default function DynamicSuggestion() {
           <div
             id="dynamic-empty-state"
             data-testid="dynamic-empty-state"
-            className="rounded-lg border border-red-200 bg-red-50 p-3"
+            className="dynamic-suggestion__empty"
           >
-            <p className="text-sm text-red-600">
+            <p className="dynamic-suggestion__empty-text">
               No countries found.
             </p>
           </div>
@@ -268,7 +268,7 @@ export default function DynamicSuggestion() {
             role="listbox"
             data-testid="dynamic-country-dropdown"
             aria-label="Country suggestions"
-            className="max-h-60 overflow-auto rounded-xl border bg-white shadow-sm"
+            className="dynamic-suggestion__dropdown"
           >
             {filtered.map((item, index) => {
               const isActive =
@@ -286,23 +286,23 @@ export default function DynamicSuggestion() {
                   onClick={() =>
                     handleSelect(item)
                   }
-                  className={`flex cursor-pointer items-center justify-between px-4 py-3 transition-colors ${
+                  className={`dynamic-suggestion__option${
                     isActive
-                      ? "bg-blue-100"
-                      : "hover:bg-gray-100"
+                      ? " dynamic-suggestion__option--active"
+                      : ""
                   }`}
                 >
-                  <div>
-                    <p className="font-medium text-gray-800">
+                  <div className="dynamic-suggestion__option-content">
+                    <p className="dynamic-suggestion__country-name">
                       {item.name}
                     </p>
 
-                    <p className="text-sm text-gray-500">
+                    <p className="dynamic-suggestion__country-code">
                       Country Code: {item.isoCode}
                     </p>
                   </div>
 
-                  <span className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
+                  <span className="dynamic-suggestion__country-badge">
                     {item.isoCode}
                   </span>
                 </li>
@@ -317,9 +317,9 @@ export default function DynamicSuggestion() {
             id="selected-country-result"
             data-testid="selected-country-result"
             aria-live="polite"
-            className="rounded-xl border border-green-200 bg-green-50 p-4"
+            className="dynamic-suggestion__selected"
           >
-            <p className="font-medium text-green-700">
+            <p className="dynamic-suggestion__selected-text">
               Selected Country: {selectedCountry}
             </p>
           </div>

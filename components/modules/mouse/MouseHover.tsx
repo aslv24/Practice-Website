@@ -31,30 +31,20 @@ export default function MouseHover() {
       id="mouse-hover-card"
       data-testid="mouse-hover-card"
       aria-label="Mouse hover card"
-      className="
-        rounded-2xl
-        border
-        border-gray-100
-        bg-white
-        p-6
-        shadow-sm
-        transition-all
-        duration-200
-        hover:shadow-md
-      "
+      className="mouse-hover"
     >
       {/* Header */}
-      <header className="mb-4">
+      <header className="mouse-hover__header">
         <h2
           id="mouse-hover-title"
-          className="text-lg font-semibold"
+          className="mouse-hover__title"
         >
           Mouse Hover
         </h2>
 
         <p
           id="mouse-hover-description"
-          className="mt-1 text-sm text-gray-500"
+          className="mouse-hover__description"
         >
           Practice Selenium hover actions and
           tooltip handling.
@@ -65,7 +55,7 @@ export default function MouseHover() {
       <div
         id="hover-container"
         data-testid="hover-container"
-        className="relative"
+        className="mouse-hover__container"
         onMouseEnter={() =>
           setHoverState("hovering")
         }
@@ -88,26 +78,13 @@ export default function MouseHover() {
           onBlur={() =>
             setHoverState("idle")
           }
-          className={`
-            cursor-pointer
-            rounded-xl
-            border
-            p-6
-            text-center
-            transition-all
-            duration-300
-            focus:outline-none
-            focus:ring-2
-            focus:ring-blue-400
-            focus:ring-offset-2
-            ${
-              isVisible
-                ? "border-blue-500 bg-blue-100 scale-[1.02]"
-                : "border-blue-200 bg-gradient-to-r from-blue-100 to-blue-200"
-            }
-          `}
+          className={`mouse-hover__area${
+            isVisible
+              ? " mouse-hover__area--visible"
+              : " mouse-hover__area--idle"
+          }`}
         >
-          <p className="font-medium text-gray-800">
+          <p className="mouse-hover__area-text">
             Hover Over Me
           </p>
         </div>
@@ -118,22 +95,7 @@ export default function MouseHover() {
             id="hover-tooltip"
             data-testid="hover-tooltip"
             role="tooltip"
-            className="
-              absolute
-              left-1/2
-              top-full
-              z-20
-              mt-3
-              -translate-x-1/2
-              rounded-lg
-              bg-gray-900
-              px-4
-              py-2
-              text-sm
-              text-white
-              shadow-lg
-              whitespace-nowrap
-            "
+            className="mouse-hover__tooltip"
           >
             Hover detected successfully.
           </div>
@@ -144,28 +106,14 @@ export default function MouseHover() {
           <div
             id="hover-action-group"
             data-testid="hover-action-group"
-            className="mt-6 flex gap-3"
+            className="mouse-hover__actions"
           >
             <button
               id="hover-edit-button"
               data-testid="hover-edit-button"
               type="button"
               aria-label="Edit action"
-              className="
-                rounded-lg
-                bg-blue-500
-                px-4
-                py-2
-                text-sm
-                text-white
-                transition-colors
-                duration-200
-                hover:bg-blue-600
-                focus:outline-none
-                focus:ring-2
-                focus:ring-blue-400
-                focus:ring-offset-2
-              "
+              className="mouse-hover__button mouse-hover__button--edit"
             >
               Edit
             </button>
@@ -175,21 +123,7 @@ export default function MouseHover() {
               data-testid="hover-delete-button"
               type="button"
               aria-label="Delete action"
-              className="
-                rounded-lg
-                bg-red-500
-                px-4
-                py-2
-                text-sm
-                text-white
-                transition-colors
-                duration-200
-                hover:bg-red-600
-                focus:outline-none
-                focus:ring-2
-                focus:ring-red-400
-                focus:ring-offset-2
-              "
+              className="mouse-hover__button mouse-hover__button--delete"
             >
               Delete
             </button>
@@ -199,21 +133,17 @@ export default function MouseHover() {
 
       {/* Status Message */}
       <div
-        className="mt-6"
+        className="mouse-hover__status"
         aria-live="polite"
       >
         <p
           id="hover-status-message"
           data-testid="hover-status-message"
-          className={`
-            text-sm
-            font-medium
-            ${
-              isVisible
-                ? "text-blue-600"
-                : "text-gray-500"
-            }
-          `}
+          className={`mouse-hover__status-message${
+            isVisible
+              ? " mouse-hover__status-message--visible"
+              : " mouse-hover__status-message--idle"
+          }`}
         >
           {isVisible
             ? "Tooltip is visible."

@@ -26,6 +26,7 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 - Dashboard landing page with module cards for every automation practice category.
 - Public SaaS-style homepage with module showcase, benefits, production links, and real dashboard imagery.
 - Alerts practice covering simple alerts, confirmation alerts, and prompt alerts.
+- Broken links & status codes practice for HTTP validation and image integrity.
 - Calendar practice with date input, custom calendar table navigation, and tabular data.
 - Checkbox practice for single checkbox, multiple checkbox, and select-all scenarios.
 - Dropdown practice for single-select, multi-select, and dynamically loaded options.
@@ -34,7 +35,9 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 - Frames practice with single iframe and nested iframe scenarios.
 - Mouse actions practice for click variants, hover interactions, drag-and-drop, and range slider handling.
 - Radio button practice for single and grouped radio selection.
+- Shadow DOM practice for penetrating encapsulated web components.
 - Suggestion list practice for static and dynamic autocomplete behavior.
+- Tables practice for complex web tables, pagination, sorting, and cell extraction.
 - Waits practice for delayed fields, loading states, and explicit/implicit wait training.
 - Windows practice for opening new tabs, popup windows, and multiple external windows.
 
@@ -132,7 +135,9 @@ Key architectural decisions:
 - **App Router pages:** Each practice area is exposed through an `app/<module>/page.tsx` route.
 - **Feature-based module components:** Scenario implementations are grouped by domain under `components/modules/<feature>/`.
 - **Shared layout components:** Cross-page behavior such as dashboard navigation, notification prompts, and lead modal behavior lives in `components/layout/`.
+- **Modular CSS architecture:** Dedicated stylesheets organized by automation domain under `styles/modules/` and cleanly imported into `app/globals.css`.
 - **Reusable UI primitives:** Generic UI elements live in `components/ui/`.
+- **State management:** React Context providers (`context/`) manage user preferences and module search/filters.
 - **Static application data:** Dashboard modules and countries are stored as typed data in `data/`.
 - **Client/server separation:** Server-rendered pages are used where possible; browser-dependent behavior is isolated in client components.
 - **Automation-friendly markup:** Components expose stable selectors with `id`, `name`, `aria-label`, and `data-testid` attributes.
@@ -142,8 +147,9 @@ Key architectural decisions:
 Design patterns used:
 
 - Component composition
-- Controlled React state
+- Controlled React state & context
 - Feature folder organization
+- Modular domain-driven stylesheet architecture
 - Static configuration/data modules
 - Reusable UI primitive pattern
 - Client-only enhancement pattern with `next/dynamic`
@@ -154,6 +160,7 @@ Design patterns used:
 automation-practice/
 |-- app/
 |   |-- alerts/
+|   |-- broken-links/
 |   |-- calendar/
 |   |-- checkbox/
 |   |-- dropdown/
@@ -162,7 +169,9 @@ automation-practice/
 |   |-- frames/
 |   |-- mouse/
 |   |-- radiobutton/
+|   |-- shadow-dom/
 |   |-- suggestion-list/
+|   |-- tables/
 |   |-- waits/
 |   |-- windows/
 |   |-- globals.css
@@ -172,6 +181,7 @@ automation-practice/
 |   |-- layout/
 |   |-- modules/
 |   |   |-- alerts/
+|   |   |-- brokenlinks/
 |   |   |-- calendar/
 |   |   |-- checkbox/
 |   |   |-- dropdown/
@@ -180,15 +190,43 @@ automation-practice/
 |   |   |-- frames/
 |   |   |-- mouse/
 |   |   |-- radiobutton/
+|   |   |-- shadowdom/
 |   |   |-- suggestion/
+|   |   |-- tables/
 |   |   |-- waits/
 |   |   `-- windows/
 |   `-- ui/
+|-- context/
+|   |-- ModuleContext.tsx
+|   `-- ModuleFilterContext.tsx
 |-- data/
 |   |-- countries.ts
 |   `-- modules.ts
+|-- hooks/
+|   `-- useDebounce.ts
 |-- lib/
+|   |-- dynamicStyles.ts
 |   `-- utils.ts
+|-- styles/
+|   |-- dashboard.css
+|   |-- theme.css
+|   `-- modules/
+|       |-- alerts.css
+|       |-- broken-links.css
+|       |-- calendar.css
+|       |-- checkbox.css
+|       |-- dropdown.css
+|       |-- file-upload.css
+|       |-- forms.css
+|       |-- frames.css
+|       |-- mouse.css
+|       |-- popups.css
+|       |-- radiobutton.css
+|       |-- shadow-dom.css
+|       |-- suggestion-list.css
+|       |-- tables.css
+|       |-- waits.css
+|       `-- windows.css
 |-- public/
 |-- eslint.config.mjs
 |-- next.config.ts

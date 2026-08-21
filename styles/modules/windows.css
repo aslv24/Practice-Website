@@ -1,0 +1,141 @@
+/* -------------------------------------------------------------------------- */
+/* Multiple Windows                                                           */
+/* -------------------------------------------------------------------------- */
+
+.multiple-windows {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.multiple-windows__title {
+  @apply mb-4 text-lg font-semibold text-gray-800;
+}
+
+.multiple-windows__description {
+  @apply mb-4 text-sm text-gray-500;
+}
+
+.multiple-windows__button-group {
+  @apply flex flex-wrap gap-3;
+}
+
+.multiple-windows__button {
+  @apply rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+}
+
+/* Window-specific button variants */
+
+.multiple-windows__button--facebook {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.multiple-windows__button--instagram {
+  @apply bg-pink-600 hover:bg-pink-700;
+}
+
+.multiple-windows__button--linkedin {
+  @apply bg-blue-800 hover:bg-blue-900;
+}
+
+.multiple-windows__button--naukri {
+  @apply bg-yellow-500 text-black hover:bg-yellow-600;
+}
+
+.multiple-windows__helper {
+  @apply mt-5 rounded-md border bg-gray-50 px-3 py-2 text-sm text-blue-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* New Tab                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.new-tab {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.new-tab__title {
+  @apply mb-4 text-lg font-semibold text-gray-800;
+}
+
+.new-tab__description {
+  @apply mb-4 text-sm text-gray-500;
+}
+
+.new-tab__button {
+  @apply rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.new-tab__helper {
+  @apply mt-5 rounded-md border bg-gray-50 px-3 py-2 text-sm text-blue-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* New Window                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.new-window {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.new-window__title {
+  @apply mb-4 text-lg font-semibold text-gray-800;
+}
+
+.new-window__description {
+  @apply mb-4 text-sm text-gray-500;
+}
+
+.new-window__button {
+  @apply rounded-lg bg-green-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
+}
+
+.new-window__helper {
+  @apply mt-5 rounded-md border bg-gray-50 px-3 py-2 text-sm text-green-700;
+}
+
+.windows-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.windows-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.windows-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.windows-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}
+
+.windows-mock {
+  @apply flex min-h-screen flex-col items-center justify-center bg-slate-50 p-6 text-slate-900;
+}
+
+.windows-mock__loading {
+  @apply text-sm text-slate-500;
+}
+
+.windows-mock__card {
+  @apply w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-lg;
+}
+
+.windows-mock__title {
+  @apply text-3xl font-extrabold text-blue-600 capitalize;
+}
+
+.windows-mock__message {
+  @apply mt-4 text-slate-600;
+}
+
+.windows-mock__details {
+  @apply mt-6 flex flex-col gap-3;
+}
+
+.windows-mock__document-title {
+  @apply text-xs text-slate-400;
+}
+
+.windows-mock__close-button {
+  @apply mt-2 inline-flex cursor-pointer items-center justify-center rounded-lg bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800;
+}

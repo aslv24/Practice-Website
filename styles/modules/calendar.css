@@ -1,0 +1,115 @@
+/* -------------------------------------------------------------------------- */
+/* Calendar Table                                                              */
+/* -------------------------------------------------------------------------- */
+
+.calendar-table {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.calendar-table__title {
+  @apply mb-4 text-lg font-semibold text-blue-700;
+}
+
+.calendar-table__year-controls {
+  @apply mb-3 flex items-center justify-between;
+}
+
+.calendar-table__month-controls {
+  @apply mb-4 flex items-center justify-between;
+}
+
+.calendar-table__control-button {
+  @apply rounded-md bg-blue-100 px-3 py-1 text-blue-700 transition-colors hover:bg-blue-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.calendar-table__period {
+  @apply text-lg font-semibold text-blue-700;
+}
+
+.calendar-table__dates {
+  @apply w-full border-collapse text-center;
+}
+
+.calendar-table__head {
+  @apply bg-blue-100;
+}
+
+.calendar-table__weekday {
+  @apply border px-2 py-2 text-blue-700;
+}
+
+.calendar-table__cell {
+  @apply border p-1;
+}
+
+.calendar-table__day {
+  @apply h-10 w-10 rounded-md transition-colors hover:bg-blue-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.calendar-table__day--selected {
+  @apply bg-green-600 font-bold text-white;
+}
+
+.calendar-table__day--today {
+  @apply border-2 border-yellow-500 font-semibold;
+}
+
+.calendar-table__empty-day {
+  @apply block h-10;
+}
+
+.calendar-table__selected-date {
+  @apply mt-4 rounded-md border bg-gray-50 px-3 py-2 text-sm font-medium text-green-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Date Input                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.date-input {
+  @apply rounded-2xl border bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.date-input__title {
+  @apply mb-4 text-lg font-semibold text-blue-700;
+}
+
+.date-input__content {
+  @apply space-y-3;
+}
+
+.date-input__field {
+  @apply space-y-2;
+}
+
+.date-input__label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.date-input__control {
+  @apply w-full rounded-md border px-3 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.date-input__description {
+  @apply text-sm text-gray-500;
+}
+
+.date-input__value {
+  @apply rounded-md border bg-gray-50 px-3 py-2 text-sm font-medium text-green-700;
+}
+
+.calendar-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.calendar-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.calendar-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.calendar-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

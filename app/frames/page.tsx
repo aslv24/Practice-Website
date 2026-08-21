@@ -4,16 +4,16 @@ import SingleFrame from "@/components/modules/frames/SingleFrame"
 
 export default function FramesPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <h1 className="mb-2 text-3xl font-bold">Frames Practice Page</h1>
+    <div className="frames-page">
+      <h1 className="frames-page__title">Frames Practice Page</h1>
 
-      <p className="mb-4 text-gray-600">
+      <p className="frames-page__description">
         Practice handling iframes for Selenium automation
       </p>
 
       <DashboardBackLink />
 
-      <div className="mt-6 w-full max-w-2xl space-y-6">
+      <div className="frames-page__content">
         <SingleFrame />
         <NestedFrame />
       </div>

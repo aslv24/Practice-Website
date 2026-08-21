@@ -12,16 +12,16 @@ export default function DropdownPage() {
   const [multiSelected, setMultiSelected] = useState<string[]>([])
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <h1 className="mb-2 text-3xl font-bold">Dropdown Practice Page</h1>
+    <div className="dropdown-page">
+      <h1 className="dropdown-page__title">Dropdown Practice Page</h1>
 
-      <p className="mb-4 text-gray-600">
+      <p className="dropdown-page__description">
         Practice handling dropdowns for Selenium automation
       </p>
 
       <DashboardBackLink />
 
-      <div className="mt-6 w-full max-w-2xl space-y-6">
+      <div className="dropdown-page__content">
         <SimpleDropdown selected={selected} setSelected={setSelected} />
 
         <MultiDropdown

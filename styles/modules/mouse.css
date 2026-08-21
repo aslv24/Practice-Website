@@ -1,0 +1,452 @@
+/* -------------------------------------------------------------------------- */
+/* Click Actions                                                              */
+/* -------------------------------------------------------------------------- */
+
+.click-actions {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.click-actions__header {
+  @apply mb-4;
+}
+
+.click-actions__title {
+  @apply flex items-center gap-2 text-lg font-semibold;
+}
+
+.click-actions__description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.click-actions__buttons {
+  @apply flex flex-wrap gap-3;
+}
+
+.click-actions__button {
+  @apply cursor-pointer select-none rounded-lg px-4 py-2 text-white shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.click-actions__button--click {
+  @apply bg-blue-500 hover:bg-blue-600;
+}
+
+.click-actions__button--right {
+  @apply bg-yellow-500 text-black hover:bg-yellow-600;
+}
+
+.click-actions__button--double {
+  @apply bg-green-500 hover:bg-green-600;
+}
+
+.click-actions__result-container {
+  @apply mt-4;
+}
+
+.click-actions__result {
+  @apply text-sm font-medium;
+}
+
+.click-actions__result--click {
+  @apply text-blue-600;
+}
+
+.click-actions__result--right {
+  @apply text-yellow-600;
+}
+
+.click-actions__result--double {
+  @apply text-green-600;
+}
+
+.click-actions__result--default {
+  @apply text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Drag & Drop                                                                */
+/* -------------------------------------------------------------------------- */
+
+.drag-drop {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.drag-drop__header {
+  @apply mb-4;
+}
+
+.drag-drop__title {
+  @apply text-lg font-semibold;
+}
+
+.drag-drop__description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.drag-drop__simple-content {
+  @apply flex flex-wrap items-center gap-6;
+}
+
+.drag-drop__source {
+  @apply cursor-grab select-none rounded-lg bg-blue-500 px-6 py-3 text-white shadow-sm transition-transform duration-200 active:cursor-grabbing active:scale-95;
+}
+
+.drag-drop__target {
+  @apply flex h-32 w-48 items-center justify-center rounded-lg border-2 text-center text-sm font-medium transition-all duration-200;
+}
+
+.drag-drop__target--idle {
+  @apply border-dashed border-gray-400 bg-gray-100;
+}
+
+.drag-drop__target--dragging {
+  @apply border-blue-500 bg-blue-100;
+}
+
+.drag-drop__target--hover {
+  @apply border-yellow-500 bg-yellow-100;
+}
+
+.drag-drop__target--dropped {
+  @apply border-green-500 bg-green-100;
+}
+
+.drag-drop__simple-status {
+  @apply mt-4;
+}
+
+.drag-drop__result {
+  @apply text-sm font-medium text-gray-600;
+}
+
+.drag-drop__result--dropped {
+  @apply text-green-600;
+}
+
+.drag-drop__simple-reset {
+  @apply mt-4;
+}
+
+.drag-drop__reset-button {
+  @apply rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300;
+}
+
+/* -------------------------------------------------------------------------- */
+/* HTML5 Drag & Drop                                                          */
+/* -------------------------------------------------------------------------- */
+
+.drag-drop-html5 {
+  @apply w-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.drag-drop-html5__title {
+  @apply mb-2 text-lg font-bold text-gray-800;
+}
+
+.drag-drop-html5__description {
+  @apply mb-6 text-sm text-gray-500;
+}
+
+.drag-drop-html5__content {
+  @apply flex flex-col gap-6 md:flex-row;
+}
+
+.drag-drop-html5__items {
+  @apply flex flex-1 flex-col gap-3;
+}
+
+.drag-drop-html5__section-label {
+  @apply text-xs font-semibold uppercase tracking-wider text-gray-400;
+}
+
+.drag-drop-html5__item {
+  @apply flex cursor-grab items-center justify-center rounded-lg border p-4 font-semibold active:cursor-grabbing hover:transition-colors select-none;
+}
+
+.drag-drop__item--blue {
+  @apply border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100/50;
+}
+
+.drag-drop__item--purple {
+  @apply border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100/50;
+}
+
+.drag-drop-html5__zone-container {
+  @apply flex flex-1 flex-col gap-3;
+}
+
+.drag-drop-html5__zone-header {
+  @apply flex items-center justify-between;
+}
+
+.drag-drop-html5__reset {
+  @apply text-xs font-semibold text-blue-600 hover:text-blue-800;
+}
+
+.drag-drop-html5__drop-zone {
+  @apply flex min-h-36 flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition-all hover:bg-gray-100/50;
+}
+
+.drag-drop-html5__drop-zone--success {
+  @apply border-green-300 bg-green-50;
+}
+
+.drag-drop-html5__empty {
+  @apply text-sm text-gray-400;
+}
+
+.drag-drop-html5__success {
+  @apply text-center;
+}
+
+.drag-drop-html5__success-title {
+  @apply mb-2 text-sm font-semibold text-green-800;
+}
+
+.drag-drop-html5__dropped-items {
+  @apply flex flex-wrap justify-center gap-2;
+}
+
+.drag-drop-html5__dropped-item {
+  @apply rounded bg-green-200 px-2 py-1 text-xs font-bold text-green-800;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mouse Hover                                                                */
+/* -------------------------------------------------------------------------- */
+
+.mouse-hover {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.mouse-hover__header {
+  @apply mb-4;
+}
+
+.mouse-hover__title {
+  @apply text-lg font-semibold;
+}
+
+.mouse-hover__description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.mouse-hover__container {
+  @apply relative;
+}
+
+.mouse-hover__area {
+  @apply cursor-pointer rounded-xl border p-6 text-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2;
+}
+
+.mouse-hover__area--idle {
+  @apply border-blue-200 bg-gradient-to-r from-blue-100 to-blue-200;
+}
+
+.mouse-hover__area--visible {
+  @apply scale-[1.02] border-blue-500 bg-blue-100;
+}
+
+.mouse-hover__area-text {
+  @apply font-medium text-gray-800;
+}
+
+.mouse-hover__tooltip {
+  @apply absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2 rounded-lg bg-gray-900 px-4 py-2 text-sm whitespace-nowrap text-white shadow-lg;
+}
+
+.mouse-hover__actions {
+  @apply mt-6 flex gap-3;
+}
+
+.mouse-hover__button {
+  @apply rounded-lg px-4 py-2 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.mouse-hover__button--edit {
+  @apply bg-blue-500 hover:bg-blue-600 focus:ring-blue-400;
+}
+
+.mouse-hover__button--delete {
+  @apply bg-red-500 hover:bg-red-600 focus:ring-red-400;
+}
+
+.mouse-hover__status {
+  @apply mt-6;
+}
+
+.mouse-hover__status-message {
+  @apply text-sm font-medium;
+}
+
+.mouse-hover__status-message--visible {
+  @apply text-blue-600;
+}
+
+.mouse-hover__status-message--idle {
+  @apply text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Range Slider                                                               */
+/* -------------------------------------------------------------------------- */
+
+.range-slider {
+  @apply w-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.range-slider__title {
+  @apply mb-2 text-lg font-bold text-gray-800;
+}
+
+.range-slider__description {
+  @apply mb-6 text-sm text-gray-500;
+}
+
+.range-slider__content {
+  @apply flex flex-col gap-6 md:flex-row md:items-center;
+}
+
+.range-slider__control {
+  @apply flex flex-1 flex-col gap-3;
+}
+
+.range-slider__values {
+  @apply flex justify-between text-sm;
+}
+
+.range-slider__min,
+.range-slider__max {
+  @apply text-gray-500;
+}
+
+.range-slider__current {
+  @apply font-semibold text-gray-800;
+}
+
+.range-slider__input {
+  @apply h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-blue-600 focus:outline-none;
+}
+
+.range-slider__target-panel {
+  @apply flex min-h-[96px] flex-1 flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 p-4;
+}
+
+.range-slider__target-label {
+  @apply text-sm text-gray-500;
+}
+
+.range-slider__target-value {
+  @apply font-bold text-slate-800;
+}
+
+.range-slider__status {
+  @apply mt-2 rounded px-3 py-1 text-xs font-semibold;
+}
+
+.range-slider__status--success {
+  @apply bg-green-100 text-green-800;
+}
+
+.range-slider__status--pending {
+  @apply bg-amber-100 text-amber-800;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Slider                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.slider {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.slider__header {
+  @apply mb-4;
+}
+
+.slider__title {
+  @apply flex items-center gap-2 text-lg font-semibold;
+}
+
+.slider__description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.slider__control {
+  @apply space-y-4;
+}
+
+.slider__input {
+  @apply w-full cursor-pointer accent-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2;
+}
+
+.slider__progress {
+  @apply h-3 overflow-hidden rounded-full bg-gray-200;
+}
+
+.slider__progress-bar {
+  @apply h-full transition-all duration-300;
+}
+
+.slider__progress-bar--low {
+  @apply bg-blue-500;
+}
+
+.slider__progress-bar--medium {
+  @apply bg-yellow-500;
+}
+
+.slider__progress-bar--high {
+  @apply bg-orange-500;
+}
+
+.slider__progress-bar--maximum {
+  @apply bg-red-500;
+}
+
+.slider__value-display {
+  @apply mt-4;
+}
+
+.slider__value {
+  @apply text-sm font-medium;
+}
+
+.slider__value--low {
+  @apply text-blue-600;
+}
+
+.slider__value--medium {
+  @apply text-yellow-600;
+}
+
+.slider__value--high {
+  @apply text-orange-600;
+}
+
+.slider__value--maximum {
+  @apply text-red-600;
+}
+
+.slider__status {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.slider__range-labels {
+  @apply mt-4 flex justify-between text-xs text-gray-400;
+}
+
+.mouse-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.mouse-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.mouse-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.mouse-page__content {
+  @apply mt-6 w-full max-w-3xl space-y-6;
+}

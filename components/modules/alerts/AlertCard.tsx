@@ -15,7 +15,7 @@ export default function AlertCard({
   automationId,
   title,
   children,
-  className
+  className,
 }: AlertCardProps) {
   const titleId = `${automationId}-title`
 
@@ -25,22 +25,19 @@ export default function AlertCard({
       data-testid={`${automationId}-card`}
       data-component="alert-card"
       aria-labelledby={titleId}
-      className={cn(
-        "rounded-xl border bg-white p-6 shadow-sm",
-        className
-      )}
+      className={cn("alert-card", className)}
     >
       <h2
         id={titleId}
         data-testid={titleId}
-        className="mb-4 text-lg font-semibold tracking-tight"
+        className="alert-card__title"
       >
         {title}
       </h2>
 
       <div
         data-testid={`${automationId}-content`}
-        className="space-y-4"
+        className="alert-card__content"
       >
         {children}
       </div>

@@ -1,20 +1,19 @@
 import Link from "next/link"
 import Image from "next/image"
+import type { Metadata } from "next"
 
 import HomeClientEnhancements from "@/components/layout/HomeClientEnhancements"
-import { modules } from "@/data/modules"
-import type { Metadata } from "next"
+import ModulesList from "@/components/layout/ModulesList"
 
 const siteUrl = "https://automation-practice-theta.vercel.app"
 const repositoryUrl = "https://github.com/aslv24/Practice-Website"
 
 export const metadata: Metadata = {
-  title:
-    "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
+  title: "Selenium Automation Practice",
   description:
     "Practice Selenium automation using real-world examples including alerts, forms, dropdowns, waits, file uploads, windows, frames, and more.",
   alternates: {
-    canonical: siteUrl
+    canonical: siteUrl,
   },
   keywords: [
     "Selenium Practice Website",
@@ -38,11 +37,10 @@ export const metadata: Metadata = {
     "Selenium checkbox practice",
     "Selenium autocomplete practice",
     "Selenium mouse actions practice",
-    "Selenium interview preparation"
+    "Selenium interview preparation",
   ],
   openGraph: {
-    title:
-      "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
+    title: "Selenium Automation Practice",
     description:
       "Practice Selenium automation using real-world examples including alerts, forms, dropdowns, waits, file uploads, windows, frames, and more.",
     url: siteUrl,
@@ -52,59 +50,26 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Selenium Automation Practice Website dashboard preview"
-      }
+        alt: "Selenium Automation Practice Website dashboard preview",
+      },
     ],
-    type: "website"
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title:
       "Selenium Practice Website | Selenium Automation Playground | UI Testing Practice Platform",
     description:
-      "Practice Selenium automation using real-world examples including alerts, forms, dropdowns, waits, file uploads, windows, frames, and more.",
-    images: ["/twitter-image"]
-  }
-}
-
-const moduleDescriptions: Record<string, string> = {
-  alerts:
-    "Handle simple alerts, confirmation dialogs, and prompt workflows with reliable Selenium commands.",
-  calendar:
-    "Practice date inputs, custom calendar navigation, and web table interactions for scheduling flows.",
-  checkbox:
-    "Automate single, grouped, and select-all checkbox scenarios with stable selectors.",
-  dropdown:
-    "Work through single-select, multi-select, and dynamic dropdown practice cases.",
-  "file-upload":
-    "Validate file inputs, upload states, metadata, and removal flows used in real test suites.",
-  forms:
-    "Practice text inputs, validation, radio groups, checkboxes, dates, and submission assertions.",
-  frames:
-    "Switch into single and nested frames while keeping browser context handling clear.",
-  mouse:
-    "Train click actions, hover states, drag-and-drop, and slider automation.",
-  "radio-button":
-    "Automate individual and grouped radio button selection with accessible labels.",
-  "suggestion-list":
-    "Practice Selenium autocomplete interactions with static and dynamic suggestion lists.",
-  waits:
-    "Build confidence with implicit waits, explicit waits, loading states, and delayed elements.",
-  windows:
-    "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling.",
-  tables:
-    "Sort, filter, paginate, and delete rows in a dynamic HTML table with stable locators.",
-  "shadow-dom":
-    "Locate and interact with elements encapsulated inside an open Shadow DOM boundary.",
-  "broken-links":
-    "Detect broken links and missing images by checking HTTP status codes and load failures."
+      "Practice Selenium automation using real-world Selenium automation scenarios including alerts, forms, waits, dropdowns, file uploads, windows, frames, and more.",
+    images: ["/twitter-image"],
+  },
 }
 
 const stats = [
   { value: "15+", label: "Practice Modules" },
   { value: "50+", label: "Automation Scenarios" },
   { value: "Cross Browser", label: "Compatible" },
-  { value: "Framework", label: "Ready" }
+  { value: "Framework", label: "Ready" },
 ]
 
 const benefits = [
@@ -113,7 +78,7 @@ const benefits = [
   "Stable element locators",
   "Framework development support",
   "CI/CD integration testing",
-  "Cross-browser testing practice"
+  "Cross-browser testing practice",
 ]
 
 const jsonLd = [
@@ -128,9 +93,9 @@ const jsonLd = [
     author: {
       "@type": "Person",
       name: "aslv24",
-      url: "https://github.com/aslv24"
+      url: "https://github.com/aslv24",
     },
-    url: siteUrl
+    url: siteUrl,
   },
   {
     "@context": "https://schema.org",
@@ -138,14 +103,14 @@ const jsonLd = [
     name: "Selenium Automation Practice Website",
     url: siteUrl,
     description:
-      "A Selenium Automation Playground and UI Automation Practice Site for automation engineers, learners, and interview preparation."
+      "A Selenium Automation Playground and UI Automation Practice Site for automation engineers, learners, and interview preparation.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Practice Website",
     url: repositoryUrl,
-    sameAs: [repositoryUrl]
+    sameAs: [repositoryUrl],
   },
   {
     "@context": "https://schema.org",
@@ -155,10 +120,10 @@ const jsonLd = [
         "@type": "ListItem",
         position: 1,
         name: "Selenium Practice Website",
-        item: siteUrl
-      }
-    ]
-  }
+        item: siteUrl,
+      },
+    ],
+  },
 ]
 
 export default function Home() {
@@ -167,49 +132,50 @@ export default function Home() {
       id="dashboard-page"
       data-testid="dashboard-page"
       aria-label="Selenium practice dashboard page"
-      className="min-h-screen bg-[#f8fafc] text-slate-950"
+      className="dashboard-page"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c")
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
+
       <HomeClientEnhancements />
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid min-h-[82vh] max-w-7xl items-center gap-12 px-6 py-12 lg:grid-cols-[1fr_0.88fr] lg:px-8 lg:py-16">
+      <section className="dashboard-page__hero">
+        <div className="dashboard-page__hero-content">
           <div>
-            <p className="mb-4 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800">
+            <p className="dashboard-page__eyebrow">
               Selenium Automation Playground for UI testing practice
             </p>
 
             <h1
               id="dashboard-title"
               data-testid="dashboard-title"
-              className="max-w-4xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl"
+              className="dashboard-page__title"
             >
               Selenium Automation Practice Website
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
+            <p className="dashboard-page__intro">
               Practice real-world Selenium automation scenarios including
               alerts, forms, waits, dropdowns, file uploads, frames, windows,
               and advanced UI interactions.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="dashboard-page__actions">
               <Link
                 href="#practice-modules"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-slate-950 px-6 text-base font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-500"
+                className="dashboard-page__start-link"
               >
                 Start Practicing
               </Link>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-2xl shadow-slate-200">
+          <div className="dashboard-page__preview">
+            <div className="dashboard-page__preview-frame">
               <Image
                 src="/screenshots/dashboard.png"
                 alt="Selenium Practice Dashboard module grid preview"
@@ -217,7 +183,7 @@ export default function Home() {
                 height={768}
                 priority
                 sizes="(min-width: 1024px) 44vw, 92vw"
-                className="h-auto w-full"
+                className="dashboard-page__preview-image"
               />
             </div>
           </div>
@@ -226,18 +192,16 @@ export default function Home() {
 
       <section
         aria-label="Platform statistics"
-        className="border-b border-slate-200 bg-slate-950 px-6 py-8 text-white"
+        className="dashboard-page__stats"
       >
-        <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="dashboard-page__stats-grid">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-lg border border-white/10 bg-white/5 p-5"
+              className="dashboard-page__stat"
             >
-              <p className="text-3xl font-bold">{stat.value}</p>
-              <p className="mt-1 text-sm font-medium text-slate-300">
-                {stat.label}
-              </p>
+              <p className="dashboard-page__stat-value">{stat.value}</p>
+              <p className="dashboard-page__stat-label">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -245,19 +209,21 @@ export default function Home() {
 
       <section
         id="practice-modules"
-        className="mx-auto max-w-7xl px-6 py-16 lg:px-8"
+        className="dashboard-page__modules"
       >
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+        <div className="dashboard-page__modules-intro">
+          <p className="dashboard-page__section-eyebrow">
             Practice modules
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-slate-950">
+
+          <h2 className="dashboard-page__section-title">
             Selenium WebDriver practice for real browser workflows
           </h2>
-          <p className="mt-4 text-base leading-7 text-slate-700">
+
+          <p className="dashboard-page__section-description">
             Use this Selenium Testing Playground to rehearse locator strategy,
-            synchronization, form validation, autocomplete, window handling, and
-            interview-ready UI automation patterns.
+            synchronization, form validation, autocomplete, window handling,
+            and interview-ready UI automation patterns.
           </p>
         </div>
 
@@ -265,72 +231,38 @@ export default function Home() {
           id="dashboard-modules-navigation"
           data-testid="dashboard-modules-navigation"
           aria-label="Practice module navigation"
-          className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="dashboard-page__navigation"
         >
-          {modules.map((module) => {
-            const Icon = module.icon
-            const moduleSlug = module.id
-
-            return (
-              <Link
-                key={module.id}
-                href={module.link}
-                id={`${moduleSlug}-link`}
-                data-testid={`${moduleSlug}-link`}
-                aria-label={`Open ${module.title} module`}
-                className="group block focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-500"
-              >
-                <div
-                  id={`${moduleSlug}-card`}
-                  data-testid={`${moduleSlug}-card`}
-                  aria-label={`${module.title} module card`}
-                  className="flex h-full min-h-64 cursor-pointer flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-                >
-                  <div
-                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg text-2xl transition-transform group-hover:scale-105 ${module.color}`}
-                  >
-                    <Icon aria-hidden="true" />
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-slate-950">
-                    {module.title}
-                  </h3>
-
-                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-                    {moduleDescriptions[module.id]}
-                  </p>
-
-                  <span className="mt-6 inline-flex min-h-10 items-center justify-center rounded-lg bg-slate-100 px-4 text-sm font-semibold text-slate-900 transition group-hover:bg-slate-950 group-hover:text-white">
-                    Open Module
-                  </span>
-                </div>
-              </Link>
-            )
-          })}
+          <ModulesList />
         </nav>
       </section>
 
-      <section className="border-y border-slate-200 bg-white px-6 py-16 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1fr]">
+      <section className="dashboard-page__benefits">
+        <div className="dashboard-page__benefits-content">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+            <p className="dashboard-page__section-eyebrow">
               Why engineers use it
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-slate-950">
+
+            <h2 className="dashboard-page__section-title">
               Built for learning, interviews, and automation framework design
             </h2>
-            <p className="mt-4 text-base leading-7 text-slate-700">
+
+            <p className="dashboard-page__section-description">
               This UI Automation Practice Site keeps common Selenium Interview
               Practice tasks discoverable while preserving stable element
               locators for repeatable browser automation.
             </p>
           </div>
 
-          <ul className="grid gap-4 sm:grid-cols-2" aria-label="Platform benefits">
+          <ul
+            className="dashboard-page__benefits-list"
+            aria-label="Platform benefits"
+          >
             {benefits.map((benefit) => (
               <li
                 key={benefit}
-                className="rounded-lg border border-slate-200 bg-slate-50 p-5 text-base font-semibold text-slate-900"
+                className="dashboard-page__benefit"
               >
                 {benefit}
               </li>
@@ -339,27 +271,29 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-slate-950 px-6 py-10 text-slate-300 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <footer className="dashboard-page__footer">
+        <div className="dashboard-page__footer-grid">
           <div>
-            <h2 className="text-lg font-semibold text-white">
+            <h2 className="dashboard-page__footer-title">
               Selenium Practice Website
             </h2>
-            <p className="mt-3 text-sm leading-6">
+
+            <p className="dashboard-page__footer-description">
               A public Selenium Learning Platform for automation engineers,
               students, and QA interview preparation.
             </p>
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-white">
+            <h2 className="dashboard-page__footer-heading">
               Links
             </h2>
-            <ul className="mt-3 space-y-2 text-sm">
+
+            <ul className="dashboard-page__footer-links">
               <li>
                 <Link
                   href={siteUrl}
-                  className="hover:text-white focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-400"
+                  className="dashboard-page__footer-link"
                 >
                   Production deployment
                 </Link>
@@ -368,20 +302,23 @@ export default function Home() {
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-white">
+            <h2 className="dashboard-page__footer-heading">
               Technology
             </h2>
-            <p className="mt-3 text-sm leading-6">
+
+            <p className="dashboard-page__footer-description">
               Next.js App Router, TypeScript, Tailwind CSS, React, and Vercel.
             </p>
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-white">
+            <h2 className="dashboard-page__footer-heading">
               Author
             </h2>
-            <p className="mt-3 text-sm leading-6">
-              Built by Infomats Technologies. Copyright {new Date().getFullYear()}.
+
+            <p className="dashboard-page__footer-description">
+              Built by Infomats Technologies. Copyright{" "}
+              {new Date().getFullYear()}.
             </p>
           </div>
         </div>

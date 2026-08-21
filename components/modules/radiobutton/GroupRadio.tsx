@@ -46,15 +46,15 @@ export default function GroupRadio({
       data-testid="group-radio-card"
       data-component="group-radio"
       aria-label="Automation framework radio group"
-      className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+      className="practice-card"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-blue-600">
+      <header className="group-radio__header">
+        <h2 className="group-radio__title">
           Group Radio Buttons
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="group-radio__description">
           Practice Selenium radio button
           handling with grouped selections,
           disabled states, and dynamic assertions.
@@ -63,16 +63,16 @@ export default function GroupRadio({
 
       {/* Radio Group */}
       <fieldset
-        className="space-y-4"
+        className="group-radio__fieldset"
         aria-describedby="framework-helper-text"
       >
-        <legend className="text-sm font-semibold text-gray-800">
+        <legend className="group-radio__legend">
           Select Automation Framework
         </legend>
 
         <p
           id="framework-helper-text"
-          className="text-sm text-gray-500"
+          className="group-radio__helper-text"
         >
           Choose one framework from the
           available options.
@@ -92,12 +92,12 @@ export default function GroupRadio({
               data-disabled={
                 option.disabled || false
               }
-              className={`flex cursor-pointer items-start gap-4 rounded-xl border p-4 transition-colors ${
+              className={`group-radio__option${
                 option.disabled
-                  ? "cursor-not-allowed bg-gray-100 opacity-60"
+                  ? " group-radio__option--disabled"
                   : isSelected
-                  ? "border-blue-300 bg-blue-50"
-                  : "hover:bg-gray-50"
+                  ? " group-radio__option--selected"
+                  : ""
               }`}
             >
               <input
@@ -115,23 +115,23 @@ export default function GroupRadio({
                     e.target.value
                   )
                 }
-                className="mt-1 h-5 w-5 accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="mt-1 practice-radio"
               />
 
-              <div className="flex-1">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-medium text-gray-800">
+              <div className="group-radio__content">
+                <div className="group-radio__option-header">
+                  <p className="group-radio__option-label">
                     {option.label}
                   </p>
 
                   {option.disabled && (
-                    <span className="rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-600">
+                    <span className="group-radio__disabled-badge">
                       Disabled
                     </span>
                   )}
                 </div>
 
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="group-radio__option-description">
                   {option.description}
                 </p>
               </div>
@@ -145,19 +145,19 @@ export default function GroupRadio({
         id="group-radio-result-section"
         data-testid="group-radio-result-section"
         aria-live="polite"
-        className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4"
+        className="group-radio__result"
       >
         <p
           id="group-radio-selected-value"
           data-testid="group-radio-selected-value"
-          className="font-medium text-green-700"
+          className="group-radio__result-value"
         >
           {selected
             ? `Selected Framework: ${selected}`
             : "No framework selected"}
         </p>
 
-        <p className="mt-1 text-sm text-green-600">
+        <p className="group-radio__result-description">
           Radio button state updated
           successfully.
         </p>

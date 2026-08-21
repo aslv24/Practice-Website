@@ -21,16 +21,16 @@ export default function CheckboxPage() {
   })
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <h1 className="mb-2 text-3xl font-bold">Checkbox Practice Page</h1>
+    <div className="checkbox-page">
+      <h1 className="checkbox-page__title">Checkbox Practice Page</h1>
 
-      <p className="mb-4 text-gray-600">
+      <p className="checkbox-page__description">
         Practice handling checkboxes for Selenium automation
       </p>
 
       <DashboardBackLink />
 
-      <div className="mt-6 w-full max-w-2xl space-y-6">
+      <div className="checkbox-page__content">
         <SingleCheckbox />
         <MultipleCheckbox options={options} setOptions={setOptions} />
         <SelectAllCheckbox setOptions={setOptions} />

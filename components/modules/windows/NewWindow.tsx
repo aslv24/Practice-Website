@@ -15,18 +15,12 @@ export default function NewWindow() {
       data-testid="new-window-card"
       data-component="new-window"
       aria-labelledby="new-window-title"
-      className="
-        rounded-2xl border border-gray-100
-        bg-white p-6 shadow-sm
-        transition-shadow hover:shadow-md
-      "
+      className="new-window"
     >
       <h2
         id="new-window-title"
         data-testid="new-window-title"
-        className="
-          mb-4 text-lg font-semibold text-gray-800
-        "
+        className="new-window__title"
       >
         Open New Window
       </h2>
@@ -34,9 +28,7 @@ export default function NewWindow() {
       <p
         id="new-window-description"
         data-testid="new-window-description"
-        className="
-          mb-4 text-sm text-gray-500
-        "
+        className="new-window__description"
       >
         Opens an internal popup window for
         Selenium window-handling practice.
@@ -49,16 +41,7 @@ export default function NewWindow() {
         data-testid="open-window-button"
         aria-label="Open practice window"
         onClick={openWindow}
-        className="
-          rounded-lg bg-green-600
-          px-5 py-2 text-sm font-medium
-          text-white transition-colors
-          hover:bg-green-700
-          focus-visible:outline-none
-          focus-visible:ring-2
-          focus-visible:ring-green-500
-          focus-visible:ring-offset-2
-        "
+        className="new-window__button"
       >
         Open Practice Window
       </button>
@@ -67,10 +50,7 @@ export default function NewWindow() {
         id="new-window-helper-text"
         data-testid="new-window-helper-text"
         aria-live="polite"
-        className="
-          mt-5 rounded-md border bg-gray-50
-          px-3 py-2 text-sm text-green-700
-        "
+        className="new-window__helper"
       >
         Use Selenium window handles to switch
         between the parent window and popup

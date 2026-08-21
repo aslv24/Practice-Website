@@ -21,8 +21,7 @@ const clickActions: ClickAction[] = [
     label: "Click",
     type: "click",
     message: "Single Click Done",
-    buttonClassName:
-      "bg-blue-500 hover:bg-blue-600 text-white",
+    buttonClassName: "",
     action: "click",
   },
   {
@@ -31,8 +30,7 @@ const clickActions: ClickAction[] = [
     label: "Right Click",
     type: "right",
     message: "Right Click Done",
-    buttonClassName:
-      "bg-yellow-500 hover:bg-yellow-600 text-black",
+    buttonClassName: "",
     action: "right-click",
   },
   {
@@ -41,22 +39,25 @@ const clickActions: ClickAction[] = [
     label: "Double Click",
     type: "double",
     message: "Double Click Done",
-    buttonClassName:
-      "bg-green-500 hover:bg-green-600 text-white",
+    buttonClassName: "",
     action: "double-click",
   },
 ]
 
-const messageColorMap: Record<ActionType, string> = {
-  click: "text-blue-600",
-  right: "text-yellow-600",
-  double: "text-green-600",
-  "": "text-gray-500",
+const messageColorMap: Record<
+  ActionType,
+  string
+> = {
+  click: "click-actions__result--click",
+  right: "click-actions__result--right",
+  double: "click-actions__result--double",
+  "": "click-actions__result--default",
 }
 
 export default function ClickActions() {
   const [message, setMessage] = useState("")
-  const [type, setType] = useState<ActionType>("")
+  const [type, setType] =
+    useState<ActionType>("")
 
   const handleAction = (
     actionType: ActionType,
@@ -71,36 +72,26 @@ export default function ClickActions() {
       id="click-actions-card"
       data-testid="click-actions-card"
       aria-label="Click actions card"
-      className="
-        rounded-2xl
-        border
-        border-gray-100
-        bg-white
-        p-6
-        shadow-sm
-        transition-all
-        duration-200
-        hover:shadow-md
-      "
+      className="click-actions"
     >
-      <header className="mb-4">
+      <header className="click-actions__header">
         <h2
           id="click-actions-title"
-          className="flex items-center gap-2 text-lg font-semibold"
+          className="click-actions__title"
         >
           🖱️ Click Actions
         </h2>
 
         <p
           id="click-actions-description"
-          className="mt-1 text-sm text-gray-500"
+          className="click-actions__description"
         >
           Practice Selenium mouse interactions.
         </p>
       </header>
 
       <div
-        className="flex flex-wrap gap-3"
+        className="click-actions__buttons"
         role="group"
         aria-labelledby="click-actions-title"
       >
@@ -111,23 +102,13 @@ export default function ClickActions() {
             "data-testid": button.id,
             "aria-label": button.label,
             type: "button" as const,
-            className: `
-              rounded-lg
-              px-4
-              py-2
-              shadow-sm
-              transition-colors
-              duration-200
-              cursor-pointer
-              select-none
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              ${button.buttonClassName}
-            `,
+            className: `click-actions__button click-actions__button--${button.type}`,
           }
 
-          if (button.action === "right-click") {
+          if (
+            button.action ===
+            "right-click"
+          ) {
             return (
               <button
                 key={button.id}
@@ -146,7 +127,10 @@ export default function ClickActions() {
             )
           }
 
-          if (button.action === "double-click") {
+          if (
+            button.action ===
+            "double-click"
+          ) {
             return (
               <button
                 key={button.id}
@@ -181,19 +165,16 @@ export default function ClickActions() {
       </div>
 
       <div
-        className="mt-4"
+        className="click-actions__result-container"
         aria-live="polite"
       >
         <p
           id="click-actions-result"
           data-testid="click-actions-result"
-          className={`
-            text-sm
-            font-medium
-            ${messageColorMap[type]}
-          `}
+          className={`click-actions__result ${messageColorMap[type]}`}
         >
-          {message || "No action performed yet"}
+          {message ||
+            "No action performed yet"}
         </p>
       </div>
     </section>

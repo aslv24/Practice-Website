@@ -1,0 +1,215 @@
+/* -------------------------------------------------------------------------- */
+/* Dynamic Suggestion                                                          */
+/* -------------------------------------------------------------------------- */
+
+.dynamic-suggestion {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.dynamic-suggestion__header {
+  @apply mb-6;
+}
+
+.dynamic-suggestion__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.dynamic-suggestion__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.dynamic-suggestion__content {
+  @apply space-y-3;
+}
+
+.dynamic-suggestion__label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.dynamic-suggestion__input {
+  @apply w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.dynamic-suggestion__status {
+  @apply rounded-lg border bg-gray-50 p-3 text-sm;
+}
+
+.dynamic-suggestion__status-content {
+  @apply flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between;
+}
+
+.dynamic-suggestion__status-text {
+  @apply font-medium text-gray-700;
+}
+
+.dynamic-suggestion__count {
+  @apply font-medium text-blue-600;
+}
+
+.dynamic-suggestion__loading {
+  @apply rounded-lg border border-dashed p-3;
+}
+
+.dynamic-suggestion__loading-content {
+  @apply flex items-center gap-3;
+}
+
+.dynamic-suggestion__spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent;
+}
+
+.dynamic-suggestion__loading-text {
+  @apply text-sm text-gray-600;
+}
+
+.dynamic-suggestion__empty {
+  @apply rounded-lg border border-red-200 bg-red-50 p-3;
+}
+
+.dynamic-suggestion__empty-text {
+  @apply text-sm text-red-600;
+}
+
+.dynamic-suggestion__dropdown {
+  @apply max-h-60 overflow-auto rounded-xl border bg-white shadow-sm;
+}
+
+.dynamic-suggestion__option {
+  @apply flex cursor-pointer items-center justify-between px-4 py-3 transition-colors hover:bg-gray-100;
+}
+
+.dynamic-suggestion__option--active {
+  @apply bg-blue-100;
+}
+
+.dynamic-suggestion__option-content {
+  /* Intentionally empty: structural semantic class. */
+}
+
+.dynamic-suggestion__country-name {
+  @apply font-medium text-gray-800;
+}
+
+.dynamic-suggestion__country-code {
+  @apply text-sm text-gray-500;
+}
+
+.dynamic-suggestion__country-badge {
+  @apply rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600;
+}
+
+.dynamic-suggestion__selected {
+  @apply rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.dynamic-suggestion__selected-text {
+  @apply font-medium text-green-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Static Suggestion                                                           */
+/* -------------------------------------------------------------------------- */
+
+.static-suggestion {
+  @apply relative rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.static-suggestion__header {
+  @apply mb-6;
+}
+
+.static-suggestion__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.static-suggestion__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.static-suggestion__content {
+  @apply space-y-3;
+}
+
+.static-suggestion__label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.static-suggestion__input {
+  @apply w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.static-suggestion__status {
+  @apply rounded-lg border bg-gray-50 p-3 text-sm;
+}
+
+.static-suggestion__status-content {
+  @apply flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between;
+}
+
+.static-suggestion__status-text {
+  @apply font-medium text-gray-700;
+}
+
+.static-suggestion__count {
+  @apply font-medium text-blue-600;
+}
+
+.static-suggestion__empty {
+  @apply rounded-lg border border-red-200 bg-red-50 p-3;
+}
+
+.static-suggestion__empty-text {
+  @apply text-sm text-red-600;
+}
+
+.static-suggestion__dropdown {
+  @apply absolute left-6 right-6 z-10 mt-1 max-h-60 overflow-auto rounded-xl border bg-white shadow-sm;
+}
+
+.static-suggestion__option {
+  @apply cursor-pointer px-4 py-3 transition-colors hover:bg-gray-100;
+}
+
+.static-suggestion__option--active {
+  @apply bg-blue-100;
+}
+
+.static-suggestion__option-content {
+  @apply flex items-center justify-between;
+}
+
+.static-suggestion__country-name {
+  @apply font-medium text-gray-800;
+}
+
+.static-suggestion__country-details {
+  @apply text-sm text-gray-500;
+}
+
+.static-suggestion__country-badge {
+  @apply rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600;
+}
+
+.static-suggestion__selected {
+  @apply rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.static-suggestion__selected-text {
+  @apply font-medium text-green-700;
+}
+
+.suggestion-list-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.suggestion-list-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.suggestion-list-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.suggestion-list-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

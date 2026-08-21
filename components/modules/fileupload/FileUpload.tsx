@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { dynamicWidth } from "@/lib/dynamicStyles"
 
 type UploadStatus =
   | "idle"
@@ -106,6 +107,7 @@ export default function SingleFileUpload() {
     setProgress(0)
     setErrorMessage("")
     setStatus("idle")
+
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
     }
@@ -118,15 +120,15 @@ export default function SingleFileUpload() {
       data-component="single-file-upload"
       data-upload-state={status}
       aria-label="Single file upload component"
-      className="rounded-2xl border bg-white p-6 shadow-sm"
+      className="single-file-upload"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-blue-600">
+      <header className="single-file-upload__header">
+        <h2 className="single-file-upload__title">
           Resume Upload
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="single-file-upload__description">
           Practice Selenium file upload
           automation with validation, async
           upload simulation, and status
@@ -135,7 +137,7 @@ export default function SingleFileUpload() {
       </header>
 
       {/* Upload Area */}
-      <div className="rounded-xl border border-dashed p-6">
+      <div className="single-file-upload__area">
         <input
           ref={fileInputRef}
           type="file"
@@ -154,10 +156,10 @@ export default function SingleFileUpload() {
           htmlFor="single-upload-input"
           data-testid="choose-file-button"
           aria-label="Choose file"
-          className={`inline-flex cursor-pointer items-center rounded-lg px-5 py-2 text-white transition-colors ${
+          className={`single-file-upload__choose-button${
             status === "uploading"
-              ? "cursor-not-allowed bg-gray-400"
-              : "bg-blue-600 hover:bg-blue-700"
+              ? " single-file-upload__choose-button--disabled"
+              : ""
           }`}
         >
           Choose File
@@ -166,7 +168,7 @@ export default function SingleFileUpload() {
         {/* Helper Text */}
         <p
           id="file-upload-helper-text"
-          className="mt-3 text-sm text-gray-500"
+          className="single-file-upload__helper-text"
         >
           Supported formats: PDF, PNG, JPG
           • Maximum size: 5MB
@@ -176,35 +178,33 @@ export default function SingleFileUpload() {
       {/* Upload Status */}
       <div
         aria-live="polite"
-        className="mt-6 space-y-4"
+        className="single-file-upload__status"
       >
         {/* Progress */}
         {status === "uploading" && (
           <div
             id="upload-progress-section"
             data-testid="upload-progress-section"
-            className="rounded-xl border bg-blue-50 p-4"
+            className="single-file-upload__progress"
           >
-            <div className="mb-2 flex items-center justify-between">
-              <p className="font-medium text-blue-700">
+            <div className="single-file-upload__progress-header">
+              <p className="single-file-upload__progress-label">
                 Uploading File...
               </p>
 
               <p
                 id="upload-progress-value"
                 data-testid="upload-progress-value"
-                className="text-sm font-semibold text-blue-600"
+                className="single-file-upload__progress-value"
               >
                 {progress}%
               </p>
             </div>
 
-            <div className="h-3 overflow-hidden rounded-full bg-blue-100">
+            <div className="single-file-upload__progress-track">
               <div
-                className="h-full rounded-full bg-blue-600 transition-all"
-                style={{
-                  width: `${progress}%`,
-                }}
+                className="single-file-upload__progress-bar"
+                style={dynamicWidth(progress)}
               />
             </div>
           </div>
@@ -215,9 +215,9 @@ export default function SingleFileUpload() {
           <div
             id="upload-success-message"
             data-testid="upload-success-message"
-            className="rounded-xl border border-green-200 bg-green-50 p-4"
+            className="single-file-upload__message single-file-upload__message--success"
           >
-            <p className="font-medium text-green-700">
+            <p className="single-file-upload__message-text single-file-upload__message-text--success">
               File uploaded successfully.
             </p>
           </div>
@@ -228,9 +228,9 @@ export default function SingleFileUpload() {
           <div
             id="upload-error-message"
             data-testid="upload-error-message"
-            className="rounded-xl border border-red-200 bg-red-50 p-4"
+            className="single-file-upload__message single-file-upload__message--error"
           >
-            <p className="font-medium text-red-700">
+            <p className="single-file-upload__message-text single-file-upload__message-text--error">
               {errorMessage}
             </p>
           </div>
@@ -240,13 +240,13 @@ export default function SingleFileUpload() {
         <div
           id="uploaded-file-details"
           data-testid="uploaded-file-details"
-          className="rounded-xl border bg-gray-50 p-4"
+          className="single-file-upload__details"
         >
-          <div className="space-y-2">
+          <div className="single-file-upload__details-content">
             <p
               id="single-upload-selected-name"
               data-testid="single-upload-selected-name"
-              className="text-sm font-medium text-gray-700"
+              className="single-file-upload__detail"
             >
               File:
               {fileName || " No file selected"}
@@ -255,7 +255,7 @@ export default function SingleFileUpload() {
             <p
               id="single-upload-file-size"
               data-testid="single-upload-file-size"
-              className="text-sm text-gray-600"
+              className="single-file-upload__detail single-file-upload__detail--secondary"
             >
               Size:
               {fileSize || " --"}
@@ -264,7 +264,7 @@ export default function SingleFileUpload() {
             <p
               id="single-upload-status"
               data-testid="single-upload-status"
-              className="text-sm text-gray-600"
+              className="single-file-upload__detail single-file-upload__detail--secondary"
             >
               Status: {status}
             </p>
@@ -281,10 +281,10 @@ export default function SingleFileUpload() {
             disabled={
               status === "uploading"
             }
-            className={`rounded-lg px-5 py-2 text-white transition-colors ${
+            className={`single-file-upload__remove-button${
               status === "uploading"
-                ? "cursor-not-allowed bg-gray-400"
-                : "bg-red-500 hover:bg-red-600"
+                ? " single-file-upload__remove-button--disabled"
+                : ""
             }`}
           >
             Remove File

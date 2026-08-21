@@ -1,0 +1,43 @@
+/* -------------------------------------------------------------------------- */
+/* Lead Registration Popup                                                    */
+/* -------------------------------------------------------------------------- */
+
+.lead-popup {
+  @apply rounded-2xl bg-white p-8 shadow-xl sm:max-w-lg;
+}
+
+.lead-popup__title {
+  @apply text-center text-3xl font-semibold text-gray-800;
+}
+
+.lead-popup__subtitle {
+  @apply mt-2 text-center text-sm text-gray-500;
+}
+
+.lead-popup__form {
+  @apply mt-6 space-y-5;
+}
+
+.lead-popup__field {
+  @apply flex flex-col;
+}
+
+.lead-popup__input-wrapper {
+  @apply flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500;
+}
+
+.lead-popup__icon {
+  @apply mr-3 text-gray-400;
+}
+
+.lead-popup__input {
+  @apply border-0 focus-visible:ring-0;
+}
+
+.lead-popup__error {
+  @apply mt-1 text-sm text-red-500;
+}
+
+.lead-popup__submit {
+  @apply w-full rounded-lg bg-blue-600 py-5 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50;
+}

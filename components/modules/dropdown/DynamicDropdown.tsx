@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  useCallback,
   useEffect,
   useRef,
   useState
@@ -18,6 +19,11 @@ const DROPDOWN_OPTIONS = [
   "AWS Cloud Testing"
 ]
 
+/**
+ * DynamicDropdown Component
+ * Demonstrates wait scenarios for Selenium automation
+ * Optimized with useCallback to prevent unnecessary re-renders
+ */
 export default function DynamicDropdown() {
   const [options, setOptions] = useState<
     string[]
@@ -42,20 +48,26 @@ export default function DynamicDropdown() {
     }
   }, [])
 
-  const loadOptions = () => {
+  // Memoize callback to prevent re-creating on every render
+  const loadOptions = useCallback(() => {
     setLoading(true)
-
     setOptions([])
-
     setSelectedOption("")
 
     timeoutRef.current =
       window.setTimeout(() => {
         setOptions(DROPDOWN_OPTIONS)
-
         setLoading(false)
       }, 2000)
-  }
+  }, [])
+
+  // Memoize callback for option change
+  const handleOptionChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedOption(event.target.value)
+    },
+    []
+  )
 
   return (
     <section
@@ -63,18 +75,12 @@ export default function DynamicDropdown() {
       data-testid="dynamic-dropdown-card"
       data-component="dynamic-dropdown"
       aria-labelledby="dynamic-dropdown-title"
-      className="
-        rounded-2xl border border-gray-100
-        bg-white p-6 shadow-sm
-        transition-shadow hover:shadow-md
-      "
+      className="practice-card"
     >
       <h2
         id="dynamic-dropdown-title"
         data-testid="dynamic-dropdown-title"
-        className="
-          mb-4 text-lg font-semibold text-gray-800
-        "
+        className="practice-title"
       >
         Dynamic Dropdown (Wait Scenario)
       </h2>
@@ -82,9 +88,7 @@ export default function DynamicDropdown() {
       <p
         id="dynamic-dropdown-description"
         data-testid="dynamic-dropdown-description"
-        className="
-          mb-4 text-sm text-gray-500
-        "
+        className="practice-description"
       >
         Simulates delayed dropdown loading
         for Selenium explicit wait practice.
@@ -98,18 +102,7 @@ export default function DynamicDropdown() {
         aria-label="Load dropdown options"
         onClick={loadOptions}
         disabled={loading}
-        className="
-          mb-4 rounded-md bg-blue-600
-          px-4 py-2 text-sm font-medium
-          text-white transition-colors
-          hover:bg-blue-700
-          disabled:cursor-not-allowed
-          disabled:opacity-70
-          focus-visible:outline-none
-          focus-visible:ring-2
-          focus-visible:ring-blue-500
-          focus-visible:ring-offset-2
-        "
+        className="dynamic-dropdown__load-button"
       >
         {loading
           ? "Loading..."
@@ -121,17 +114,12 @@ export default function DynamicDropdown() {
           id="dynamic-dropdown-loading-container"
           data-testid="dynamic-dropdown-loading-container"
           aria-live="polite"
-          className="
-            mb-4 rounded-md border
-            bg-gray-50 px-3 py-2
-          "
+          className="dynamic-dropdown__loading"
         >
           <p
             id="dynamic-dropdown-loading-text"
             data-testid="dynamic-dropdown-loading-text"
-            className="
-              animate-pulse text-sm text-gray-600
-            "
+            className="dynamic-dropdown__loading-text"
           >
             Loading dropdown options...
           </p>
@@ -140,14 +128,11 @@ export default function DynamicDropdown() {
 
       {!loading &&
         options.length > 0 && (
-          <div className="space-y-4">
-            <div className="space-y-2">
+          <div className="dynamic-dropdown__content">
+            <div className="dynamic-dropdown__field">
               <label
                 htmlFor="dynamic-topic-dropdown"
-                className="
-                  block text-sm font-medium
-                  text-gray-700
-                "
+                className="practice-label"
               >
                 Select Topic
               </label>
@@ -158,19 +143,8 @@ export default function DynamicDropdown() {
                 value={selectedOption}
                 data-testid="dynamic-topic-dropdown"
                 aria-describedby="dynamic-dropdown-helper-text"
-                onChange={(event) =>
-                  setSelectedOption(
-                    event.target.value
-                  )
-                }
-                className="
-                  w-full rounded-lg border
-                  border-gray-300 p-2
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-blue-500
-                  focus-visible:ring-offset-2
-                "
+                onChange={handleOptionChange}
+                className="practice-select"
               >
                 <option value="">
                   -- Select Topic --
@@ -189,9 +163,7 @@ export default function DynamicDropdown() {
               <p
                 id="dynamic-dropdown-helper-text"
                 data-testid="dynamic-dropdown-helper-text"
-                className="
-                  text-sm text-gray-500
-                "
+                className="dynamic-dropdown__helper-text"
               >
                 Wait for the dropdown options
                 to load before selecting a value.
@@ -202,11 +174,7 @@ export default function DynamicDropdown() {
               id="dynamic-dropdown-selected-value"
               data-testid="dynamic-dropdown-selected-value"
               aria-live="polite"
-              className="
-                rounded-md border bg-gray-50
-                px-3 py-2 text-sm font-medium
-                text-blue-700
-              "
+              className="dynamic-dropdown__selected-value"
             >
               Selected:
               {" "}

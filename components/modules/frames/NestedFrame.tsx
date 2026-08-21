@@ -64,36 +64,47 @@ export default function NestedFrame() {
       data-testid="nested-frame-card"
       data-component="nested-frame"
       aria-label="Nested frames scenario"
-      className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+      className="nested-frame"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+      <header className="nested-frame__header">
+        <h2 className="nested-frame__title">
           Nested Frames
         </h2>
-        <p className="mt-2 text-sm text-gray-600">
+
+        <p className="nested-frame__description">
           Practice Selenium nested frame handling using delayed frame loading, parent-child switching, and dynamic frame interaction.
         </p>
       </header>
 
       {/* Status Section */}
-      <div aria-live="polite" className="mb-6 rounded-xl border bg-gray-50 p-4">
-        <div className="space-y-2 text-sm">
+      <div
+        aria-live="polite"
+        className="nested-frame__status"
+      >
+        <div className="nested-frame__status-content">
           <p
             id="parent-frame-status"
             data-testid="parent-frame-status"
             data-frame-loaded={parentLoaded}
-            className="font-medium text-gray-700"
+            className="nested-frame__status-item"
           >
-            Parent Frame:{parentLoaded ? " Loaded" : " Loading..."}
+            Parent Frame:
+            {parentLoaded
+              ? " Loaded"
+              : " Loading..."}
           </p>
+
           <p
             id="child-frame-status"
             data-testid="child-frame-status"
             data-frame-loaded={childLoaded}
-            className="font-medium text-gray-700"
+            className="nested-frame__status-item"
           >
-            Child Frame:{childLoaded ? " Loaded" : " Waiting..."}
+            Child Frame:
+            {childLoaded
+              ? " Loaded"
+              : " Waiting..."}
           </p>
         </div>
       </div>
@@ -103,11 +114,14 @@ export default function NestedFrame() {
         <div
           id="parent-frame-loading"
           data-testid="parent-frame-loading"
-          className="rounded-xl border border-dashed p-6"
+          className="nested-frame__loading"
         >
-          <div className="flex items-center gap-3">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-            <p className="text-sm text-gray-600">Loading parent frame...</p>
+          <div className="nested-frame__loading-content">
+            <div className="nested-frame__loading-spinner" />
+
+            <p className="nested-frame__loading-text">
+              Loading parent frame...
+            </p>
           </div>
         </div>
       )}
@@ -120,7 +134,7 @@ export default function NestedFrame() {
           title="Nested Parent Frame"
           data-testid="nested-parent-frame-iframe"
           aria-label="Nested parent frame iframe"
-          className="h-96 w-full rounded-xl border"
+          className="nested-frame__iframe"
           srcDoc={buildParentFrameDoc(childLoaded)}
         />
       )}

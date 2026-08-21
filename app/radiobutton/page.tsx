@@ -10,16 +10,18 @@ export default function RadioButtonPage() {
   const [selected, setSelected] = useState("")
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <h1 className="mb-2 text-3xl font-bold">Radio Button Practice Page</h1>
+    <div className="radio-button-page">
+      <h1 className="radio-button-page__title">
+        Radio Button Practice Page
+      </h1>
 
-      <p className="mb-4 text-gray-600">
+      <p className="radio-button-page__description">
         Practice handling radio buttons for Selenium automation
       </p>
 
       <DashboardBackLink />
 
-      <div className="mt-6 w-full max-w-2xl space-y-6">
+      <div className="radio-button-page__content">
         <SingleRadio />
         <GroupRadio selected={selected} setSelected={setSelected} />
       </div>

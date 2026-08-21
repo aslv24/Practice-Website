@@ -1,0 +1,447 @@
+/* -------------------------------------------------------------------------- */
+/* Basic Form                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.basic-form {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm;
+}
+
+.basic-form__header {
+  @apply mb-6;
+}
+
+.basic-form__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.basic-form__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.basic-form__form {
+  @apply space-y-5;
+}
+
+.basic-form__field {
+  @apply block;
+}
+
+.basic-form__label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.basic-form__input {
+  @apply mt-1 w-full rounded-lg border p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.basic-form__input--error {
+  @apply border-red-500 focus-visible:ring-red-500;
+}
+
+.basic-form__error {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.basic-form__fieldset {
+  @apply block;
+}
+
+.basic-form__radio-group {
+  @apply mt-2 flex gap-5;
+}
+
+.basic-form__radio-label {
+  @apply flex items-center gap-2;
+}
+
+.basic-form__checkbox-label {
+  @apply flex items-center gap-2;
+}
+
+.basic-form__actions {
+  @apply flex gap-3;
+}
+
+.basic-form__submit-button {
+  @apply rounded-lg bg-blue-600 px-5 py-2 text-white transition-colors hover:bg-blue-700;
+}
+
+.basic-form__submit-button--disabled {
+  @apply cursor-not-allowed bg-gray-400;
+}
+
+.basic-form__reset-button {
+  @apply rounded-lg bg-red-500 px-5 py-2 text-white hover:bg-red-600;
+}
+
+.basic-form__success {
+  @apply mt-6 rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.basic-form__success-text {
+  @apply font-medium text-green-700;
+}
+
+.basic-form__debug {
+  @apply mt-6 rounded-xl bg-gray-100 p-4;
+}
+
+.basic-form__debug-title {
+  @apply mb-2 font-semibold text-gray-700;
+}
+
+.basic-form__debug-content {
+  @apply overflow-auto text-sm text-gray-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Selenium Practice Form                                                     */
+/* -------------------------------------------------------------------------- */
+
+.practice-form__wrapper {
+  @apply space-y-6;
+}
+
+.practice-form {
+  @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.practice-form__header {
+  @apply mb-8;
+}
+
+.practice-form__title {
+  @apply text-3xl font-bold text-slate-900;
+}
+
+.practice-form__description {
+  @apply mt-2 text-sm text-slate-600;
+}
+
+.practice-form__skills-summary {
+  @apply mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4;
+}
+
+.practice-form__skills-summary-title {
+  @apply text-sm font-medium text-blue-700;
+}
+
+.practice-form__skills-summary-text {
+  @apply mt-2 text-sm text-blue-600;
+}
+
+.practice-form__form {
+  @apply space-y-8;
+}
+
+.practice-form__grid {
+  @apply grid gap-5 md:grid-cols-2;
+}
+
+.practice-form__field {
+  @apply block;
+}
+
+.practice-form__label {
+  @apply mb-2 block text-sm font-medium text-slate-700;
+}
+
+.practice-form__required-mark {
+  @apply ml-1 font-semibold text-red-500;
+}
+
+.practice-form__input {
+  @apply w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.practice-form__input--error {
+  @apply border-red-500 focus-visible:ring-red-500;
+}
+
+.practice-form__error {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.practice-form__fieldset {
+  @apply block;
+}
+
+.practice-form__gender-options {
+  @apply flex flex-wrap gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4;
+}
+
+.practice-form__radio-label {
+  @apply flex items-center gap-2;
+}
+
+.practice-form__option-text {
+  @apply text-sm text-slate-700;
+}
+
+.practice-form__country-field {
+  @apply relative;
+}
+
+.practice-form__suggestion-message {
+  @apply absolute z-10 mt-2 w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-lg;
+}
+
+.practice-form__suggestion-message--error {
+  @apply border-red-200;
+}
+
+.practice-form__suggestion-message-text {
+  @apply text-sm text-slate-500;
+}
+
+.practice-form__suggestion-message-text--error {
+  @apply text-red-600;
+}
+
+.practice-form__suggestions {
+  @apply absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-lg;
+}
+
+.practice-form__suggestion-button {
+  @apply flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition-colors hover:bg-slate-100;
+}
+
+.practice-form__suggestion-button--active {
+  @apply bg-blue-100;
+}
+
+.practice-form__country-name {
+  @apply font-medium text-slate-800;
+}
+
+.practice-form__country-meta {
+  @apply text-sm text-slate-500;
+}
+
+.practice-form__country-code {
+  @apply rounded bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600;
+}
+
+.practice-form__alert {
+  @apply rounded-2xl border border-amber-200 bg-amber-50 p-5;
+}
+
+.practice-form__alert-title {
+  @apply font-medium text-amber-900;
+}
+
+.practice-form__alert-description {
+  @apply mt-1 text-sm text-amber-700;
+}
+
+.practice-form__alert-button {
+  @apply mt-4 rounded-xl bg-amber-500 px-4 py-2 text-white transition hover:bg-amber-600;
+}
+
+.practice-form__skills-grid {
+  @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.practice-form__skill-option {
+  @apply flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3;
+}
+
+.practice-form__terms {
+  @apply rounded-2xl border border-slate-200 bg-slate-50 p-5;
+}
+
+.practice-form__terms-content {
+  @apply space-y-3;
+}
+
+.practice-form__checkbox-label {
+  @apply flex items-center gap-3;
+}
+
+.practice-form__terms-text {
+  @apply text-sm font-medium text-slate-800;
+}
+
+.practice-form__actions {
+  @apply flex flex-wrap gap-4;
+}
+
+.practice-form__submit-button {
+  @apply rounded-2xl bg-slate-900 px-6 py-3 text-white transition hover:bg-slate-800;
+}
+
+.practice-form__submit-button--disabled {
+  @apply cursor-not-allowed bg-slate-400;
+}
+
+.practice-form__reset-button {
+  @apply rounded-2xl bg-red-500 px-6 py-3 text-white transition hover:bg-red-600;
+}
+
+.practice-form__results {
+  @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.practice-form__results-header {
+  @apply mb-5;
+}
+
+.practice-form__results-title {
+  @apply text-2xl font-bold text-slate-900;
+}
+
+.practice-form__results-description {
+  @apply mt-1 text-sm text-slate-600;
+}
+
+.practice-form__table-cell--label {
+  @apply font-medium;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Validation Form                                                            */
+/* -------------------------------------------------------------------------- */
+
+.validation-form {
+  @apply mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.validation-form__header {
+  @apply mb-6;
+}
+
+.validation-form__title {
+  @apply text-2xl font-bold text-slate-900;
+}
+
+.validation-form__description {
+  @apply mt-2 text-sm text-slate-600;
+}
+
+.validation-form__scenario-summary {
+  @apply mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4;
+}
+
+.validation-form__scenario-title {
+  @apply text-sm font-medium text-blue-700;
+}
+
+.validation-form__scenario-text {
+  @apply mt-1 text-sm text-blue-600;
+}
+
+.validation-form__form {
+  @apply space-y-5;
+}
+
+.validation-form__field {
+  @apply block;
+}
+
+.validation-form__label {
+  @apply mb-2 block text-sm font-medium text-slate-700;
+}
+
+.validation-form__required-mark {
+  @apply ml-1 text-red-500;
+}
+
+.validation-form__input {
+  @apply w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.validation-form__input--error {
+  @apply border-red-500 focus-visible:ring-red-500;
+}
+
+.validation-form__error {
+  @apply mt-2 text-sm text-red-600;
+}
+
+.validation-form__status {
+  @apply min-h-[28px];
+}
+
+.validation-form__message {
+  @apply rounded-2xl border px-4 py-3;
+}
+
+.validation-form__message--loading {
+  @apply border-amber-200 bg-amber-50;
+}
+
+.validation-form__message--error {
+  @apply border-red-200 bg-red-50;
+}
+
+.validation-form__message--success {
+  @apply border-green-200 bg-green-50;
+}
+
+.validation-form__message-text {
+  @apply text-sm font-medium;
+}
+
+.validation-form__message-text--loading {
+  @apply text-amber-700;
+}
+
+.validation-form__message-text--error {
+  @apply text-red-700;
+}
+
+.validation-form__message-text--success {
+  @apply text-green-700;
+}
+
+.validation-form__actions {
+  @apply flex flex-wrap gap-4;
+}
+
+.validation-form__submit-button {
+  @apply rounded-2xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700;
+}
+
+.validation-form__submit-button--disabled {
+  @apply cursor-not-allowed bg-slate-400;
+}
+
+.validation-form__reset-button {
+  @apply rounded-2xl bg-red-500 px-6 py-3 text-white transition hover:bg-red-600;
+}
+
+.validation-form__debug {
+  @apply mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5;
+}
+
+.validation-form__debug-title {
+  @apply mb-3 text-sm font-semibold text-slate-800;
+}
+
+.validation-form__debug-content {
+  @apply space-y-2 text-sm text-slate-700;
+}
+
+.validation-form__debug-value {
+  @apply ml-2 font-medium;
+}
+
+.validation-form__debug-value--capitalize {
+  @apply capitalize;
+}
+
+.forms-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.forms-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.forms-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.forms-page__content {
+  @apply mt-6 w-full max-w-5xl;
+}

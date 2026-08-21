@@ -23,7 +23,7 @@ export default function SimpleAlert() {
       title="Simple Alert"
     >
       <div
-        className="flex flex-col gap-4"
+        className="simple-alert"
         data-component="simple-alert"
       >
         <button
@@ -34,16 +34,7 @@ export default function SimpleAlert() {
           aria-describedby="simple-alert-description"
           aria-label="Open simple alert"
           onClick={handleAlert}
-          className="
-            inline-flex w-fit items-center justify-center
-            rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white
-            transition-colors
-            hover:bg-red-700
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-red-500
-            focus-visible:ring-offset-2
-          "
+          className="simple-alert__button"
         >
           Click for Alert
         </button>
@@ -51,7 +42,7 @@ export default function SimpleAlert() {
         <p
           id="simple-alert-description"
           data-testid="simple-alert-description"
-          className="text-sm text-gray-600"
+          className="simple-alert__description"
         >
           Opens a browser alert for Selenium automation practice.
         </p>
@@ -60,9 +51,7 @@ export default function SimpleAlert() {
           id="simple-alert-status"
           data-testid="simple-alert-status"
           aria-live="polite"
-          className="
-            min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm
-          "
+          className="simple-alert__status"
         >
           {status}
         </div>

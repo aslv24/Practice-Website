@@ -10,7 +10,7 @@ const FIRST_NAMES = [
   "Praveen",
   "Dinesh",
   "Saravanan",
-  "Ganesh"
+  "Ganesh",
 ]
 
 const LAST_NAMES = [
@@ -23,7 +23,7 @@ const LAST_NAMES = [
   "K",
   "P",
   "S",
-  "Reddy"
+  "Reddy",
 ]
 
 const CITIES = [
@@ -31,40 +31,26 @@ const CITIES = [
   "Bangalore",
   "Hyderabad",
   "Mumbai",
-  "Delhi"
+  "Delhi",
 ]
 
 const DOMAINS = [
   "gmail.com",
   "yahoo.com",
-  "outlook.com"
+  "outlook.com",
 ]
 
 const tableData = Array.from(
   { length: 100 },
   (_, index) => ({
-    id: `IM${String(index + 1).padStart(
-      4,
-      "0"
-    )}`,
-    firstName:
-      FIRST_NAMES[index % 10],
-    lastName:
-      LAST_NAMES[index % 10],
-    email: `${FIRST_NAMES[
+    id: `IM${String(index + 1).padStart(4, "0")}`,
+    firstName: FIRST_NAMES[index % 10],
+    lastName: LAST_NAMES[index % 10],
+    email: `${FIRST_NAMES[index % 10].toLowerCase()}.${LAST_NAMES[
       index % 10
-    ].toLowerCase()}.${
-      LAST_NAMES[
-        index % 10
-      ].toLowerCase()
-    }${index}@${
-      DOMAINS[index % 3]
-    }`,
+    ].toLowerCase()}${index}@${DOMAINS[index % 3]}`,
     city: CITIES[index % 5],
-    status:
-      index % 2 === 0
-        ? "Active"
-        : "Inactive"
+    status: index % 2 === 0 ? "Active" : "Inactive",
   })
 )
 
@@ -75,16 +61,12 @@ export default function WebTable() {
       data-testid="web-table-card"
       data-component="web-table"
       aria-labelledby="web-table-title"
-      className="
-        rounded-2xl border bg-white p-6 shadow-sm
-      "
+      className="web-table"
     >
       <h2
         id="web-table-title"
         data-testid="web-table-title"
-        className="
-          mb-4 text-lg font-semibold text-blue-700
-        "
+        className="web-table__title"
       >
         Web Table
       </h2>
@@ -92,28 +74,19 @@ export default function WebTable() {
       <div
         id="web-table-container"
         data-testid="web-table-container"
-        className="
-          max-h-[400px] overflow-auto
-          rounded-lg border
-        "
+        className="web-table__container"
       >
         <table
           id="web-data-table"
           data-testid="web-data-table"
           aria-label="Web data table"
-          className="
-            w-full border-collapse text-left
-          "
+          className="web-table__table"
         >
           <caption className="sr-only">
             Employee information table
           </caption>
 
-          <thead
-            className="
-              sticky top-0 z-10 bg-blue-100
-            "
-          >
+          <thead className="web-table__head">
             <tr>
               {[
                 "ID",
@@ -121,15 +94,12 @@ export default function WebTable() {
                 "Last Name",
                 "Email",
                 "City",
-                "Status"
+                "Status",
               ].map((header) => (
                 <th
                   key={header}
                   scope="col"
-                  className="
-                    border px-3 py-2
-                    font-semibold text-blue-700
-                  "
+                  className="web-table__header"
                 >
                   {header}
                 </th>
@@ -138,72 +108,64 @@ export default function WebTable() {
           </thead>
 
           <tbody>
-            {tableData.map(
-              (row, index) => (
-                <tr
-                  key={row.id}
-                  id={`web-table-row-${row.id.toLowerCase()}`}
-                  data-testid={`web-table-row-${row.id.toLowerCase()}`}
-                  className={`
-                    transition-colors hover:bg-blue-50
-                    ${
-                      index % 2 === 0
-                        ? "bg-white"
-                        : "bg-gray-50"
-                    }
-                  `}
+            {tableData.map((row, index) => (
+              <tr
+                key={row.id}
+                id={`web-table-row-${row.id.toLowerCase()}`}
+                data-testid={`web-table-row-${row.id.toLowerCase()}`}
+                className={`web-table__row${
+                  index % 2 === 0
+                    ? " web-table__row--even"
+                    : " web-table__row--odd"
+                }`}
+              >
+                <td
+                  data-testid={`web-table-id-${row.id.toLowerCase()}`}
+                  className="web-table__cell"
                 >
-                  <td
-                    data-testid={`web-table-id-${row.id.toLowerCase()}`}
-                    className="border px-3 py-2"
-                  >
-                    {row.id}
-                  </td>
+                  {row.id}
+                </td>
 
-                  <td
-                    data-testid={`web-table-firstname-${row.id.toLowerCase()}`}
-                    className="border px-3 py-2"
-                  >
-                    {row.firstName}
-                  </td>
+                <td
+                  data-testid={`web-table-firstname-${row.id.toLowerCase()}`}
+                  className="web-table__cell"
+                >
+                  {row.firstName}
+                </td>
 
-                  <td
-                    data-testid={`web-table-lastname-${row.id.toLowerCase()}`}
-                    className="border px-3 py-2"
-                  >
-                    {row.lastName}
-                  </td>
+                <td
+                  data-testid={`web-table-lastname-${row.id.toLowerCase()}`}
+                  className="web-table__cell"
+                >
+                  {row.lastName}
+                </td>
 
-                  <td
-                    data-testid={`web-table-email-${row.id.toLowerCase()}`}
-                    className="border px-3 py-2"
-                  >
-                    {row.email}
-                  </td>
+                <td
+                  data-testid={`web-table-email-${row.id.toLowerCase()}`}
+                  className="web-table__cell"
+                >
+                  {row.email}
+                </td>
 
-                  <td
-                    data-testid={`web-table-city-${row.id.toLowerCase()}`}
-                    className="border px-3 py-2"
-                  >
-                    {row.city}
-                  </td>
+                <td
+                  data-testid={`web-table-city-${row.id.toLowerCase()}`}
+                  className="web-table__cell"
+                >
+                  {row.city}
+                </td>
 
-                  <td
-                    data-testid={`web-table-status-${row.id.toLowerCase()}`}
-                    className={`
-                      border px-3 py-2 font-semibold
-                      ${
-                        row.status === "Active"
-                          ? "text-green-600"
-                          : "text-red-500"
-                      }
-                    `}
-                  >
-                    {row.status}
-                  </td>
-                </tr>
-              )
-            )}
+                <td
+                  data-testid={`web-table-status-${row.id.toLowerCase()}`}
+                  className={`web-table__status${
+                    row.status === "Active"
+                      ? " web-table__status--active"
+                      : " web-table__status--inactive"
+                  }`}
+                >
+                  {row.status}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -212,15 +174,9 @@ export default function WebTable() {
         id="web-table-total-records"
         data-testid="web-table-total-records"
         aria-live="polite"
-        className="
-          mt-4 rounded-md border bg-gray-50
-          px-3 py-2 text-sm font-medium
-          text-blue-700
-        "
+        className="web-table__total"
       >
-        Total Records:
-        {" "}
-        {tableData.length}
+        Total Records: {tableData.length}
       </div>
     </section>
   )

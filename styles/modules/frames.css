@@ -1,0 +1,115 @@
+/* -------------------------------------------------------------------------- */
+/* Nested Frame                                                               */
+/* -------------------------------------------------------------------------- */
+
+.nested-frame {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.nested-frame__header {
+  @apply mb-6;
+}
+
+.nested-frame__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.nested-frame__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.nested-frame__status {
+  @apply mb-6 rounded-xl border bg-gray-50 p-4;
+}
+
+.nested-frame__status-content {
+  @apply space-y-2 text-sm;
+}
+
+.nested-frame__status-item {
+  @apply font-medium text-gray-700;
+}
+
+.nested-frame__loading {
+  @apply rounded-xl border border-dashed p-6;
+}
+
+.nested-frame__loading-content {
+  @apply flex items-center gap-3;
+}
+
+.nested-frame__loading-spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent;
+}
+
+.nested-frame__loading-text {
+  @apply text-sm text-gray-600;
+}
+
+.nested-frame__iframe {
+  @apply h-96 w-full rounded-xl border;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Single Frame                                                               */
+/* -------------------------------------------------------------------------- */
+
+.single-frame {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.single-frame__header {
+  @apply mb-6;
+}
+
+.single-frame__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.single-frame__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.single-frame__status {
+  @apply mb-6 rounded-xl border bg-gray-50 p-4;
+}
+
+.single-frame__status-text {
+  @apply font-medium text-gray-700;
+}
+
+.single-frame__loading {
+  @apply flex h-64 items-center justify-center rounded-xl border border-dashed;
+}
+
+.single-frame__loading-content {
+  @apply flex items-center gap-3;
+}
+
+.single-frame__loading-spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent;
+}
+
+.single-frame__loading-text {
+  @apply text-sm text-gray-600;
+}
+
+.single-frame__iframe {
+  @apply h-72 w-full rounded-xl border;
+}
+
+.frames-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.frames-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.frames-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.frames-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

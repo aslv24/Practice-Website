@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
+import { dynamicWidth } from "@/lib/dynamicStyles"
+
 type UploadStatus =
   | "idle"
   | "uploading"
@@ -113,6 +115,7 @@ export default function FileUpload() {
     setProgress(0)
     setErrorMessage("")
     setStatus("idle")
+
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
     }
@@ -125,15 +128,15 @@ export default function FileUpload() {
       data-component="input-file-upload"
       data-upload-state={status}
       aria-label="Resume upload component"
-      className="rounded-2xl border bg-white p-6 shadow-sm"
+      className="file-upload"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-blue-600">
+      <header className="file-upload__header">
+        <h2 className="file-upload__title">
           Resume Upload
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="file-upload__description">
           Practice Selenium file upload
           automation using a real input tag,
           upload validation, and synchronization
@@ -142,10 +145,10 @@ export default function FileUpload() {
       </header>
 
       {/* Upload Section */}
-      <div className="rounded-xl border p-5">
+      <div className="file-upload__section">
         <label
           htmlFor="file-upload-input"
-          className="mb-3 block text-sm font-medium text-gray-700"
+          className="file-upload__label"
         >
           Upload Resume
         </label>
@@ -163,18 +166,13 @@ export default function FileUpload() {
           disabled={
             status === "uploading"
           }
-          className="block w-full cursor-pointer rounded-lg border text-sm text-gray-600
-          file:mr-4 file:rounded-lg file:border-0
-          file:bg-blue-600 file:px-4
-          file:py-2 file:text-white
-          hover:file:bg-blue-700
-          disabled:cursor-not-allowed disabled:opacity-60"
+          className="file-upload__input"
         />
 
         {/* Helper Text */}
         <p
           id="upload-helper-text"
-          className="mt-3 text-sm text-gray-500"
+          className="file-upload__helper-text"
         >
           Supported formats: PDF, PNG, JPG
           • Maximum size: 5MB
@@ -184,35 +182,33 @@ export default function FileUpload() {
       {/* Status Section */}
       <div
         aria-live="polite"
-        className="mt-6 space-y-4"
+        className="file-upload__status"
       >
         {/* Upload Progress */}
         {status === "uploading" && (
           <div
             id="upload-progress-section"
             data-testid="upload-progress-section"
-            className="rounded-xl border border-blue-200 bg-blue-50 p-4"
+            className="file-upload__progress"
           >
-            <div className="mb-2 flex items-center justify-between">
-              <p className="font-medium text-blue-700">
+            <div className="file-upload__progress-header">
+              <p className="file-upload__progress-label">
                 Uploading Resume...
               </p>
 
               <p
                 id="upload-progress-value"
                 data-testid="upload-progress-value"
-                className="text-sm font-semibold text-blue-600"
+                className="file-upload__progress-value"
               >
                 {progress}%
               </p>
             </div>
 
-            <div className="h-3 overflow-hidden rounded-full bg-blue-100">
+            <div className="file-upload__progress-track">
               <div
-                className="h-full rounded-full bg-blue-600 transition-all"
-                style={{
-                  width: `${progress}%`,
-                }}
+                className="file-upload__progress-bar"
+                style={dynamicWidth(progress)}
               />
             </div>
           </div>
@@ -223,9 +219,9 @@ export default function FileUpload() {
           <div
             id="upload-success-message"
             data-testid="upload-success-message"
-            className="rounded-xl border border-green-200 bg-green-50 p-4"
+            className="file-upload__message file-upload__message--success"
           >
-            <p className="font-medium text-green-700">
+            <p className="file-upload__message-text file-upload__message-text--success">
               Resume uploaded successfully.
             </p>
           </div>
@@ -236,9 +232,9 @@ export default function FileUpload() {
           <div
             id="upload-error-message"
             data-testid="upload-error-message"
-            className="rounded-xl border border-red-200 bg-red-50 p-4"
+            className="file-upload__message file-upload__message--error"
           >
-            <p className="font-medium text-red-700">
+            <p className="file-upload__message-text file-upload__message-text--error">
               {errorMessage}
             </p>
           </div>
@@ -248,13 +244,13 @@ export default function FileUpload() {
         <div
           id="file-upload-details"
           data-testid="file-upload-details"
-          className="rounded-xl border bg-gray-50 p-4"
+          className="file-upload__details"
         >
-          <div className="space-y-2">
+          <div className="file-upload__details-content">
             <p
               id="file-upload-selected-name"
               data-testid="file-upload-selected-name"
-              className="text-sm font-medium text-gray-700"
+              className="file-upload__detail"
             >
               File:
               {fileName || " No file selected"}
@@ -263,7 +259,7 @@ export default function FileUpload() {
             <p
               id="file-upload-size"
               data-testid="file-upload-size"
-              className="text-sm text-gray-600"
+              className="file-upload__detail file-upload__detail--secondary"
             >
               Size:
               {fileSize || " --"}
@@ -272,7 +268,7 @@ export default function FileUpload() {
             <p
               id="file-upload-type"
               data-testid="file-upload-type"
-              className="text-sm text-gray-600"
+              className="file-upload__detail file-upload__detail--secondary"
             >
               Type:
               {fileType || " --"}
@@ -281,7 +277,7 @@ export default function FileUpload() {
             <p
               id="file-upload-status"
               data-testid="file-upload-status"
-              className="text-sm text-gray-600"
+              className="file-upload__detail file-upload__detail--secondary"
             >
               Status: {status}
             </p>
@@ -298,10 +294,10 @@ export default function FileUpload() {
             disabled={
               status === "uploading"
             }
-            className={`rounded-lg px-5 py-2 text-white transition-colors ${
+            className={`file-upload__remove-button${
               status === "uploading"
-                ? "cursor-not-allowed bg-gray-400"
-                : "bg-red-500 hover:bg-red-600"
+                ? " file-upload__remove-button--disabled"
+                : ""
             }`}
           >
             Remove File

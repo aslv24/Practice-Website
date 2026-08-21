@@ -1,6 +1,12 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import {
+  useCallback,
+  useMemo,
+  useState,
+} from "react"
+
+import { dynamicWidth } from "@/lib/dynamicStyles"
 
 type SliderStatus =
   | "low"
@@ -8,9 +14,15 @@ type SliderStatus =
   | "high"
   | "maximum"
 
+/**
+ * Slider Component
+ * Demonstrates slider interactions with optimized performance
+ * Uses useCallback for event handlers and useMemo for status calculation
+ */
 export default function Slider() {
   const [value, setValue] = useState(50)
 
+  // Memoize status calculation to avoid recalculating on every render
   const sliderStatus =
     useMemo<SliderStatus>(() => {
       if (value >= 100) {
@@ -28,33 +40,53 @@ export default function Slider() {
       return "low"
     }, [value])
 
+  // Memoize onChange handler to prevent recreating on every render
+  const handleSliderChange = useCallback(
+    (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setValue(
+        Number(event.target.value)
+      )
+    },
+    []
+  )
+
   const statusConfig: Record<
     SliderStatus,
     {
       label: string
-      textColor: string
-      progressColor: string
+      textClass: string
+      progressClass: string
     }
   > = {
     low: {
       label: "Low",
-      textColor: "text-blue-600",
-      progressColor: "bg-blue-500",
+      textClass:
+        "slider__value--low",
+      progressClass:
+        "slider__progress-bar--low",
     },
     medium: {
       label: "Medium",
-      textColor: "text-yellow-600",
-      progressColor: "bg-yellow-500",
+      textClass:
+        "slider__value--medium",
+      progressClass:
+        "slider__progress-bar--medium",
     },
     high: {
       label: "High",
-      textColor: "text-orange-600",
-      progressColor: "bg-orange-500",
+      textClass:
+        "slider__value--high",
+      progressClass:
+        "slider__progress-bar--high",
     },
     maximum: {
       label: "Maximum",
-      textColor: "text-red-600",
-      progressColor: "bg-red-500",
+      textClass:
+        "slider__value--maximum",
+      progressClass:
+        "slider__progress-bar--maximum",
     },
   }
 
@@ -63,29 +95,19 @@ export default function Slider() {
       id="slider-card"
       data-testid="slider-card"
       aria-label="Slider card"
-      className="
-        rounded-2xl
-        border
-        border-gray-100
-        bg-white
-        p-6
-        shadow-sm
-        transition-all
-        duration-200
-        hover:shadow-md
-      "
+      className="slider"
     >
-      <header className="mb-4">
+      <header className="slider__header">
         <h2
           id="slider-title"
-          className="flex items-center gap-2 text-lg font-semibold"
+          className="slider__title"
         >
           🖱️ Slider
         </h2>
 
         <p
           id="slider-description"
-          className="mt-1 text-sm text-gray-500"
+          className="slider__description"
         >
           Practice Selenium slider interactions
           and value validation.
@@ -93,7 +115,7 @@ export default function Slider() {
       </header>
 
       {/* Slider Input */}
-      <div className="space-y-4">
+      <div className="slider__control">
         <input
           id="range-slider-input"
           name="rangeSlider"
@@ -107,62 +129,34 @@ export default function Slider() {
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={value}
-          onChange={(event) =>
-            setValue(
-              Number(event.target.value)
-            )
-          }
-          className="
-            w-full
-            cursor-pointer
-            accent-blue-600
-            focus:outline-none
-            focus:ring-2
-            focus:ring-blue-400
-            focus:ring-offset-2
-          "
+          onChange={handleSliderChange}
+          className="slider__input"
         />
 
         {/* Progress Bar */}
         <div
           id="slider-progress-container"
           data-testid="slider-progress-container"
-          className="
-            h-3
-            overflow-hidden
-            rounded-full
-            bg-gray-200
-          "
+          className="slider__progress"
         >
           <div
             id="slider-progress-bar"
             data-testid="slider-progress-bar"
-            className={`
-              h-full
-              transition-all
-              duration-300
-              ${statusConfig[sliderStatus].progressColor}
-            `}
-            style={{
-              width: `${value}%`,
-            }}
+            className={`slider__progress-bar ${statusConfig[sliderStatus].progressClass}`}
+            style={dynamicWidth(value)}
           />
         </div>
       </div>
 
       {/* Value Display */}
       <div
-        className="mt-4"
+        className="slider__value-display"
         aria-live="polite"
       >
         <p
           id="range-slider-value"
           data-testid="range-slider-value"
-          className={`
-            text-sm
-            font-medium
-            ${statusConfig[sliderStatus].textColor}
-          `}
+          className={`slider__value ${statusConfig[sliderStatus].textClass}`}
         >
           Value: {value}
         </p>
@@ -170,26 +164,19 @@ export default function Slider() {
         <p
           id="range-slider-status"
           data-testid="range-slider-status"
-          className="mt-1 text-sm text-gray-500"
+          className="slider__status"
         >
           Status:{" "}
           {
-            statusConfig[sliderStatus]
-              .label
+            statusConfig[
+              sliderStatus
+            ].label
           }
         </p>
       </div>
 
       {/* Range Labels */}
-      <div
-        className="
-          mt-4
-          flex
-          justify-between
-          text-xs
-          text-gray-400
-        "
-      >
+      <div className="slider__range-labels">
         <span>0</span>
         <span>25</span>
         <span>50</span>

@@ -8,128 +8,184 @@ import {
   FaWindowMaximize,
   FaWpforms,
   FaGhost,
-  FaLink
+  FaLink,
 } from "react-icons/fa"
 
 import {
   MdMouse,
   MdOutlineRadioButtonChecked,
   MdOutlineWeb,
-  MdTableChart
+  MdTableChart,
 } from "react-icons/md"
+
+export type ModuleCategory =
+  | "dialogs"
+  | "inputs"
+  | "browser"
+  | "interactions"
+  | "synchronization"
+  | "data"
+  | "advanced"
 
 export type PracticeModule = {
   id: string
   title: string
+  description: string
   icon: React.ComponentType<{ className?: string }>
   color: string
   link: string
+  category: ModuleCategory
 }
 
 export const modules: PracticeModule[] = [
   {
     id: "alerts",
     title: "Alerts",
+    description:
+      "Handle simple alerts, confirmation dialogs, and prompt workflows with reliable Selenium commands.",
     icon: FaBell,
-    color: "bg-red-100 text-red-600",
-    link: "/alerts"
+    color: "module-card__icon--red",
+    link: "/alerts",
+    category: "dialogs",
   },
   {
     id: "calendar",
     title: "Calendar",
+    description:
+      "Practice date inputs, custom calendar navigation, and web table interactions for scheduling flows.",
     icon: FaCalendarAlt,
-    color: "bg-purple-100 text-purple-600",
-    link: "/calendar"
+    color: "module-card__icon--purple",
+    link: "/calendar",
+    category: "inputs",
   },
   {
     id: "checkbox",
     title: "Checkbox",
+    description:
+      "Automate single, grouped, and select-all checkbox scenarios with stable selectors.",
     icon: FaCheckSquare,
-    color: "bg-green-100 text-green-600",
-    link: "/checkbox"
+    color: "module-card__icon--green",
+    link: "/checkbox",
+    category: "inputs",
   },
   {
     id: "dropdown",
     title: "Dropdown",
+    description:
+      "Work through single-select, multi-select, and dynamic dropdown practice cases.",
     icon: FaList,
-    color: "bg-blue-100 text-blue-600",
-    link: "/dropdown"
+    color: "module-card__icon--blue",
+    link: "/dropdown",
+    category: "inputs",
   },
   {
     id: "file-upload",
     title: "File Upload",
+    description:
+      "Validate file inputs, upload states, metadata, and removal flows used in real test suites.",
     icon: FaUpload,
-    color: "bg-yellow-100 text-yellow-600",
-    link: "/file-upload"
+    color: "module-card__icon--yellow",
+    link: "/file-upload",
+    category: "inputs",
   },
   {
     id: "forms",
     title: "Forms",
+    description:
+      "Practice text inputs, validation, radio groups, checkboxes, dates, and submission assertions.",
     icon: FaWpforms,
-    color: "bg-indigo-100 text-indigo-600",
-    link: "/forms"
+    color: "module-card__icon--indigo",
+    link: "/forms",
+    category: "inputs",
   },
   {
     id: "frames",
     title: "Frames",
+    description:
+      "Switch into single and nested frames while keeping browser context handling clear.",
     icon: MdOutlineWeb,
-    color: "bg-pink-100 text-pink-600",
-    link: "/frames"
+    color: "module-card__icon--pink",
+    link: "/frames",
+    category: "browser",
   },
   {
     id: "mouse",
     title: "Mouse Events",
+    description:
+      "Train click actions, hover states, drag-and-drop, and slider automation.",
     icon: MdMouse,
-    color: "bg-orange-100 text-orange-600",
-    link: "/mouse"
+    color: "module-card__icon--orange",
+    link: "/mouse",
+    category: "interactions",
   },
   {
     id: "radio-button",
     title: "Radio Button",
+    description:
+      "Automate individual and grouped radio button selection with accessible labels.",
     icon: MdOutlineRadioButtonChecked,
-    color: "bg-teal-100 text-teal-600",
-    link: "/radiobutton"
+    color: "module-card__icon--teal",
+    link: "/radiobutton",
+    category: "inputs",
   },
   {
     id: "suggestion-list",
     title: "Suggestion List",
+    description:
+      "Practice Selenium autocomplete interactions with static and dynamic suggestion lists.",
     icon: MdTableChart,
-    color: "bg-cyan-100 text-cyan-600",
-    link: "/suggestion-list"
+    color: "module-card__icon--cyan",
+    link: "/suggestion-list",
+    category: "inputs",
   },
   {
     id: "waits",
     title: "Waits",
+    description:
+      "Build confidence with implicit waits, explicit waits, loading states, and delayed elements.",
     icon: FaStopwatch,
-    color: "bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 text-orange-600",
-    link: "/waits"
+    color: "module-card__icon--waits",
+    link: "/waits",
+    category: "synchronization",
   },
   {
     id: "windows",
     title: "Windows",
+    description:
+      "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling.",
     icon: FaWindowMaximize,
-    color: "bg-rose-100 text-rose-600",
-    link: "/windows"
+    color: "module-card__icon--rose",
+    link: "/windows",
+    category: "browser",
   },
   {
     id: "tables",
     title: "Web Tables",
+    description:
+      "Sort, filter, paginate, and delete rows in a dynamic HTML table with stable locators.",
     icon: MdTableChart,
-    color: "bg-amber-100 text-amber-600",
-    link: "/tables"
+    color: "module-card__icon--amber",
+    link: "/tables",
+    category: "data",
   },
   {
     id: "shadow-dom",
     title: "Shadow DOM",
+    description:
+      "Locate and interact with elements encapsulated inside an open Shadow DOM boundary.",
     icon: FaGhost,
-    color: "bg-zinc-100 text-zinc-600",
-    link: "/shadow-dom"
+    color: "module-card__icon--zinc",
+    link: "/shadow-dom",
+    category: "advanced",
   },
   {
     id: "broken-links",
     title: "Broken Links",
+    description:
+      "Detect broken links and missing images by checking HTTP status codes and load failures.",
     icon: FaLink,
-    color: "bg-fuchsia-100 text-fuchsia-600",
-    link: "/broken-links"
-  }
+    color: "module-card__icon--fuchsia",
+    link: "/broken-links",
+    category: "advanced",
+  },
 ]

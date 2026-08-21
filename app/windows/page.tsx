@@ -10,12 +10,12 @@ export default function WindowsPage() {
       id="windows-page"
       data-testid="windows-page"
       aria-label="Windows practice page"
-      className="flex min-h-screen flex-col items-center bg-gray-100 p-6"
+      className="windows-page"
     >
       <h1
         id="windows-page-title"
         data-testid="windows-page-title"
-        className="mb-2 text-3xl font-bold"
+        className="windows-page__title"
       >
         Windows Practice Page
       </h1>
@@ -23,7 +23,7 @@ export default function WindowsPage() {
       <p
         id="windows-page-description"
         data-testid="windows-page-description"
-        className="mb-4 text-gray-600"
+        className="windows-page__description"
       >
         Practice handling tabs and windows for Selenium automation
       </p>
@@ -34,7 +34,7 @@ export default function WindowsPage() {
         id="windows-modules-section"
         data-testid="windows-modules-section"
         aria-label="Windows practice modules"
-        className="mt-6 w-full max-w-2xl space-y-6"
+        className="windows-page__content"
       >
         <NewTab />
         <NewWindow />

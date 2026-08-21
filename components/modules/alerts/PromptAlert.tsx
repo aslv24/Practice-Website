@@ -32,7 +32,7 @@ export default function PromptAlert() {
       title="Prompt Alert"
     >
       <div
-        className="flex flex-col gap-4"
+        className="prompt-alert"
         data-component="prompt-alert"
       >
         <button
@@ -43,16 +43,7 @@ export default function PromptAlert() {
           aria-describedby="prompt-alert-description"
           aria-label="Open prompt alert"
           onClick={handlePrompt}
-          className="
-            inline-flex w-fit items-center justify-center
-            rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white
-            transition-colors
-            hover:bg-green-700
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-green-500
-            focus-visible:ring-offset-2
-          "
+          className="prompt-alert__button"
         >
           Click for Prompt
         </button>
@@ -60,7 +51,7 @@ export default function PromptAlert() {
         <p
           id="prompt-alert-description"
           data-testid="prompt-alert-description"
-          className="text-sm text-gray-600"
+          className="prompt-alert__description"
         >
           Opens a browser prompt alert for Selenium practice.
         </p>
@@ -69,9 +60,7 @@ export default function PromptAlert() {
           id="prompt-alert-result"
           data-testid="prompt-alert-result"
           aria-live="polite"
-          className="
-            min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm
-          "
+          className="prompt-alert__result"
         >
           {value ?? "No value entered yet."}
         </div>

@@ -1,0 +1,239 @@
+/* -------------------------------------------------------------------------- */
+/* Single File Upload                                                         */
+/* -------------------------------------------------------------------------- */
+
+.single-file-upload {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.single-file-upload__header {
+  @apply mb-6;
+}
+
+.single-file-upload__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.single-file-upload__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.single-file-upload__area {
+  @apply rounded-xl border border-dashed p-6;
+}
+
+.single-file-upload__choose-button {
+  @apply inline-flex cursor-pointer items-center rounded-lg bg-blue-600 px-5 py-2 text-white transition-colors hover:bg-blue-700;
+}
+
+.single-file-upload__choose-button--disabled {
+  @apply cursor-not-allowed bg-gray-400;
+}
+
+.single-file-upload__helper-text {
+  @apply mt-3 text-sm text-gray-500;
+}
+
+.single-file-upload__status {
+  @apply mt-6 space-y-4;
+}
+
+.single-file-upload__progress {
+  @apply rounded-xl border bg-blue-50 p-4;
+}
+
+.single-file-upload__progress-header {
+  @apply mb-2 flex items-center justify-between;
+}
+
+.single-file-upload__progress-label {
+  @apply font-medium text-blue-700;
+}
+
+.single-file-upload__progress-value {
+  @apply text-sm font-semibold text-blue-600;
+}
+
+.single-file-upload__progress-track {
+  @apply h-3 overflow-hidden rounded-full bg-blue-100;
+}
+
+.single-file-upload__progress-bar {
+  @apply h-full rounded-full bg-blue-600 transition-all;
+}
+
+.single-file-upload__message {
+  @apply rounded-xl border p-4;
+}
+
+.single-file-upload__message--success {
+  @apply border-green-200 bg-green-50;
+}
+
+.single-file-upload__message--error {
+  @apply border-red-200 bg-red-50;
+}
+
+.single-file-upload__message-text {
+  @apply font-medium;
+}
+
+.single-file-upload__message-text--success {
+  @apply text-green-700;
+}
+
+.single-file-upload__message-text--error {
+  @apply text-red-700;
+}
+
+.single-file-upload__details {
+  @apply rounded-xl border bg-gray-50 p-4;
+}
+
+.single-file-upload__details-content {
+  @apply space-y-2;
+}
+
+.single-file-upload__detail {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.single-file-upload__detail--secondary {
+  @apply font-normal text-gray-600;
+}
+
+.single-file-upload__remove-button {
+  @apply rounded-lg bg-red-500 px-5 py-2 text-white transition-colors hover:bg-red-600;
+}
+
+.single-file-upload__remove-button--disabled {
+  @apply cursor-not-allowed bg-gray-400;
+}
+
+/* -------------------------------------------------------------------------- */
+/* File Upload                                                                */
+/* -------------------------------------------------------------------------- */
+
+.file-upload {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.file-upload__header {
+  @apply mb-6;
+}
+
+.file-upload__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.file-upload__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.file-upload__section {
+  @apply rounded-xl border p-5;
+}
+
+.file-upload__label {
+  @apply mb-3 block text-sm font-medium text-gray-700;
+}
+
+.file-upload__input {
+  @apply block w-full cursor-pointer rounded-lg border text-sm text-gray-600 hover:file:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-white;
+}
+
+.file-upload__helper-text {
+  @apply mt-3 text-sm text-gray-500;
+}
+
+.file-upload__status {
+  @apply mt-6 space-y-4;
+}
+
+.file-upload__progress {
+  @apply rounded-xl border border-blue-200 bg-blue-50 p-4;
+}
+
+.file-upload__progress-header {
+  @apply mb-2 flex items-center justify-between;
+}
+
+.file-upload__progress-label {
+  @apply font-medium text-blue-700;
+}
+
+.file-upload__progress-value {
+  @apply text-sm font-semibold text-blue-600;
+}
+
+.file-upload__progress-track {
+  @apply h-3 overflow-hidden rounded-full bg-blue-100;
+}
+
+.file-upload__progress-bar {
+  @apply h-full rounded-full bg-blue-600 transition-all;
+}
+
+.file-upload__message {
+  @apply rounded-xl border p-4;
+}
+
+.file-upload__message--success {
+  @apply border-green-200 bg-green-50;
+}
+
+.file-upload__message--error {
+  @apply border-red-200 bg-red-50;
+}
+
+.file-upload__message-text {
+  @apply font-medium;
+}
+
+.file-upload__message-text--success {
+  @apply text-green-700;
+}
+
+.file-upload__message-text--error {
+  @apply text-red-700;
+}
+
+.file-upload__details {
+  @apply rounded-xl border bg-gray-50 p-4;
+}
+
+.file-upload__details-content {
+  @apply space-y-2;
+}
+
+.file-upload__detail {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.file-upload__detail--secondary {
+  @apply font-normal text-gray-600;
+}
+
+.file-upload__remove-button {
+  @apply rounded-lg bg-red-500 px-5 py-2 text-white transition-colors hover:bg-red-600;
+}
+
+.file-upload__remove-button--disabled {
+  @apply cursor-not-allowed bg-gray-400;
+}
+
+.file-upload-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.file-upload-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.file-upload-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.file-upload-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

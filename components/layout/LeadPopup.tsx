@@ -3,16 +3,19 @@
 import { useEffect, useState } from "react"
 import { FaEnvelope, FaPhone, FaUser } from "react-icons/fa"
 
+import { useModuleContext } from "@/hooks/useModuleContext"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 
 export default function LeadPopup() {
+  const { userPreferences, setLeadPopupShown } = useModuleContext()
+
   const [open, setOpen] = useState(false)
 
   const [name, setName] = useState("")
@@ -23,17 +26,15 @@ export default function LeadPopup() {
   const [mobileError, setMobileError] = useState("")
 
   useEffect(() => {
-    const alreadyShown = localStorage.getItem("leadPopupShown")
-
-    if (!alreadyShown) {
+    if (!userPreferences.leadPopupShown) {
       const timer = window.setTimeout(() => {
         setOpen(true)
-        localStorage.setItem("leadPopupShown", "true")
+        setLeadPopupShown(true)
       }, 1000)
 
       return () => window.clearTimeout(timer)
     }
-  }, [])
+  }, [userPreferences.leadPopupShown, setLeadPopupShown])
 
   const validateEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
@@ -65,8 +66,27 @@ export default function LeadPopup() {
     validateEmail(email) &&
     mobile.length === 10
 
+  /**
+   * Persist the submitted registration data to localStorage.
+   * No backend exists — this is a Selenium practice site.
+   * Storing the data makes it inspectable via DevTools and assertable
+   * in automated test suites (e.g. via executeScript / localStorage.getItem).
+   */
   const handleSubmit = () => {
-    localStorage.setItem("userRegistered", "true")
+    try {
+      localStorage.setItem(
+        "leadRegistration",
+        JSON.stringify({
+          name: name.trim(),
+          email,
+          mobile,
+          registeredAt: new Date().toISOString(),
+        })
+      )
+    } catch (error) {
+      console.error("Failed to save registration data:", error)
+    }
+
     setOpen(false)
   }
 
@@ -77,47 +97,49 @@ export default function LeadPopup() {
         data-testid="lead-registration-modal"
         data-state={open ? "open" : "closed"}
         aria-label="Lead registration modal"
-        className="rounded-2xl bg-white p-8 shadow-xl sm:max-w-lg"
+        className="lead-popup"
       >
         <DialogHeader>
-          <DialogTitle className="text-center text-3xl font-semibold text-gray-800">
+          <DialogTitle className="lead-popup__title">
             Join Selenium Practice
           </DialogTitle>
 
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="lead-popup__subtitle">
             Register to explore real automation scenarios
           </p>
         </DialogHeader>
 
-        <div className="mt-6 space-y-5">
+        <div className="lead-popup__form">
           {/* Name Input */}
-          <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
-            <FaUser
-              className="mr-3 text-gray-400"
-              aria-hidden="true"
-            />
+          <div className="lead-popup__field">
+            <div className="lead-popup__input-wrapper">
+              <FaUser
+                className="lead-popup__icon"
+                aria-hidden="true"
+              />
 
-            <Input
-              id="lead-name-input"
-              name="leadName"
-              type="text"
-              autoComplete="name"
-              data-testid="lead-name-input"
-              aria-label="Lead name"
-              placeholder="Enter your name"
-              className="border-0 focus-visible:ring-0"
-              value={name}
-              onChange={(e) =>
-                setName(e.target.value.trimStart())
-              }
-            />
+              <Input
+                id="lead-name-input"
+                name="leadName"
+                type="text"
+                autoComplete="name"
+                data-testid="lead-name-input"
+                aria-label="Lead name"
+                placeholder="Enter your name"
+                className="lead-popup__input"
+                value={name}
+                onChange={(e) =>
+                  setName(e.target.value.trimStart())
+                }
+              />
+            </div>
           </div>
 
           {/* Email Input */}
-          <div>
-            <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
+          <div className="lead-popup__field">
+            <div className="lead-popup__input-wrapper">
               <FaEnvelope
-                className="mr-3 text-gray-400"
+                className="lead-popup__icon"
                 aria-hidden="true"
               />
 
@@ -129,7 +151,7 @@ export default function LeadPopup() {
                 data-testid="lead-email-input"
                 aria-label="Lead email"
                 placeholder="Enter your email"
-                className="border-0 focus-visible:ring-0"
+                className="lead-popup__input"
                 value={email}
                 onChange={(e) =>
                   handleEmailChange(e.target.value)
@@ -142,7 +164,7 @@ export default function LeadPopup() {
                 role="alert"
                 id="lead-email-error"
                 data-testid="lead-email-error"
-                className="mt-1 text-sm text-red-500"
+                className="lead-popup__error"
               >
                 {emailError}
               </p>
@@ -150,10 +172,10 @@ export default function LeadPopup() {
           </div>
 
           {/* Mobile Input */}
-          <div>
-            <div className="flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-blue-500">
+          <div className="lead-popup__field">
+            <div className="lead-popup__input-wrapper">
               <FaPhone
-                className="mr-3 text-gray-400"
+                className="lead-popup__icon"
                 aria-hidden="true"
               />
 
@@ -166,7 +188,7 @@ export default function LeadPopup() {
                 data-testid="lead-mobile-input"
                 aria-label="Lead mobile number"
                 placeholder="Enter your mobile number"
-                className="border-0 focus-visible:ring-0"
+                className="lead-popup__input"
                 value={mobile}
                 maxLength={10}
                 onChange={(e) =>
@@ -180,7 +202,7 @@ export default function LeadPopup() {
                 role="alert"
                 id="lead-mobile-error"
                 data-testid="lead-mobile-error"
-                className="mt-1 text-sm text-red-500"
+                className="lead-popup__error"
               >
                 {mobileError}
               </p>
@@ -195,7 +217,7 @@ export default function LeadPopup() {
             aria-label="Register now"
             disabled={!isFormValid}
             onClick={handleSubmit}
-            className="w-full rounded-lg bg-blue-600 py-5 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="lead-popup__submit"
           >
             Register Now
           </Button>

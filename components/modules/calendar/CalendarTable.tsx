@@ -14,7 +14,7 @@ const MONTHS = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ]
 
 const WEEK_DAYS = [
@@ -24,39 +24,28 @@ const WEEK_DAYS = [
   "Wed",
   "Thu",
   "Fri",
-  "Sat"
+  "Sat",
 ]
 
 type CalendarTableProps = {
   selectedDate: string
-  setSelectedDate: React.Dispatch<
-    React.SetStateAction<string>
-  >
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function CalendarTable({
   selectedDate,
-  setSelectedDate
+  setSelectedDate,
 }: CalendarTableProps) {
   const today = new Date()
 
-  const [currentDate, setCurrentDate] =
-    useState(new Date())
+  const [currentDate, setCurrentDate] = useState(new Date())
 
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
-  const firstDay = new Date(
-    year,
-    month,
-    1
-  ).getDay()
+  const firstDay = new Date(year, month, 1).getDay()
 
-  const daysInMonth = new Date(
-    year,
-    month + 1,
-    0
-  ).getDate()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
 
   const days: (number | null)[] = []
 
@@ -69,21 +58,17 @@ export default function CalendarTable({
   }
 
   const formatDate = (day: number) =>
-    `${year}-${String(month + 1).padStart(
+    `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(
       2,
       "0"
-    )}-${String(day).padStart(2, "0")}`
+    )}`
 
   const updateMonth = (offset: number) => {
-    setCurrentDate(
-      new Date(year, month + offset, 1)
-    )
+    setCurrentDate(new Date(year, month + offset, 1))
   }
 
   const updateYear = (offset: number) => {
-    setCurrentDate(
-      new Date(year + offset, month, 1)
-    )
+    setCurrentDate(new Date(year + offset, month, 1))
   }
 
   return (
@@ -92,40 +77,24 @@ export default function CalendarTable({
       data-testid="calendar-table-card"
       data-component="calendar-table"
       aria-labelledby="calendar-table-title"
-      className="
-        rounded-2xl border bg-white p-6 shadow-sm
-      "
+      className="calendar-table"
     >
       <h2
         id="calendar-table-title"
         data-testid="calendar-table-title"
-        className="
-          mb-4 text-lg font-semibold text-blue-700
-        "
+        className="calendar-table__title"
       >
         Calendar (Advanced)
       </h2>
 
-      <div
-        className="
-          mb-3 flex items-center justify-between
-        "
-      >
+      <div className="calendar-table__year-controls">
         <button
           type="button"
           id="previous-year-button"
           data-testid="previous-year-button"
           aria-label="Go to previous year"
           onClick={() => updateYear(-1)}
-          className="
-            rounded-md bg-blue-100 px-3 py-1
-            text-blue-700 transition-colors
-            hover:bg-blue-200
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-blue-500
-            focus-visible:ring-offset-2
-          "
+          className="calendar-table__control-button"
         >
           ←
         </button>
@@ -133,9 +102,7 @@ export default function CalendarTable({
         <p
           id="calendar-current-year"
           data-testid="calendar-current-year"
-          className="
-            text-lg font-semibold text-blue-700
-          "
+          className="calendar-table__period"
         >
           {year}
         </p>
@@ -146,40 +113,20 @@ export default function CalendarTable({
           data-testid="next-year-button"
           aria-label="Go to next year"
           onClick={() => updateYear(1)}
-          className="
-            rounded-md bg-blue-100 px-3 py-1
-            text-blue-700 transition-colors
-            hover:bg-blue-200
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-blue-500
-            focus-visible:ring-offset-2
-          "
+          className="calendar-table__control-button"
         >
           →
         </button>
       </div>
 
-      <div
-        className="
-          mb-4 flex items-center justify-between
-        "
-      >
+      <div className="calendar-table__month-controls">
         <button
           type="button"
           id="previous-month-button"
           data-testid="previous-month-button"
           aria-label="Go to previous month"
           onClick={() => updateMonth(-1)}
-          className="
-            rounded-md bg-blue-100 px-3 py-1
-            text-blue-700 transition-colors
-            hover:bg-blue-200
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-blue-500
-            focus-visible:ring-offset-2
-          "
+          className="calendar-table__control-button"
         >
           ←
         </button>
@@ -187,9 +134,7 @@ export default function CalendarTable({
         <p
           id="calendar-current-month"
           data-testid="calendar-current-month"
-          className="
-            text-lg font-semibold text-blue-700
-          "
+          className="calendar-table__period"
         >
           {MONTHS[month]}
         </p>
@@ -200,15 +145,7 @@ export default function CalendarTable({
           data-testid="next-month-button"
           aria-label="Go to next month"
           onClick={() => updateMonth(1)}
-          className="
-            rounded-md bg-blue-100 px-3 py-1
-            text-blue-700 transition-colors
-            hover:bg-blue-200
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-blue-500
-            focus-visible:ring-offset-2
-          "
+          className="calendar-table__control-button"
         >
           →
         </button>
@@ -218,19 +155,15 @@ export default function CalendarTable({
         id="calendar-date-table"
         data-testid="calendar-date-table"
         aria-label="Calendar date table"
-        className="
-          w-full border-collapse text-center
-        "
+        className="calendar-table__dates"
       >
-        <thead className="bg-blue-100">
+        <thead className="calendar-table__head">
           <tr>
             {WEEK_DAYS.map((day) => (
               <th
                 key={day}
                 scope="col"
-                className="
-                  border px-2 py-2 text-blue-700
-                "
+                className="calendar-table__weekday"
               >
                 {day}
               </th>
@@ -240,18 +173,13 @@ export default function CalendarTable({
 
         <tbody>
           {Array.from({
-            length: Math.ceil(days.length / 7)
+            length: Math.ceil(days.length / 7),
           }).map((_, rowIndex) => (
             <tr key={rowIndex}>
               {days
-                .slice(
-                  rowIndex * 7,
-                  rowIndex * 7 + 7
-                )
+                .slice(rowIndex * 7, rowIndex * 7 + 7)
                 .map((day, index) => {
-                  const fullDate = day
-                    ? formatDate(day)
-                    : ""
+                  const fullDate = day ? formatDate(day) : ""
 
                   const isToday =
                     !!day &&
@@ -260,13 +188,12 @@ export default function CalendarTable({
                     today.getFullYear() === year
 
                   const isSelected =
-                    !!day &&
-                    selectedDate === fullDate
+                    !!day && selectedDate === fullDate
 
                   return (
                     <td
                       key={index}
-                      className="border p-1"
+                      className="calendar-table__cell"
                     >
                       {day ? (
                         <button
@@ -274,45 +201,26 @@ export default function CalendarTable({
                           id={`calendar-day-${day}`}
                           data-testid={`calendar-day-${day}`}
                           data-date={fullDate}
-                          data-today={
-                            isToday
-                              ? "true"
-                              : "false"
-                          }
+                          data-today={isToday ? "true" : "false"}
                           aria-label={`Select ${fullDate}`}
                           aria-pressed={isSelected}
-                          onClick={() =>
-                            setSelectedDate(
-                              fullDate
-                            )
-                          }
-                          className={`
-                            h-10 w-10 rounded-md
-                            transition-colors
-                            hover:bg-blue-100
-                            focus-visible:outline-none
-                            focus-visible:ring-2
-                            focus-visible:ring-blue-500
-                            focus-visible:ring-offset-2
-                            ${
-                              isSelected
-                                ? "bg-green-600 font-bold text-white"
-                                : ""
-                            }
-                            ${
-                              isToday &&
-                              !isSelected
-                                ? "border-2 border-yellow-500 font-semibold"
-                                : ""
-                            }
-                          `}
+                          onClick={() => setSelectedDate(fullDate)}
+                          className={`calendar-table__day${
+                            isSelected
+                              ? " calendar-table__day--selected"
+                              : ""
+                          }${
+                            isToday && !isSelected
+                              ? " calendar-table__day--today"
+                              : ""
+                          }`}
                         >
                           {day}
                         </button>
                       ) : (
                         <span
                           aria-hidden="true"
-                          className="block h-10"
+                          className="calendar-table__empty-day"
                         />
                       )}
                     </td>
@@ -327,14 +235,9 @@ export default function CalendarTable({
         id="calendar-selected-date-value"
         data-testid="calendar-selected-date-value"
         aria-live="polite"
-        className="
-          mt-4 rounded-md border bg-gray-50
-          px-3 py-2 text-sm font-medium text-green-700
-        "
+        className="calendar-table__selected-date"
       >
-        Selected:
-        {" "}
-        {selectedDate || "None"}
+        Selected: {selectedDate || "None"}
       </div>
     </section>
   )

@@ -1,0 +1,83 @@
+/* -------------------------------------------------------------------------- */
+/* Dynamic Dropdown                                                             */
+/* -------------------------------------------------------------------------- */
+
+.dynamic-dropdown__load-button {
+  @apply mb-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.dynamic-dropdown__loading {
+  @apply mb-4 rounded-md border bg-gray-50 px-3 py-2;
+}
+
+.dynamic-dropdown__loading-text {
+  @apply animate-pulse text-sm text-gray-600;
+}
+
+.dynamic-dropdown__content {
+  @apply space-y-4;
+}
+
+.dynamic-dropdown__field {
+  @apply space-y-2;
+}
+
+.dynamic-dropdown__helper-text {
+  @apply text-sm text-gray-500;
+}
+
+.dynamic-dropdown__selected-value {
+  @apply rounded-md border bg-gray-50 px-3 py-2 text-sm font-medium text-blue-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Multi Dropdown                                                             */
+/* -------------------------------------------------------------------------- */
+
+.multi-dropdown__content {
+  @apply space-y-3;
+}
+
+.multi-dropdown__field {
+  @apply space-y-2;
+}
+
+.multi-dropdown__select {
+  @apply h-40;
+}
+
+.multi-dropdown__helper-text {
+  @apply text-sm text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Simple Dropdown                                                            */
+/* -------------------------------------------------------------------------- */
+
+.simple-dropdown__content {
+  @apply space-y-3;
+}
+
+.simple-dropdown__field {
+  @apply space-y-2;
+}
+
+.simple-dropdown__helper-text {
+  @apply text-sm text-gray-500;
+}
+
+.dropdown-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.dropdown-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.dropdown-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.dropdown-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

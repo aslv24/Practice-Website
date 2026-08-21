@@ -25,10 +25,15 @@ button:disabled{opacity:.5;cursor:not-allowed;}
 </body></html>`
 
 export default function SingleFrame() {
-  const [frameLoaded, setFrameLoaded] = useState(false)
+  const [frameLoaded, setFrameLoaded] =
+    useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setFrameLoaded(true), 2000)
+    const timer = setTimeout(
+      () => setFrameLoaded(true),
+      2000
+    )
+
     return () => clearTimeout(timer)
   }, [])
 
@@ -38,27 +43,34 @@ export default function SingleFrame() {
       data-testid="single-frame-card"
       data-component="single-frame"
       aria-label="Single frame interaction"
-      className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+      className="single-frame"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+      <header className="single-frame__header">
+        <h2 className="single-frame__title">
           Single Frame
         </h2>
-        <p className="mt-2 text-sm text-gray-600">
+
+        <p className="single-frame__description">
           Practice Selenium iframe handling using delayed frame loading, dynamic interaction, and synchronization scenarios.
         </p>
       </header>
 
       {/* Status Section */}
-      <div aria-live="polite" className="mb-6 rounded-xl border bg-gray-50 p-4">
+      <div
+        aria-live="polite"
+        className="single-frame__status"
+      >
         <p
           id="single-frame-status"
           data-testid="single-frame-status"
           data-frame-loaded={frameLoaded}
-          className="font-medium text-gray-700"
+          className="single-frame__status-text"
         >
-          Frame Status:{frameLoaded ? " Loaded" : " Loading..."}
+          Frame Status:
+          {frameLoaded
+            ? " Loaded"
+            : " Loading..."}
         </p>
       </div>
 
@@ -67,11 +79,14 @@ export default function SingleFrame() {
         <div
           id="single-frame-loading"
           data-testid="single-frame-loading"
-          className="flex h-64 items-center justify-center rounded-xl border border-dashed"
+          className="single-frame__loading"
         >
-          <div className="flex items-center gap-3">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-            <p className="text-sm text-gray-600">Loading iframe content...</p>
+          <div className="single-frame__loading-content">
+            <div className="single-frame__loading-spinner" />
+
+            <p className="single-frame__loading-text">
+              Loading iframe content...
+            </p>
           </div>
         </div>
       )}
@@ -84,7 +99,7 @@ export default function SingleFrame() {
           title="Single Frame Interaction"
           data-testid="single-frame-iframe"
           aria-label="Single frame iframe"
-          className="h-72 w-full rounded-xl border"
+          className="single-frame__iframe"
           srcDoc={SINGLE_FRAME_DOC}
         />
       )}

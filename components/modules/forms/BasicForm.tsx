@@ -148,19 +148,19 @@ export default function BasicForm() {
         submitStatus
       }
       aria-label="Candidate registration form"
-      className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
+      className="basic-form"
     >
       {/* Header */}
-      <header className="mb-6">
+      <header className="basic-form__header">
         <h2
           id="basic-form-title"
           data-testid="basic-form-title"
-          className="text-2xl font-bold text-blue-600"
+          className="basic-form__title"
         >
           Candidate Registration
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="basic-form__description">
           Practice Selenium form
           automation with validation,
           submission workflows, and
@@ -171,13 +171,13 @@ export default function BasicForm() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="space-y-5"
+        className="basic-form__form"
       >
         {/* Name */}
-        <div>
+        <div className="basic-form__field">
           <label
             htmlFor="basic-form-name"
-            className="text-sm font-medium text-gray-700"
+            className="basic-form__label"
           >
             Full Name
           </label>
@@ -193,10 +193,10 @@ export default function BasicForm() {
             }
             placeholder="Enter full name"
             onChange={handleChange}
-            className={`mt-1 w-full rounded-lg border p-2 focus-visible:outline-none focus-visible:ring-2 ${
+            className={`basic-form__input${
               errors.name
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "focus-visible:ring-blue-500"
+                ? " basic-form__input--error"
+                : ""
             }`}
           />
 
@@ -204,7 +204,7 @@ export default function BasicForm() {
             <p
               id="basic-form-name-error"
               data-testid="basic-form-name-error"
-              className="mt-1 text-sm text-red-600"
+              className="basic-form__error"
             >
               {errors.name}
             </p>
@@ -212,10 +212,10 @@ export default function BasicForm() {
         </div>
 
         {/* Email */}
-        <div>
+        <div className="basic-form__field">
           <label
             htmlFor="basic-form-email"
-            className="text-sm font-medium text-gray-700"
+            className="basic-form__label"
           >
             Email Address
           </label>
@@ -232,10 +232,10 @@ export default function BasicForm() {
             }
             placeholder="Enter email"
             onChange={handleChange}
-            className={`mt-1 w-full rounded-lg border p-2 focus-visible:outline-none focus-visible:ring-2 ${
+            className={`basic-form__input${
               errors.email
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "focus-visible:ring-blue-500"
+                ? " basic-form__input--error"
+                : ""
             }`}
           />
 
@@ -243,7 +243,7 @@ export default function BasicForm() {
             <p
               id="basic-form-email-error"
               data-testid="basic-form-email-error"
-              className="mt-1 text-sm text-red-600"
+              className="basic-form__error"
             >
               {errors.email}
             </p>
@@ -251,13 +251,13 @@ export default function BasicForm() {
         </div>
 
         {/* Gender */}
-        <fieldset>
-          <legend className="text-sm font-medium text-gray-700">
+        <fieldset className="basic-form__fieldset">
+          <legend className="basic-form__label">
             Gender
           </legend>
 
-          <div className="mt-2 flex gap-5">
-            <label className="flex items-center gap-2">
+          <div className="basic-form__radio-group">
+            <label className="basic-form__radio-label">
               <input
                 id="basic-form-gender-male"
                 type="radio"
@@ -276,7 +276,7 @@ export default function BasicForm() {
               Male
             </label>
 
-            <label className="flex items-center gap-2">
+            <label className="basic-form__radio-label">
               <input
                 id="basic-form-gender-female"
                 type="radio"
@@ -300,7 +300,7 @@ export default function BasicForm() {
             <p
               id="basic-form-gender-error"
               data-testid="basic-form-gender-error"
-              className="mt-1 text-sm text-red-600"
+              className="basic-form__error"
             >
               {errors.gender}
             </p>
@@ -308,10 +308,10 @@ export default function BasicForm() {
         </fieldset>
 
         {/* Course */}
-        <div>
+        <div className="basic-form__field">
           <label
             htmlFor="basic-form-course"
-            className="text-sm font-medium text-gray-700"
+            className="basic-form__label"
           >
             Course
           </label>
@@ -325,10 +325,10 @@ export default function BasicForm() {
               !!errors.course
             }
             onChange={handleChange}
-            className={`mt-1 w-full rounded-lg border p-2 focus-visible:outline-none focus-visible:ring-2 ${
+            className={`basic-form__input${
               errors.course
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "focus-visible:ring-blue-500"
+                ? " basic-form__input--error"
+                : ""
             }`}
           >
             <option value="">
@@ -352,7 +352,7 @@ export default function BasicForm() {
             <p
               id="basic-form-course-error"
               data-testid="basic-form-course-error"
-              className="mt-1 text-sm text-red-600"
+              className="basic-form__error"
             >
               {errors.course}
             </p>
@@ -360,8 +360,8 @@ export default function BasicForm() {
         </div>
 
         {/* Terms */}
-        <div>
-          <label className="flex items-center gap-2">
+        <div className="basic-form__field">
+          <label className="basic-form__checkbox-label">
             <input
               id="basic-form-agree-checkbox"
               type="checkbox"
@@ -379,7 +379,7 @@ export default function BasicForm() {
             <p
               id="basic-form-agree-error"
               data-testid="basic-form-agree-error"
-              className="mt-1 text-sm text-red-600"
+              className="basic-form__error"
             >
               {errors.agree}
             </p>
@@ -387,7 +387,7 @@ export default function BasicForm() {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-3">
+        <div className="basic-form__actions">
           <button
             id="basic-form-submit-button"
             type="submit"
@@ -396,11 +396,11 @@ export default function BasicForm() {
               submitStatus ===
               "submitting"
             }
-            className={`rounded-lg px-5 py-2 text-white transition-colors ${
+            className={`basic-form__submit-button${
               submitStatus ===
               "submitting"
-                ? "cursor-not-allowed bg-gray-400"
-                : "bg-blue-600 hover:bg-blue-700"
+                ? " basic-form__submit-button--disabled"
+                : ""
             }`}
           >
             {submitStatus ===
@@ -414,7 +414,7 @@ export default function BasicForm() {
             type="button"
             data-testid="basic-form-reset-button"
             onClick={handleReset}
-            className="rounded-lg bg-red-500 px-5 py-2 text-white hover:bg-red-600"
+            className="basic-form__reset-button"
           >
             Reset
           </button>
@@ -427,24 +427,24 @@ export default function BasicForm() {
           id="basic-form-success-message"
           data-testid="basic-form-success-message"
           aria-live="polite"
-          className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4"
+          className="basic-form__success"
         >
-          <p className="font-medium text-green-700">
+          <p className="basic-form__success-text">
             Form submitted successfully.
           </p>
         </div>
       )}
 
       {/* Debug State */}
-      <div className="mt-6 rounded-xl bg-gray-100 p-4">
-        <p className="mb-2 font-semibold text-gray-700">
+      <div className="basic-form__debug">
+        <p className="basic-form__debug-title">
           Filled Data
         </p>
 
         <pre
           id="basic-form-json-state"
           data-testid="basic-form-json-state"
-          className="overflow-auto text-sm text-gray-700"
+          className="basic-form__debug-content"
         >
           {JSON.stringify(
             form,

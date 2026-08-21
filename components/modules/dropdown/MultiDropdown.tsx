@@ -87,18 +87,12 @@ export default function MultiDropdown({
       data-testid="multi-dropdown-card"
       data-component="multi-dropdown"
       aria-labelledby="multi-dropdown-title"
-      className="
-        rounded-2xl border border-gray-100
-        bg-white p-6 shadow-sm
-        transition-shadow hover:shadow-md
-      "
+      className="practice-card"
     >
       <h2
         id="multi-dropdown-title"
         data-testid="multi-dropdown-title"
-        className="
-          mb-4 text-lg font-semibold text-gray-800
-        "
+        className="practice-title"
       >
         Multi Select Dropdown
       </h2>
@@ -106,22 +100,17 @@ export default function MultiDropdown({
       <p
         id="multi-dropdown-description"
         data-testid="multi-dropdown-description"
-        className="
-          mb-4 text-sm text-gray-500
-        "
+        className="practice-description"
       >
         Select multiple technologies for
         Selenium automation practice.
       </p>
 
-      <div className="space-y-3">
-        <div className="space-y-2">
+      <div className="multi-dropdown__content">
+        <div className="multi-dropdown__field">
           <label
             htmlFor="multi-course-dropdown"
-            className="
-              block text-sm font-medium
-              text-gray-700
-            "
+            className="practice-label"
           >
             Select Courses
           </label>
@@ -134,14 +123,7 @@ export default function MultiDropdown({
             data-testid="multi-course-dropdown"
             aria-describedby="multi-dropdown-helper-text"
             onChange={handleChange}
-            className="
-              h-40 w-full rounded-lg border
-              border-gray-300 p-2
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-blue-500
-              focus-visible:ring-offset-2
-            "
+            className="multi-dropdown__select practice-select"
           >
             {COURSE_OPTIONS.map(
               (option) => (
@@ -158,9 +140,7 @@ export default function MultiDropdown({
           <p
             id="multi-dropdown-helper-text"
             data-testid="multi-dropdown-helper-text"
-            className="
-              text-sm text-gray-500
-            "
+            className="multi-dropdown__helper-text"
           >
             Hold Ctrl (Windows) or Command
             (Mac) to select multiple options.
@@ -171,11 +151,7 @@ export default function MultiDropdown({
           id="multi-dropdown-selected-value"
           data-testid="multi-dropdown-selected-value"
           aria-live="polite"
-          className="
-            rounded-md border bg-gray-50
-            px-3 py-2 text-sm font-medium
-            text-blue-700
-          "
+          className="practice-status-blue"
         >
           Selected:
           {" "}

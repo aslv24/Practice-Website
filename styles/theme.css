@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --radius-md: 0.75rem;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --primary: #1d4ed8;
+  --primary-foreground: #ffffff;
+
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+
+  --ring: #60a5fa;
+
+  --destructive: #dc2626;
+}
+
+@theme inline {
+  --radius-md: var(--radius-md);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+
+  --font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Practice UI                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.practice-card {
+  @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md;
+}
+
+.practice-title {
+  @apply mb-4 text-lg font-semibold text-gray-800;
+}
+
+.practice-description {
+  @apply mb-4 text-sm text-gray-500;
+}
+
+.practice-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.practice-checkbox {
+  @apply h-5 w-5 accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.practice-radio {
+  @apply h-5 w-5 accent-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+.practice-select {
+  @apply w-full rounded-lg border border-gray-300 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.practice-btn-green {
+  @apply rounded-lg bg-green-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
+}
+
+.practice-btn-red {
+  @apply rounded-lg bg-red-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2;
+}
+
+.practice-status-blue {
+  @apply mt-5 rounded-md border bg-gray-50 px-3 py-2 text-sm font-medium text-blue-700;
+}
+
+.app-root {
+  @apply h-full antialiased;
+}
+
+.app-body {
+  @apply flex min-h-full flex-col bg-background text-foreground;
+}

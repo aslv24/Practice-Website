@@ -1,0 +1,159 @@
+/* -------------------------------------------------------------------------- */
+/* Group Radio                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.group-radio__header {
+  @apply mb-6;
+}
+
+.group-radio__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.group-radio__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.group-radio__fieldset {
+  @apply space-y-4;
+}
+
+.group-radio__legend {
+  @apply text-sm font-semibold text-gray-800;
+}
+
+.group-radio__helper-text {
+  @apply text-sm text-gray-500;
+}
+
+.group-radio__option {
+  @apply flex cursor-pointer items-start gap-4 rounded-xl border p-4 transition-colors hover:bg-gray-50;
+}
+
+.group-radio__option--selected {
+  @apply border-blue-300 bg-blue-50;
+}
+
+.group-radio__option--disabled {
+  @apply cursor-not-allowed bg-gray-100 opacity-60;
+}
+
+.group-radio__content {
+  @apply flex-1;
+}
+
+.group-radio__option-header {
+  @apply flex items-center justify-between gap-3;
+}
+
+.group-radio__option-label {
+  @apply font-medium text-gray-800;
+}
+
+.group-radio__disabled-badge {
+  @apply rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-600;
+}
+
+.group-radio__option-description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.group-radio__result {
+  @apply mt-6 rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.group-radio__result-value {
+  @apply font-medium text-green-700;
+}
+
+.group-radio__result-description {
+  @apply mt-1 text-sm text-green-600;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Single Radio                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.single-radio__header {
+  @apply mb-6;
+}
+
+.single-radio__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.single-radio__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.single-radio__fieldset {
+  @apply space-y-4;
+}
+
+.single-radio__legend {
+  @apply text-sm font-semibold text-gray-800;
+}
+
+.single-radio__helper-text {
+  @apply text-sm text-gray-500;
+}
+
+.single-radio__option {
+  @apply flex cursor-pointer items-start gap-4 rounded-xl border p-4 transition-colors hover:bg-gray-50;
+}
+
+.single-radio__option--selected {
+  @apply border-blue-300 bg-blue-50;
+}
+
+.single-radio__option--disabled {
+  @apply cursor-not-allowed bg-gray-100 opacity-60;
+}
+
+.single-radio__content {
+  @apply flex-1;
+}
+
+.single-radio__option-header {
+  @apply flex items-center justify-between gap-3;
+}
+
+.single-radio__option-label {
+  @apply font-medium text-gray-800;
+}
+
+.single-radio__disabled-badge {
+  @apply rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-600;
+}
+
+.single-radio__option-description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.single-radio__result {
+  @apply mt-6 rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.single-radio__result-value {
+  @apply font-medium text-green-700;
+}
+
+.single-radio__result-description {
+  @apply mt-1 text-sm text-green-600;
+}
+
+.radio-button-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.radio-button-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.radio-button-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.radio-button-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

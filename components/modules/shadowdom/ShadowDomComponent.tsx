@@ -134,28 +134,36 @@ export default function ShadowDomComponent() {
     <section
       id="shadow-dom-card"
       data-testid="shadow-dom-card"
-      className="w-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md"
+      className="shadow-dom"
     >
-      <header className="mb-4">
+      <header className="shadow-dom__header">
         <h2
           id="shadow-dom-title"
           data-testid="shadow-dom-title"
-          className="text-lg font-semibold text-gray-800"
+          className="shadow-dom__title"
         >
           Shadow DOM Encapsulation
         </h2>
+
         <p
           id="shadow-dom-description"
           data-testid="shadow-dom-description"
-          className="mt-1 text-sm text-gray-500"
+          className="shadow-dom__description"
         >
           The box below attaches an <strong>open shadow root</strong>. To interact with it, your test script must locate the shadow host container, fetch its shadow root, and search for elements inside it.
         </p>
       </header>
-      
+
       {/* Target host for Shadow DOM */}
-      <div id="shadow-host" data-testid="shadow-host" ref={containerRef} className="mt-6"></div>
+      <div
+        id="shadow-host"
+        data-testid="shadow-host"
+        ref={containerRef}
+        className="shadow-dom__host"
+      />
     </section>
   )
 }
-ShadowDomComponent.displayName = "ShadowDomComponent"
+
+ShadowDomComponent.displayName =
+  "ShadowDomComponent"

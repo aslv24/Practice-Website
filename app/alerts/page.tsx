@@ -1,24 +1,32 @@
+import type { Metadata } from "next"
+
 import DashboardBackLink from "@/components/layout/DashboardBackLink"
 import ConfirmAlert from "@/components/modules/alerts/ConfirmAlert"
 import PromptAlert from "@/components/modules/alerts/PromptAlert"
 import SimpleAlert from "@/components/modules/alerts/SimpleAlert"
 
+export const metadata: Metadata = {
+  title: "Alerts",
+  description:
+    "Practice handling Selenium alerts including simple alerts, confirmation dialogs, and prompt inputs with reliable WebDriver commands.",
+}
+
 export default function AlertsPage() {
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-10">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-semibold text-gray-800">
+    <div className="alerts-page">
+      <div className="alerts-page__header">
+        <h1 className="alerts-page__title">
           Alerts Practice Page
         </h1>
 
-        <p className="mb-4 mt-2 text-gray-500">
+        <p className="alerts-page__description">
           Practice handling different types of alerts for Selenium automation
         </p>
 
         <DashboardBackLink />
       </div>
 
-      <div className="mx-auto max-w-3xl space-y-6">
+      <div className="alerts-page__content">
         <SimpleAlert />
         <ConfirmAlert />
         <PromptAlert />

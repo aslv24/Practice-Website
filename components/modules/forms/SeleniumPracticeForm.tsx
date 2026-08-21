@@ -427,13 +427,13 @@ export default function SeleniumPracticeForm() {
   }
 
   const requiredMark = (
-    <span className="ml-1 font-semibold text-red-500">
+    <span className="practice-form__required-mark">
       *
     </span>
   )
 
   return (
-    <div className="space-y-6">
+    <div className="practice-form__wrapper">
       {/* Main Form */}
       <section
         id="practice-form-card"
@@ -443,15 +443,15 @@ export default function SeleniumPracticeForm() {
           submitState
         }
         aria-label="Complete selenium practice form"
-        className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+        className="practice-form"
       >
         {/* Header */}
-        <header className="mb-8">
-          <h2 className="text-3xl font-bold text-slate-900">
+        <header className="practice-form__header">
+          <h2 className="practice-form__title">
             Selenium Practice Form
           </h2>
 
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="practice-form__description">
             Practice real-world Selenium
             automation using text fields,
             dropdowns, suggestions,
@@ -459,12 +459,12 @@ export default function SeleniumPracticeForm() {
             validation, and synchronization.
           </p>
 
-          <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4">
-            <p className="text-sm font-medium text-blue-700">
+          <div className="practice-form__skills-summary">
+            <p className="practice-form__skills-summary-title">
               Selenium Skills Covered:
             </p>
 
-            <p className="mt-2 text-sm text-blue-600">
+            <p className="practice-form__skills-summary-text">
               Explicit Waits • Dynamic
               Dropdowns • Table Assertions •
               Alerts • Radio Buttons •
@@ -478,16 +478,16 @@ export default function SeleniumPracticeForm() {
           id="practice-form"
           data-testid="practice-form"
           aria-label="Selenium practice form"
-          className="space-y-8"
+          className="practice-form__form"
           onSubmit={handleSubmit}
         >
           {/* Basic Fields */}
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="practice-form__grid">
             {/* Full Name */}
-            <div>
+            <div className="practice-form__field">
               <label
                 htmlFor="practice-full-name"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Full Name
                 {requiredMark}
@@ -506,10 +506,10 @@ export default function SeleniumPracticeForm() {
                 onChange={
                   handleInputChange
                 }
-                className={`w-full rounded-xl border px-4 py-3 outline-none transition focus-visible:ring-2 ${
+                className={`practice-form__input${
                   errors.fullName
-                    ? "border-red-500 focus-visible:ring-red-500"
-                    : "border-slate-300 focus-visible:ring-blue-500"
+                    ? " practice-form__input--error"
+                    : ""
                 }`}
               />
 
@@ -517,7 +517,7 @@ export default function SeleniumPracticeForm() {
                 <p
                   id="practice-full-name-error"
                   data-testid="practice-full-name-error"
-                  className="mt-1 text-sm text-red-600"
+                  className="practice-form__error"
                 >
                   {errors.fullName}
                 </p>
@@ -525,10 +525,10 @@ export default function SeleniumPracticeForm() {
             </div>
 
             {/* Email */}
-            <div>
+            <div className="practice-form__field">
               <label
                 htmlFor="practice-email"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Email Address
                 {requiredMark}
@@ -548,10 +548,10 @@ export default function SeleniumPracticeForm() {
                 onChange={
                   handleInputChange
                 }
-                className={`w-full rounded-xl border px-4 py-3 outline-none transition focus-visible:ring-2 ${
+                className={`practice-form__input${
                   errors.email
-                    ? "border-red-500 focus-visible:ring-red-500"
-                    : "border-slate-300 focus-visible:ring-blue-500"
+                    ? " practice-form__input--error"
+                    : ""
                 }`}
               />
 
@@ -559,7 +559,7 @@ export default function SeleniumPracticeForm() {
                 <p
                   id="practice-email-error"
                   data-testid="practice-email-error"
-                  className="mt-1 text-sm text-red-600"
+                  className="practice-form__error"
                 >
                   {errors.email}
                 </p>
@@ -567,10 +567,10 @@ export default function SeleniumPracticeForm() {
             </div>
 
             {/* Phone */}
-            <div>
+            <div className="practice-form__field">
               <label
                 htmlFor="practice-phone"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Phone Number
               </label>
@@ -585,25 +585,29 @@ export default function SeleniumPracticeForm() {
                 onChange={
                   handleInputChange
                 }
-                className={`w-full rounded-xl border px-4 py-3 outline-none transition focus-visible:ring-2 ${
+                className={`practice-form__input${
                   errors.phone
-                    ? "border-red-500 focus-visible:ring-red-500"
-                    : "border-slate-300 focus-visible:ring-blue-500"
+                    ? " practice-form__input--error"
+                    : ""
                 }`}
               />
 
               {errors.phone && (
-                <p className="mt-1 text-sm text-red-600">
+                <p
+                  id="practice-phone-error"
+                  data-testid="practice-phone-error"
+                  className="practice-form__error"
+                >
                   {errors.phone}
                 </p>
               )}
             </div>
 
             {/* Topic */}
-            <div>
+            <div className="practice-form__field">
               <label
                 htmlFor="practice-topic"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Automation Topic
                 {requiredMark}
@@ -618,7 +622,7 @@ export default function SeleniumPracticeForm() {
                 onChange={
                   handleInputChange
                 }
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="practice-form__input"
               >
                 <option value="">
                   Select topic
@@ -635,7 +639,11 @@ export default function SeleniumPracticeForm() {
               </select>
 
               {errors.topic && (
-                <p className="mt-1 text-sm text-red-600">
+                <p
+                  id="practice-topic-error"
+                  data-testid="practice-topic-error"
+                  className="practice-form__error"
+                >
                   {errors.topic}
                 </p>
               )}
@@ -643,15 +651,15 @@ export default function SeleniumPracticeForm() {
           </div>
 
           {/* Gender + Country */}
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="practice-form__grid">
             {/* Gender */}
-            <fieldset>
-              <legend className="mb-2 text-sm font-medium text-slate-700">
+            <fieldset className="practice-form__fieldset">
+              <legend className="practice-form__label">
                 Gender
                 {requiredMark}
               </legend>
 
-              <div className="flex flex-wrap gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div className="practice-form__gender-options">
                 {[
                   "Male",
                   "Female",
@@ -659,7 +667,7 @@ export default function SeleniumPracticeForm() {
                 ].map((option) => (
                   <label
                     key={option}
-                    className="flex items-center gap-2"
+                    className="practice-form__radio-label"
                   >
                     <input
                       id={`practice-gender-${option.toLowerCase()}-radio`}
@@ -676,7 +684,7 @@ export default function SeleniumPracticeForm() {
                       }
                     />
 
-                    <span className="text-sm text-slate-700">
+                    <span className="practice-form__option-text">
                       {option}
                     </span>
                   </label>
@@ -684,7 +692,11 @@ export default function SeleniumPracticeForm() {
               </div>
 
               {errors.gender && (
-                <p className="mt-1 text-sm text-red-600">
+                <p
+                  id="practice-gender-error"
+                  data-testid="practice-gender-error"
+                  className="practice-form__error"
+                >
                   {errors.gender}
                 </p>
               )}
@@ -692,14 +704,14 @@ export default function SeleniumPracticeForm() {
 
             {/* Country Suggestion */}
             <div
-              className="relative"
+              className="practice-form__country-field"
               ref={
                 suggestionWrapperRef
               }
             >
               <label
                 htmlFor="practice-country"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Country Suggestion
                 {requiredMark}
@@ -742,14 +754,14 @@ export default function SeleniumPracticeForm() {
                 onKeyDown={
                   handleCountryKeyboardNavigation
                 }
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="practice-form__input"
               />
 
               {/* Loading */}
               {showSuggestions &&
                 isSearchingCountries && (
-                  <div className="absolute z-10 mt-2 w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-lg">
-                    <p className="text-sm text-slate-500">
+                  <div className="practice-form__suggestion-message">
+                    <p className="practice-form__suggestion-message-text">
                       Loading suggestions...
                     </p>
                   </div>
@@ -765,7 +777,7 @@ export default function SeleniumPracticeForm() {
                         id="practice-country-suggestions-dropdown"
                         role="listbox"
                         data-testid="practice-country-suggestions-dropdown"
-                        className="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-lg"
+                        className="practice-form__suggestions"
                       >
                         {filteredCountries.map(
                           (
@@ -791,21 +803,21 @@ export default function SeleniumPracticeForm() {
                                     country
                                   )
                                 }
-                                className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition-colors ${
+                                className={`practice-form__suggestion-button${
                                   activeCountryIndex ===
                                   index
-                                    ? "bg-blue-100"
-                                    : "hover:bg-slate-100"
+                                    ? " practice-form__suggestion-button--active"
+                                    : ""
                                 }`}
                               >
                                 <div>
-                                  <p className="font-medium text-slate-800">
+                                  <p className="practice-form__country-name">
                                     {
                                       country.name
                                     }
                                   </p>
 
-                                  <p className="text-sm text-slate-500">
+                                  <p className="practice-form__country-meta">
                                     ISO:
                                     {
                                       country.isoCode
@@ -817,7 +829,7 @@ export default function SeleniumPracticeForm() {
                                   </p>
                                 </div>
 
-                                <span className="rounded bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
+                                <span className="practice-form__country-code">
                                   {
                                     country.isoCode
                                   }
@@ -828,8 +840,8 @@ export default function SeleniumPracticeForm() {
                         )}
                       </ul>
                     ) : (
-                      <div className="absolute z-10 mt-2 w-full rounded-2xl border border-red-200 bg-white p-4 shadow-lg">
-                        <p className="text-sm text-red-600">
+                      <div className="practice-form__suggestion-message practice-form__suggestion-message--error">
+                        <p className="practice-form__suggestion-message-text practice-form__suggestion-message-text--error">
                           No countries found.
                         </p>
                       </div>
@@ -838,7 +850,11 @@ export default function SeleniumPracticeForm() {
                 )}
 
               {errors.countrySearch && (
-                <p className="mt-1 text-sm text-red-600">
+                <p
+                  id="practice-country-error"
+                  data-testid="practice-country-error"
+                  className="practice-form__error"
+                >
                   {
                     errors.countrySearch
                   }
@@ -848,12 +864,12 @@ export default function SeleniumPracticeForm() {
           </div>
 
           {/* Date + Alert */}
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="practice-form__grid">
             {/* Date */}
-            <div>
+            <div className="practice-form__field">
               <label
                 htmlFor="practice-date"
-                className="mb-2 block text-sm font-medium text-slate-700"
+                className="practice-form__label"
               >
                 Practice Date
                 {requiredMark}
@@ -870,11 +886,15 @@ export default function SeleniumPracticeForm() {
                 onChange={
                   handleInputChange
                 }
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="practice-form__input"
               />
 
               {errors.practiceDate && (
-                <p className="mt-1 text-sm text-red-600">
+                <p
+                  id="practice-date-error"
+                  data-testid="practice-date-error"
+                  className="practice-form__error"
+                >
                   {
                     errors.practiceDate
                   }
@@ -883,12 +903,12 @@ export default function SeleniumPracticeForm() {
             </div>
 
             {/* Alert */}
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-              <p className="font-medium text-amber-900">
+            <div className="practice-form__alert">
+              <p className="practice-form__alert-title">
                 Alert Practice
               </p>
 
-              <p className="mt-1 text-sm text-amber-700">
+              <p className="practice-form__alert-description">
                 Trigger a JavaScript alert
                 before submission.
               </p>
@@ -900,7 +920,7 @@ export default function SeleniumPracticeForm() {
                 onClick={
                   handlePreviewAlert
                 }
-                className="mt-4 rounded-xl bg-amber-500 px-4 py-2 text-white transition hover:bg-amber-600"
+                className="practice-form__alert-button"
               >
                 Trigger Alert
               </button>
@@ -908,18 +928,18 @@ export default function SeleniumPracticeForm() {
           </div>
 
           {/* Skills */}
-          <fieldset>
-            <legend className="mb-3 text-sm font-medium text-slate-700">
+          <fieldset className="practice-form__fieldset">
+            <legend className="practice-form__label">
               Selenium Skills Used
               {requiredMark}
             </legend>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="practice-form__skills-grid">
               {skillOptions.map(
                 (skill) => (
                   <label
                     key={skill}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
+                    className="practice-form__skill-option"
                   >
                     <input
                       id={`practice-skill-${skill.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-checkbox`}
@@ -936,7 +956,7 @@ export default function SeleniumPracticeForm() {
                       }
                     />
 
-                    <span className="text-sm text-slate-700">
+                    <span className="practice-form__option-text">
                       {skill}
                     </span>
                   </label>
@@ -945,16 +965,20 @@ export default function SeleniumPracticeForm() {
             </div>
 
             {errors.skills && (
-              <p className="mt-1 text-sm text-red-600">
+              <p
+                id="practice-skills-error"
+                data-testid="practice-skills-error"
+                className="practice-form__error"
+              >
                 {errors.skills}
               </p>
             )}
           </fieldset>
 
           {/* Terms */}
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <div className="space-y-3">
-              <label className="flex items-center gap-3">
+          <div className="practice-form__terms">
+            <div className="practice-form__terms-content">
+              <label className="practice-form__checkbox-label">
                 <input
                   id="practice-receive-updates-checkbox"
                   type="checkbox"
@@ -968,13 +992,13 @@ export default function SeleniumPracticeForm() {
                   }
                 />
 
-                <span className="text-sm text-slate-700">
+                <span className="practice-form__option-text">
                   Receive practice
                   updates
                 </span>
               </label>
 
-              <label className="flex items-center gap-3">
+              <label className="practice-form__checkbox-label">
                 <input
                   id="practice-accept-terms-checkbox"
                   type="checkbox"
@@ -988,7 +1012,7 @@ export default function SeleniumPracticeForm() {
                   }
                 />
 
-                <span className="text-sm font-medium text-slate-800">
+                <span className="practice-form__terms-text">
                   I accept terms &
                   conditions
                   {requiredMark}
@@ -996,7 +1020,11 @@ export default function SeleniumPracticeForm() {
               </label>
 
               {errors.acceptedTerms && (
-                <p className="text-sm text-red-600">
+                <p
+                  id="practice-accepted-terms-error"
+                  data-testid="practice-accepted-terms-error"
+                  className="practice-form__error"
+                >
                   {
                     errors.acceptedTerms
                   }
@@ -1006,7 +1034,7 @@ export default function SeleniumPracticeForm() {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="practice-form__actions">
             <button
               id="practice-form-submit-button"
               type="submit"
@@ -1015,11 +1043,11 @@ export default function SeleniumPracticeForm() {
                 submitState ===
                 "submitting"
               }
-              className={`rounded-2xl px-6 py-3 text-white transition ${
+              className={`practice-form__submit-button${
                 submitState ===
                 "submitting"
-                  ? "cursor-not-allowed bg-slate-400"
-                  : "bg-slate-900 hover:bg-slate-800"
+                  ? " practice-form__submit-button--disabled"
+                  : ""
               }`}
             >
               {submitState ===
@@ -1033,7 +1061,7 @@ export default function SeleniumPracticeForm() {
               type="button"
               data-testid="practice-form-reset-button"
               onClick={handleReset}
-              className="rounded-2xl bg-red-500 px-6 py-3 text-white transition hover:bg-red-600"
+              className="practice-form__reset-button"
             >
               Reset Form
             </button>
@@ -1047,14 +1075,14 @@ export default function SeleniumPracticeForm() {
           id="practice-form-results-card"
           data-testid="practice-form-results-card"
           aria-label="Submitted form results"
-          className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="practice-form__results"
         >
-          <div className="mb-5">
-            <h3 className="text-2xl font-bold text-slate-900">
+          <div className="practice-form__results-header">
+            <h3 className="practice-form__results-title">
               Submitted Form Details
             </h3>
 
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="practice-form__results-description">
               Useful for Selenium table
               assertions and validation.
             </p>
@@ -1110,7 +1138,7 @@ export default function SeleniumPracticeForm() {
                   <TableRow
                     key={field}
                   >
-                    <TableCell className="font-medium">
+                    <TableCell className="practice-form__table-cell--label">
                       {field}
                     </TableCell>
 

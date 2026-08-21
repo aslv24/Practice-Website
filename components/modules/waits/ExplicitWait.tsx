@@ -1,6 +1,10 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
 
 type StatusType =
   | "idle"
@@ -72,87 +76,98 @@ export default function ExplicitWait() {
       status: "idle",
     })
 
-  const [text, setText] = useState("site")
+  const [text, setText] =
+    useState("site")
 
   // Display Button
-  const [displayScenario, setDisplayScenario] =
-    useState<ScenarioState>({
-      counter: null,
-      status: "idle",
-    })
+  const [
+    displayScenario,
+    setDisplayScenario,
+  ] = useState<ScenarioState>({
+    counter: null,
+    status: "idle",
+  })
 
   const [showButton, setShowButton] =
     useState(false)
 
   // Enable Button
-  const [enableScenario, setEnableScenario] =
-    useState<ScenarioState>({
-      counter: null,
-      status: "idle",
-    })
+  const [
+    enableScenario,
+    setEnableScenario,
+  ] = useState<ScenarioState>({
+    counter: null,
+    status: "idle",
+  })
 
   const [enableButton, setEnableButton] =
     useState(false)
 
   // Checkbox
-  const [checkboxScenario, setCheckboxScenario] =
-    useState<ScenarioState>({
-      counter: null,
-      status: "idle",
-    })
+  const [
+    checkboxScenario,
+    setCheckboxScenario,
+  ] = useState<ScenarioState>({
+    counter: null,
+    status: "idle",
+  })
 
   const [checked, setChecked] =
     useState(false)
 
-  const openDelayedAlert = useCallback(() => {
-    alert("Alert Opened Successfully")
-  }, [])
+  const openDelayedAlert = useCallback(
+    () => {
+      alert("Alert Opened Successfully")
+    },
+    []
+  )
 
-  const revealDelayedText = useCallback(() => {
-    setText("Selenium WebDriver")
-  }, [])
+  const revealDelayedText = useCallback(
+    () => {
+      setText("Selenium WebDriver")
+    },
+    []
+  )
 
-  const revealDisplayButton = useCallback(() => {
-    setShowButton(true)
-  }, [])
+  const revealDisplayButton =
+    useCallback(() => {
+      setShowButton(true)
+    }, [])
 
-  const enableDelayedButton = useCallback(() => {
-    setEnableButton(true)
-  }, [])
+  const enableDelayedButton =
+    useCallback(() => {
+      setEnableButton(true)
+    }, [])
 
-  const checkDelayedCheckbox = useCallback(() => {
-    setChecked(true)
-  }, [])
+  const checkDelayedCheckbox =
+    useCallback(() => {
+      setChecked(true)
+    }, [])
 
-  // Alert
   useCountdown(
     alertScenario,
     setAlertScenario,
     openDelayedAlert
   )
 
-  // Text
   useCountdown(
     textScenario,
     setTextScenario,
     revealDelayedText
   )
 
-  // Display Button
   useCountdown(
     displayScenario,
     setDisplayScenario,
     revealDisplayButton
   )
 
-  // Enable Button
   useCountdown(
     enableScenario,
     setEnableScenario,
     enableDelayedButton
   )
 
-  // Checkbox
   useCountdown(
     checkboxScenario,
     setCheckboxScenario,
@@ -171,18 +186,18 @@ export default function ExplicitWait() {
     })
   }
 
-  const getStatusColor = (
+  const getStatusClass = (
     status: StatusType
   ) => {
     switch (status) {
       case "waiting":
-        return "text-yellow-600"
+        return "explicit-wait__status--waiting"
 
       case "completed":
-        return "text-green-600"
+        return "explicit-wait__status--completed"
 
       default:
-        return "text-gray-500"
+        return "explicit-wait__status--idle"
     }
   }
 
@@ -191,7 +206,7 @@ export default function ExplicitWait() {
   ) => {
     if (scenario.status === "waiting") {
       return (
-        <p className="text-sm font-medium text-blue-600">
+        <p className="explicit-wait__remaining explicit-wait__remaining--waiting">
           Remaining Time:{" "}
           {scenario.counter ?? 0}s
         </p>
@@ -200,14 +215,14 @@ export default function ExplicitWait() {
 
     if (scenario.status === "completed") {
       return (
-        <p className="text-sm font-medium text-green-600">
+        <p className="explicit-wait__remaining explicit-wait__remaining--completed">
           Remaining Time: 0s
         </p>
       )
     }
 
     return (
-      <p className="text-sm font-medium text-gray-500">
+      <p className="explicit-wait__remaining explicit-wait__remaining--idle">
         Remaining Time: --
       </p>
     )
@@ -219,14 +234,15 @@ export default function ExplicitWait() {
       data-testid="explicit-wait-card"
       data-component="explicit-wait"
       aria-label="Explicit wait scenarios"
-      className="rounded-2xl border bg-white p-6 shadow-sm"
+      className="explicit-wait"
     >
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold text-blue-600">
+      {/* Header */}
+      <header className="explicit-wait__header">
+        <h1 className="explicit-wait__title">
           Explicit Wait Scenarios
         </h1>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="explicit-wait__description">
           Practice Selenium explicit waits
           using delayed rendering, alerts,
           state changes, and dynamic updates.
@@ -234,16 +250,16 @@ export default function ExplicitWait() {
       </header>
 
       {/* ALERT */}
-      <div className="mb-8 rounded-xl border p-5">
-        <h2 className="text-lg font-semibold">
+      <div className="explicit-wait__scenario">
+        <h2 className="explicit-wait__scenario-title">
           Delayed Alert
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="explicit-wait__scenario-description">
           Alert appears after 5 seconds.
         </p>
 
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="explicit-wait__scenario-content">
           <button
             id="open-alert-delay-button"
             data-testid="open-alert-delay-button"
@@ -253,13 +269,13 @@ export default function ExplicitWait() {
                 setAlertScenario
               )
             }
-            className="w-fit rounded-lg bg-green-500 px-5 py-2 text-white hover:bg-green-600"
+            className="explicit-wait__button explicit-wait__button--success"
           >
             Open Alert
           </button>
 
           <p
-            className={`text-sm font-medium ${getStatusColor(
+            className={`explicit-wait__status ${getStatusClass(
               alertScenario.status
             )}`}
           >
@@ -273,12 +289,12 @@ export default function ExplicitWait() {
       </div>
 
       {/* TEXT */}
-      <div className="mb-8 rounded-xl border p-5">
-        <h2 className="text-lg font-semibold">
+      <div className="explicit-wait__scenario">
+        <h2 className="explicit-wait__scenario-title">
           Dynamic Text Change
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="explicit-wait__scenario-description">
           Text changes after delay.
         </p>
 
@@ -291,22 +307,22 @@ export default function ExplicitWait() {
               setTextScenario
             )
           }
-          className="mt-4 rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+          className="explicit-wait__button explicit-wait__button--primary"
         >
           Change Text
         </button>
 
-        <div className="mt-4 space-y-2">
+        <div className="explicit-wait__text-content">
           <p
             id="delayed-text-value"
             data-testid="delayed-text-value"
-            className="text-3xl font-bold text-blue-600"
+            className="explicit-wait__dynamic-text"
           >
             {text}
           </p>
 
           <p
-            className={`text-sm font-medium ${getStatusColor(
+            className={`explicit-wait__status ${getStatusClass(
               textScenario.status
             )}`}
           >
@@ -320,12 +336,12 @@ export default function ExplicitWait() {
       </div>
 
       {/* DISPLAY */}
-      <div className="mb-8 rounded-xl border p-5">
-        <h2 className="text-lg font-semibold">
+      <div className="explicit-wait__scenario">
+        <h2 className="explicit-wait__scenario-title">
           Delayed Display
         </h2>
 
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="explicit-wait__scenario-content">
           <button
             id="display-button-trigger-button"
             data-testid="display-button-trigger-button"
@@ -335,13 +351,13 @@ export default function ExplicitWait() {
                 setDisplayScenario
               )
             }
-            className="w-fit rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+            className="explicit-wait__button explicit-wait__button--primary"
           >
             Display Button
           </button>
 
           <p
-            className={`text-sm font-medium ${getStatusColor(
+            className={`explicit-wait__status ${getStatusClass(
               displayScenario.status
             )}`}
           >
@@ -356,7 +372,7 @@ export default function ExplicitWait() {
             <button
               id="newly-displayed-button"
               data-testid="newly-displayed-button"
-              className="w-fit rounded-lg bg-green-500 px-5 py-2 text-white"
+              className="explicit-wait__button explicit-wait__button--success"
             >
               New Button
             </button>
@@ -365,13 +381,13 @@ export default function ExplicitWait() {
       </div>
 
       {/* ENABLE */}
-      <div className="mb-8 rounded-xl border p-5">
-        <h2 className="text-lg font-semibold">
+      <div className="explicit-wait__scenario">
+        <h2 className="explicit-wait__scenario-title">
           Delayed Enable
         </h2>
 
-        <div className="mt-4 flex flex-col gap-3">
-          <div className="flex flex-wrap gap-3">
+        <div className="explicit-wait__scenario-content">
+          <div className="explicit-wait__button-group">
             <button
               id="enable-button-trigger-button"
               data-testid="enable-button-trigger-button"
@@ -381,7 +397,7 @@ export default function ExplicitWait() {
                   setEnableScenario
                 )
               }
-              className="rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+              className="explicit-wait__button explicit-wait__button--primary"
             >
               Enable Button
             </button>
@@ -390,10 +406,10 @@ export default function ExplicitWait() {
               id="delayed-enable-button"
               data-testid="delayed-enable-button"
               disabled={!enableButton}
-              className={`rounded-lg px-5 py-2 text-white ${
+              className={`explicit-wait__button ${
                 enableButton
-                  ? "bg-green-500"
-                  : "cursor-not-allowed bg-gray-400"
+                  ? "explicit-wait__button--success"
+                  : "explicit-wait__button--disabled"
               }`}
             >
               Delayed Button
@@ -401,7 +417,7 @@ export default function ExplicitWait() {
           </div>
 
           <p
-            className={`text-sm font-medium ${getStatusColor(
+            className={`explicit-wait__status ${getStatusClass(
               enableScenario.status
             )}`}
           >
@@ -415,12 +431,12 @@ export default function ExplicitWait() {
       </div>
 
       {/* CHECKBOX */}
-      <div className="rounded-xl border p-5">
-        <h2 className="text-lg font-semibold">
+      <div className="explicit-wait__scenario explicit-wait__scenario--last">
+        <h2 className="explicit-wait__scenario-title">
           Delayed Checkbox
         </h2>
 
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="explicit-wait__scenario-content">
           <button
             id="check-checkbox-delay-button"
             data-testid="check-checkbox-delay-button"
@@ -430,12 +446,12 @@ export default function ExplicitWait() {
                 setCheckboxScenario
               )
             }
-            className="w-fit rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+            className="explicit-wait__button explicit-wait__button--primary"
           >
             Check Checkbox
           </button>
 
-          <label className="flex items-center gap-2">
+          <label className="explicit-wait__checkbox-label">
             <input
               id="delayed-checkbox"
               data-testid="delayed-checkbox"
@@ -444,13 +460,15 @@ export default function ExplicitWait() {
               readOnly
             />
 
-            Checkbox Status:
+            <span>
+              Checkbox Status:
+            </span>
 
             <span
               className={
                 checked
-                  ? "text-green-600"
-                  : "text-gray-500"
+                  ? "explicit-wait__checkbox-status explicit-wait__checkbox-status--checked"
+                  : "explicit-wait__checkbox-status explicit-wait__checkbox-status--unchecked"
               }
             >
               {checked
@@ -460,7 +478,7 @@ export default function ExplicitWait() {
           </label>
 
           <p
-            className={`text-sm font-medium ${getStatusColor(
+            className={`explicit-wait__status ${getStatusClass(
               checkboxScenario.status
             )}`}
           >

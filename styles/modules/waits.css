@@ -1,0 +1,237 @@
+/* -------------------------------------------------------------------------- */
+/* Explicit Wait                                                               */
+/* -------------------------------------------------------------------------- */
+
+.explicit-wait {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.explicit-wait__header {
+  @apply mb-8;
+}
+
+.explicit-wait__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.explicit-wait__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.explicit-wait__scenario {
+  @apply mb-8 rounded-xl border p-5;
+}
+
+.explicit-wait__scenario--last {
+  @apply mb-0;
+}
+
+.explicit-wait__scenario-title {
+  @apply text-lg font-semibold;
+}
+
+.explicit-wait__scenario-description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.explicit-wait__scenario-content {
+  @apply mt-4 flex flex-col gap-3;
+}
+
+.explicit-wait__text-content {
+  @apply mt-4 space-y-2;
+}
+
+.explicit-wait__button-group {
+  @apply flex flex-wrap gap-3;
+}
+
+.explicit-wait__button {
+  @apply rounded-lg px-5 py-2 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.explicit-wait__button--primary {
+  @apply bg-blue-500 hover:bg-blue-600 focus:ring-blue-400;
+}
+
+.explicit-wait__button--success {
+  @apply bg-green-500 hover:bg-green-600 focus:ring-green-400;
+}
+
+.explicit-wait__button--disabled {
+  @apply cursor-not-allowed bg-gray-400;
+}
+
+.explicit-wait__status {
+  @apply text-sm font-medium;
+}
+
+.explicit-wait__status--idle {
+  @apply text-gray-500;
+}
+
+.explicit-wait__status--waiting {
+  @apply text-yellow-600;
+}
+
+.explicit-wait__status--completed {
+  @apply text-green-600;
+}
+
+.explicit-wait__remaining {
+  @apply text-sm font-medium;
+}
+
+.explicit-wait__remaining--idle {
+  @apply text-gray-500;
+}
+
+.explicit-wait__remaining--waiting {
+  @apply text-blue-600;
+}
+
+.explicit-wait__remaining--completed {
+  @apply text-green-600;
+}
+
+.explicit-wait__dynamic-text {
+  @apply text-3xl font-bold text-blue-600;
+}
+
+.explicit-wait__checkbox-label {
+  @apply flex items-center gap-2;
+}
+
+.explicit-wait__checkbox-status {
+  @apply font-medium;
+}
+
+.explicit-wait__checkbox-status--checked {
+  @apply text-green-600;
+}
+
+.explicit-wait__checkbox-status--unchecked {
+  @apply text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Implicit Wait                                                              */
+/* -------------------------------------------------------------------------- */
+
+.implicit-wait {
+  @apply rounded-2xl border bg-white p-6 shadow-sm;
+}
+
+.implicit-wait__header {
+  @apply mb-6;
+}
+
+.implicit-wait__title {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.implicit-wait__description {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+/* Status */
+
+.implicit-wait__status-section {
+  @apply mb-6 rounded-xl border bg-gray-50 p-4;
+}
+
+.implicit-wait__status-row {
+  @apply flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between;
+}
+
+.implicit-wait__status {
+  @apply font-medium;
+}
+
+.implicit-wait__status--idle {
+  @apply text-gray-500;
+}
+
+.implicit-wait__status--loading {
+  @apply text-yellow-600;
+}
+
+.implicit-wait__status--partial {
+  @apply text-blue-600;
+}
+
+.implicit-wait__status--completed {
+  @apply text-green-600;
+}
+
+.implicit-wait__countdown {
+  @apply font-semibold text-blue-600;
+}
+
+/* Loading */
+
+.implicit-wait__loading-container {
+  @apply mb-6 rounded-xl border border-dashed p-4;
+}
+
+.implicit-wait__loading-content {
+  @apply flex items-center gap-3;
+}
+
+.implicit-wait__spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent;
+}
+
+.implicit-wait__loading-text {
+  @apply text-gray-600;
+}
+
+/* Fields */
+
+.implicit-wait__fields {
+  @apply space-y-4;
+}
+
+.implicit-wait__field {
+  @apply space-y-2;
+}
+
+.implicit-wait__label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.implicit-wait__input {
+  @apply w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}
+
+/* Submit */
+
+.implicit-wait__submit {
+  @apply rounded-lg bg-green-500 px-5 py-2 text-white transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500;
+}
+
+/* Success */
+
+.implicit-wait__success {
+  @apply mt-6 rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.implicit-wait__success-text {
+  @apply font-medium text-green-700;
+}
+
+.waits-page {
+  @apply flex min-h-screen flex-col items-center bg-gray-100 p-6;
+}
+
+.waits-page__title {
+  @apply mb-2 text-3xl font-bold;
+}
+
+.waits-page__description {
+  @apply mb-4 text-gray-600;
+}
+
+.waits-page__content {
+  @apply mt-6 w-full max-w-2xl space-y-6;
+}

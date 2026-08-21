@@ -1,0 +1,95 @@
+/* -------------------------------------------------------------------------- */
+/* Alert Card                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.alert-card {
+  @apply rounded-xl border bg-white p-6 shadow-sm;
+}
+
+.alert-card__title {
+  @apply mb-4 text-lg font-semibold tracking-tight;
+}
+
+.alert-card__content {
+  @apply space-y-4;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Simple Alert                                                                */
+/* -------------------------------------------------------------------------- */
+
+.simple-alert {
+  @apply flex flex-col gap-4;
+}
+
+.simple-alert__button {
+  @apply inline-flex w-fit items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2;
+}
+
+.simple-alert__description {
+  @apply text-sm text-gray-600;
+}
+
+.simple-alert__status {
+  @apply min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Confirmation Alert                                                         */
+/* -------------------------------------------------------------------------- */
+
+.confirm-alert {
+  @apply flex flex-col gap-4;
+}
+
+.confirm-alert__button {
+  @apply inline-flex w-fit items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.confirm-alert__description {
+  @apply text-sm text-gray-600;
+}
+
+.confirm-alert__result {
+  @apply min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Prompt Alert                                                                */
+/* -------------------------------------------------------------------------- */
+
+.prompt-alert {
+  @apply flex flex-col gap-4;
+}
+
+.prompt-alert__button {
+  @apply inline-flex w-fit items-center justify-center rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
+}
+
+.prompt-alert__description {
+  @apply text-sm text-gray-600;
+}
+
+.prompt-alert__result {
+  @apply min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm;
+}
+
+.alerts-page {
+  @apply min-h-screen bg-gray-50 px-6 py-10;
+}
+
+.alerts-page__header {
+  @apply mb-10 text-center;
+}
+
+.alerts-page__title {
+  @apply text-3xl font-semibold text-gray-800;
+}
+
+.alerts-page__description {
+  @apply mb-4 mt-2 text-gray-500;
+}
+
+.alerts-page__content {
+  @apply mx-auto max-w-3xl space-y-6;
+}

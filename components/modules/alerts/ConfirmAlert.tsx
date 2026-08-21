@@ -25,7 +25,7 @@ export default function ConfirmAlert() {
       title="Confirmation Alert"
     >
       <div
-        className="flex flex-col gap-4"
+        className="confirm-alert"
         data-component="confirm-alert"
       >
         <button
@@ -36,16 +36,7 @@ export default function ConfirmAlert() {
           aria-describedby="confirmation-alert-description"
           aria-label="Open confirmation alert"
           onClick={handleConfirm}
-          className="
-            inline-flex w-fit items-center justify-center
-            rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white
-            transition-colors
-            hover:bg-blue-700
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-blue-500
-            focus-visible:ring-offset-2
-          "
+          className="confirm-alert__button"
         >
           Click for Confirm
         </button>
@@ -53,7 +44,7 @@ export default function ConfirmAlert() {
         <p
           id="confirmation-alert-description"
           data-testid="confirmation-alert-description"
-          className="text-sm text-gray-600"
+          className="confirm-alert__description"
         >
           Opens a browser confirmation alert for Selenium practice.
         </p>
@@ -62,9 +53,7 @@ export default function ConfirmAlert() {
           id="confirmation-alert-result"
           data-testid="confirmation-alert-result"
           aria-live="polite"
-          className="
-            min-h-6 rounded-md border bg-gray-50 px-3 py-2 text-sm
-          "
+          className="confirm-alert__result"
         >
           {result ?? "No action performed yet."}
         </div>

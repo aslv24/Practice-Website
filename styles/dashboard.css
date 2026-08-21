@@ -1,0 +1,317 @@
+/* -------------------------------------------------------------------------- */
+/* Module Navigation                                                           */
+/* -------------------------------------------------------------------------- */
+
+.module-grid {
+  @apply grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Module Card                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.module-card__link {
+  @apply block focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-emerald-500;
+}
+
+.module-card {
+  @apply flex h-full min-h-64 cursor-pointer flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg;
+}
+
+.module-card__icon {
+  @apply mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg text-2xl transition-transform;
+}
+
+.module-card__title {
+  @apply text-lg font-semibold text-slate-950;
+}
+
+.module-card__description {
+  @apply mt-3 flex-1 text-sm leading-6 text-slate-600;
+}
+
+.module-card__action {
+  @apply mt-6 inline-flex min-h-10 items-center justify-center rounded-lg bg-slate-100 px-4 text-sm font-semibold text-slate-900 transition;
+}
+
+/* Module card hover interactions */
+
+.module-card__link:hover .module-card__icon {
+  @apply scale-105;
+}
+
+.module-card__link:hover .module-card__action {
+  @apply bg-slate-950 text-white;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Empty Search Results                                                        */
+/* -------------------------------------------------------------------------- */
+
+.module-empty-state {
+  @apply rounded-lg border border-slate-200 bg-slate-50 p-12 text-center;
+}
+
+.module-empty-state__title {
+  @apply text-lg font-semibold text-slate-950;
+}
+
+.module-empty-state__description {
+  @apply mt-2 text-slate-600;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Module Filter                                                               */
+/* -------------------------------------------------------------------------- */
+
+.module-filter {
+  @apply mb-8 rounded-lg border border-slate-200 bg-slate-50 p-6;
+}
+
+.module-filter__content {
+  @apply flex flex-col gap-4;
+}
+
+.module-filter__search-group {
+  @apply flex flex-col gap-2;
+}
+
+.module-filter__label {
+  @apply text-sm font-semibold text-slate-700;
+}
+
+.module-filter__search-row {
+  @apply flex gap-3;
+}
+
+.module-filter__input-wrapper {
+  @apply relative flex-1;
+}
+
+.module-filter__search-icon {
+  @apply absolute left-3 top-1/2 -translate-y-1/2 text-slate-400;
+}
+
+.module-filter__input {
+  @apply pl-10;
+}
+
+.module-filter__clear {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-slate-600;
+}
+
+.module-filter__reset {
+  @apply whitespace-nowrap;
+}
+
+.module-filter__active {
+  @apply flex items-center gap-2 text-sm text-slate-600;
+}
+
+.module-filter__active-label {
+  @apply font-medium;
+}
+
+.module-filter__badge {
+  @apply inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dashboard Back Link                                                        */
+/* -------------------------------------------------------------------------- */
+
+.dashboard-back-link {
+  @apply inline-flex items-center rounded-lg bg-gray-800 px-5 py-2 text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500;
+}
+
+.dashboard-page {
+  @apply min-h-screen bg-background text-foreground;
+}
+
+.dashboard-page__hero {
+  @apply border-b border-border bg-card;
+}
+
+.dashboard-page__hero-content {
+  @apply mx-auto grid min-h-[82vh] max-w-7xl items-center gap-12 px-6 py-12 lg:grid-cols-[1fr_0.88fr] lg:px-8 lg:py-16;
+}
+
+.dashboard-page__eyebrow {
+  @apply mb-4 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800;
+}
+
+.dashboard-page__title {
+  @apply max-w-4xl text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl;
+}
+
+.dashboard-page__intro {
+  @apply mt-6 max-w-3xl text-lg leading-8 text-slate-700;
+}
+
+.dashboard-page__actions {
+  @apply mt-8 flex flex-col gap-3 sm:flex-row;
+}
+
+.dashboard-page__start-link {
+  @apply inline-flex min-h-12 items-center justify-center rounded-lg bg-slate-950 px-6 text-base font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-500;
+}
+
+.dashboard-page__preview {
+  @apply relative;
+}
+
+.dashboard-page__preview-frame {
+  @apply overflow-hidden rounded-lg border border-slate-200 bg-white shadow-2xl shadow-slate-200;
+}
+
+.dashboard-page__preview-image {
+  @apply h-auto w-full;
+}
+
+.dashboard-page__stats {
+  @apply border-b border-border bg-foreground px-6 py-8 text-white;
+}
+
+.dashboard-page__stats-grid {
+  @apply mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.dashboard-page__stat {
+  @apply rounded-lg border border-white/10 bg-white/5 p-5;
+}
+
+.dashboard-page__stat-value {
+  @apply text-3xl font-bold;
+}
+
+.dashboard-page__stat-label {
+  @apply mt-1 text-sm font-medium text-slate-300;
+}
+
+.dashboard-page__modules {
+  @apply mx-auto max-w-7xl px-6 py-16 lg:px-8;
+}
+
+.dashboard-page__modules-intro {
+  @apply max-w-3xl;
+}
+
+.dashboard-page__section-eyebrow {
+  @apply text-sm font-semibold uppercase tracking-wide text-emerald-700;
+}
+
+.dashboard-page__section-title {
+  @apply mt-3 text-3xl font-bold text-slate-950;
+}
+
+.dashboard-page__section-description {
+  @apply mt-4 text-base leading-7 text-slate-700;
+}
+
+.dashboard-page__navigation {
+  @apply mt-10;
+}
+
+.dashboard-page__benefits {
+  @apply border-y border-border bg-card px-6 py-16 lg:px-8;
+}
+
+.dashboard-page__benefits-content {
+  @apply mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1fr];
+}
+
+.dashboard-page__benefits-list {
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+.dashboard-page__benefit {
+  @apply rounded-lg border border-slate-200 bg-slate-50 p-5 text-base font-semibold text-slate-900;
+}
+
+.dashboard-page__footer {
+  @apply bg-foreground px-6 py-10 text-slate-300 lg:px-8;
+}
+
+.dashboard-page__footer-grid {
+  @apply mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4;
+}
+
+.dashboard-page__footer-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.dashboard-page__footer-heading {
+  @apply text-sm font-semibold uppercase tracking-wide text-white;
+}
+
+.dashboard-page__footer-description {
+  @apply mt-3 text-sm leading-6;
+}
+
+.dashboard-page__footer-links {
+  @apply mt-3 space-y-2 text-sm;
+}
+
+.dashboard-page__footer-link {
+  @apply hover:text-white focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-emerald-400;
+}
+
+.module-card__icon--red {
+  @apply bg-red-100 text-red-600;
+}
+
+.module-card__icon--purple {
+  @apply bg-purple-100 text-purple-600;
+}
+
+.module-card__icon--green {
+  @apply bg-green-100 text-green-600;
+}
+
+.module-card__icon--blue {
+  @apply bg-blue-100 text-blue-600;
+}
+
+.module-card__icon--yellow {
+  @apply bg-yellow-100 text-yellow-600;
+}
+
+.module-card__icon--indigo {
+  @apply bg-indigo-100 text-indigo-600;
+}
+
+.module-card__icon--pink {
+  @apply bg-pink-100 text-pink-600;
+}
+
+.module-card__icon--orange {
+  @apply bg-orange-100 text-orange-600;
+}
+
+.module-card__icon--teal {
+  @apply bg-teal-100 text-teal-600;
+}
+
+.module-card__icon--cyan {
+  @apply bg-cyan-100 text-cyan-600;
+}
+
+.module-card__icon--waits {
+  @apply bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 text-orange-600;
+}
+
+.module-card__icon--rose {
+  @apply bg-rose-100 text-rose-600;
+}
+
+.module-card__icon--amber {
+  @apply bg-amber-100 text-amber-600;
+}
+
+.module-card__icon--zinc {
+  @apply bg-zinc-100 text-zinc-600;
+}
+
+.module-card__icon--fuchsia {
+  @apply bg-fuchsia-100 text-fuchsia-600;
+}

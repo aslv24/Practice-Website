@@ -7,7 +7,7 @@ type DashboardBackLinkProps = {
 
 export default function DashboardBackLink({
   href = "/",
-  label = "Back to Dashboard"
+  label = "Back to Dashboard",
 }: DashboardBackLinkProps) {
   return (
     <Link
@@ -16,7 +16,7 @@ export default function DashboardBackLink({
       data-testid="dashboard-back-link"
       aria-label={label}
       title={label}
-      className="inline-flex items-center rounded-lg bg-gray-800 px-5 py-2 text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500"
+      className="dashboard-back-link"
     >
       ← {label}
     </Link>

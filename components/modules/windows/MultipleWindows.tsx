@@ -6,29 +6,29 @@ const WINDOW_LINKS = [
     label: "Facebook Window",
     url: "/windows/mock?name=facebook",
     buttonClass:
-      "bg-blue-600 hover:bg-blue-700"
+      "multiple-windows__button--facebook",
   },
   {
     id: "instagram",
     label: "Instagram Window",
     url: "/windows/mock?name=instagram",
     buttonClass:
-      "bg-pink-600 hover:bg-pink-700"
+      "multiple-windows__button--instagram",
   },
   {
     id: "linkedin",
     label: "LinkedIn Window",
     url: "/windows/mock?name=linkedin",
     buttonClass:
-      "bg-blue-800 hover:bg-blue-900"
+      "multiple-windows__button--linkedin",
   },
   {
     id: "naukri",
     label: "Naukri Window",
     url: "/windows/mock?name=naukri",
     buttonClass:
-      "bg-yellow-500 hover:bg-yellow-600 text-black"
-  }
+      "multiple-windows__button--naukri",
+  },
 ]
 
 export default function MultipleWindows() {
@@ -46,18 +46,12 @@ export default function MultipleWindows() {
       data-testid="multiple-windows-card"
       data-component="multiple-windows"
       aria-labelledby="multiple-windows-title"
-      className="
-        rounded-2xl border border-gray-100
-        bg-white p-6 shadow-sm
-        transition-shadow hover:shadow-md
-      "
+      className="multiple-windows"
     >
       <h2
         id="multiple-windows-title"
         data-testid="multiple-windows-title"
-        className="
-          mb-4 text-lg font-semibold text-gray-800
-        "
+        className="multiple-windows__title"
       >
         Multiple Windows
       </h2>
@@ -65,9 +59,7 @@ export default function MultipleWindows() {
       <p
         id="multiple-windows-description"
         data-testid="multiple-windows-description"
-        className="
-          mb-4 text-sm text-gray-500
-        "
+        className="multiple-windows__description"
       >
         Opens internal application windows
         for Selenium window-handling
@@ -77,44 +69,38 @@ export default function MultipleWindows() {
       <div
         role="group"
         aria-describedby="multiple-windows-description"
-        className="
-          flex flex-wrap gap-3
-        "
+        className="multiple-windows__button-group"
       >
-        {WINDOW_LINKS.map((windowItem) => (
-          <button
-            key={windowItem.id}
-            type="button"
-            id={`open-${windowItem.id}-button`}
-            name={`open${windowItem.label.replace(/\s/g, "")}`}
-            data-testid={`open-${windowItem.id}-button`}
-            aria-label={`Open ${windowItem.label}`}
-            onClick={() =>
-              openWindow(windowItem.url)
-            }
-            className={`
-              rounded-lg px-4 py-2
-              text-sm font-medium text-white
-              transition-colors
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-offset-2
-              ${windowItem.buttonClass}
-            `}
-          >
-            {windowItem.label}
-          </button>
-        ))}
+        {WINDOW_LINKS.map(
+          (windowItem) => (
+            <button
+              key={windowItem.id}
+              type="button"
+              id={`open-${windowItem.id}-button`}
+              name={`open${windowItem.label.replace(
+                /\s/g,
+                ""
+              )}`}
+              data-testid={`open-${windowItem.id}-button`}
+              aria-label={`Open ${windowItem.label}`}
+              onClick={() =>
+                openWindow(
+                  windowItem.url
+                )
+              }
+              className={`multiple-windows__button ${windowItem.buttonClass}`}
+            >
+              {windowItem.label}
+            </button>
+          )
+        )}
       </div>
 
       <div
         id="multiple-windows-helper-text"
         data-testid="multiple-windows-helper-text"
         aria-live="polite"
-        className="
-          mt-5 rounded-md border bg-gray-50
-          px-3 py-2 text-sm text-blue-700
-        "
+        className="multiple-windows__helper"
       >
         Use Selenium window handles to switch
         between tabs and validate page titles.

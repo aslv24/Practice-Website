@@ -1,0 +1,43 @@
+/* -------------------------------------------------------------------------- */
+/* Shadow DOM Component                                                        */
+/* -------------------------------------------------------------------------- */
+
+.shadow-dom {
+  @apply w-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.shadow-dom__header {
+  @apply mb-4;
+}
+
+.shadow-dom__title {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.shadow-dom__description {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.shadow-dom__host {
+  @apply mt-6;
+}
+
+.shadow-dom-page {
+  @apply min-h-screen bg-gray-50 px-6 py-10;
+}
+
+.shadow-dom-page__header {
+  @apply mb-10 text-center;
+}
+
+.shadow-dom-page__title {
+  @apply text-3xl font-semibold text-gray-800;
+}
+
+.shadow-dom-page__description {
+  @apply mb-4 mt-2 text-gray-500;
+}
+
+.shadow-dom-page__content {
+  @apply mx-auto max-w-2xl;
+}

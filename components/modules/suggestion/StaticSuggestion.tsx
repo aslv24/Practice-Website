@@ -147,15 +147,15 @@ export default function StaticSuggestion() {
       data-component="static-suggestion"
       aria-label="Static suggestion dropdown"
       ref={wrapperRef}
-      className="relative rounded-2xl border bg-white p-6 shadow-sm"
+      className="static-suggestion"
     >
       {/* Header */}
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-blue-600">
+      <header className="static-suggestion__header">
+        <h2 className="static-suggestion__title">
           Static Suggestions
         </h2>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="static-suggestion__description">
           Practice Selenium dropdown handling
           using static suggestions, keyboard
           navigation, and dynamic filtering.
@@ -163,10 +163,10 @@ export default function StaticSuggestion() {
       </header>
 
       {/* Input */}
-      <div className="space-y-3">
+      <div className="static-suggestion__content">
         <label
           htmlFor="static-country-input"
-          className="text-sm font-medium text-gray-700"
+          className="static-suggestion__label"
         >
           Select Country
         </label>
@@ -199,19 +199,19 @@ export default function StaticSuggestion() {
           onKeyDown={
             handleKeyboardNavigation
           }
-          className="w-full rounded-lg border px-3 py-2 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="static-suggestion__input"
         />
 
         {/* Status Section */}
         <div
           aria-live="polite"
-          className="rounded-lg border bg-gray-50 p-3 text-sm"
+          className="static-suggestion__status"
         >
-          <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+          <div className="static-suggestion__status-content">
             <p
               id="static-dropdown-status"
               data-testid="static-dropdown-status"
-              className="font-medium text-gray-700"
+              className="static-suggestion__status-text"
             >
               Dropdown:
               {showDropdown
@@ -225,7 +225,7 @@ export default function StaticSuggestion() {
               data-result-count={
                 filtered.length
               }
-              className="font-medium text-blue-600"
+              className="static-suggestion__count"
             >
               Results: {filtered.length}
             </p>
@@ -239,9 +239,9 @@ export default function StaticSuggestion() {
             <div
               id="static-empty-state"
               data-testid="static-empty-state"
-              className="rounded-lg border border-red-200 bg-red-50 p-3"
+              className="static-suggestion__empty"
             >
-              <p className="text-sm text-red-600">
+              <p className="static-suggestion__empty-text">
                 No countries found.
               </p>
             </div>
@@ -255,7 +255,7 @@ export default function StaticSuggestion() {
               role="listbox"
               data-testid="static-country-dropdown"
               aria-label="Country suggestions"
-              className="absolute left-6 right-6 z-10 mt-1 max-h-60 overflow-auto rounded-xl border bg-white shadow-sm"
+              className="static-suggestion__dropdown"
             >
               {filtered.map(
                 (item, index) => {
@@ -285,19 +285,19 @@ export default function StaticSuggestion() {
                           item
                         )
                       }
-                      className={`cursor-pointer px-4 py-3 transition-colors ${
+                      className={`static-suggestion__option${
                         isActive
-                          ? "bg-blue-100"
-                          : "hover:bg-gray-100"
+                          ? " static-suggestion__option--active"
+                          : ""
                       }`}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="static-suggestion__option-content">
                         <div>
-                          <p className="font-medium text-gray-800">
+                          <p className="static-suggestion__country-name">
                             {item.name}
                           </p>
 
-                          <p className="text-sm text-gray-500">
+                          <p className="static-suggestion__country-details">
                             ISO:
                             {item.isoCode}
                             • Dial:
@@ -305,10 +305,8 @@ export default function StaticSuggestion() {
                           </p>
                         </div>
 
-                        <span className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
-                          {
-                            item.isoCode
-                          }
+                        <span className="static-suggestion__country-badge">
+                          {item.isoCode}
                         </span>
                       </div>
                     </li>
@@ -324,9 +322,9 @@ export default function StaticSuggestion() {
             id="selected-country-result"
             data-testid="selected-country-result"
             aria-live="polite"
-            className="rounded-xl border border-green-200 bg-green-50 p-4"
+            className="static-suggestion__selected"
           >
-            <p className="font-medium text-green-700">
+            <p className="static-suggestion__selected-text">
               Selected Country:
               {selectedCountry}
             </p>

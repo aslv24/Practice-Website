@@ -138,31 +138,31 @@ export default function ValidationForm() {
         submitState
       }
       aria-label="Validation practice form"
-      className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+      className="validation-form"
     >
       {/* Header */}
-      <header className="mb-6">
+      <header className="validation-form__header">
         <h2
           id="validation-form-title"
           data-testid="validation-form-title"
-          className="text-2xl font-bold text-slate-900"
+          className="validation-form__title"
         >
           Validation Form
         </h2>
 
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="validation-form__description">
           Practice Selenium form
           validation, synchronization,
           error handling, and success
           message assertions.
         </p>
 
-        <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4">
-          <p className="text-sm font-medium text-blue-700">
+        <div className="validation-form__scenario-summary">
+          <p className="validation-form__scenario-title">
             Selenium Scenarios Covered
           </p>
 
-          <p className="mt-1 text-sm text-blue-600">
+          <p className="validation-form__scenario-text">
             Required Validation • Invalid
             Email • Async Submission •
             Loading State • Error
@@ -176,17 +176,17 @@ export default function ValidationForm() {
         id="validation-form"
         data-testid="validation-form"
         aria-label="Validation form"
-        className="space-y-5"
+        className="validation-form__form"
         onSubmit={handleSubmit}
       >
         {/* Name */}
-        <div>
+        <div className="validation-form__field">
           <label
             htmlFor="validation-name"
-            className="mb-2 block text-sm font-medium text-slate-700"
+            className="validation-form__label"
           >
             Full Name
-            <span className="ml-1 text-red-500">
+            <span className="validation-form__required-mark">
               *
             </span>
           </label>
@@ -211,10 +211,10 @@ export default function ValidationForm() {
                 name: "",
               }))
             }}
-            className={`w-full rounded-2xl border px-4 py-3 outline-none transition focus-visible:ring-2 ${
+            className={`validation-form__input${
               errors.name
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "border-slate-300 focus-visible:ring-blue-500"
+                ? " validation-form__input--error"
+                : ""
             }`}
           />
 
@@ -223,7 +223,7 @@ export default function ValidationForm() {
               id="validation-name-error"
               data-testid="validation-name-error"
               aria-live="polite"
-              className="mt-2 text-sm text-red-600"
+              className="validation-form__error"
             >
               {errors.name}
             </p>
@@ -231,13 +231,13 @@ export default function ValidationForm() {
         </div>
 
         {/* Email */}
-        <div>
+        <div className="validation-form__field">
           <label
             htmlFor="validation-email"
-            className="mb-2 block text-sm font-medium text-slate-700"
+            className="validation-form__label"
           >
             Email Address
-            <span className="ml-1 text-red-500">
+            <span className="validation-form__required-mark">
               *
             </span>
           </label>
@@ -262,10 +262,10 @@ export default function ValidationForm() {
                 email: "",
               }))
             }}
-            className={`w-full rounded-2xl border px-4 py-3 outline-none transition focus-visible:ring-2 ${
+            className={`validation-form__input${
               errors.email
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "border-slate-300 focus-visible:ring-blue-500"
+                ? " validation-form__input--error"
+                : ""
             }`}
           />
 
@@ -274,7 +274,7 @@ export default function ValidationForm() {
               id="validation-email-error"
               data-testid="validation-email-error"
               aria-live="polite"
-              className="mt-2 text-sm text-red-600"
+              className="validation-form__error"
             >
               {errors.email}
             </p>
@@ -284,16 +284,16 @@ export default function ValidationForm() {
         {/* Status Area */}
         <div
           aria-live="polite"
-          className="min-h-[28px]"
+          className="validation-form__status"
         >
           {submitState ===
             "submitting" && (
             <div
               id="validation-loading-state"
               data-testid="validation-loading-state"
-              className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3"
+              className="validation-form__message validation-form__message--loading"
             >
-              <p className="text-sm font-medium text-amber-700">
+              <p className="validation-form__message-text validation-form__message-text--loading">
                 Submitting form...
               </p>
             </div>
@@ -303,9 +303,9 @@ export default function ValidationForm() {
             <div
               id="validation-server-error"
               data-testid="validation-server-error"
-              className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3"
+              className="validation-form__message validation-form__message--error"
             >
-              <p className="text-sm font-medium text-red-700">
+              <p className="validation-form__message-text validation-form__message-text--error">
                 {serverError}
               </p>
             </div>
@@ -315,9 +315,9 @@ export default function ValidationForm() {
             <div
               id="validation-success-message"
               data-testid="validation-success-message"
-              className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3"
+              className="validation-form__message validation-form__message--success"
             >
-              <p className="text-sm font-medium text-green-700">
+              <p className="validation-form__message-text validation-form__message-text--success">
                 {successMessage}
               </p>
             </div>
@@ -325,7 +325,7 @@ export default function ValidationForm() {
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-wrap gap-4">
+        <div className="validation-form__actions">
           <button
             id="validation-submit-button"
             name="validationSubmit"
@@ -336,11 +336,11 @@ export default function ValidationForm() {
               submitState ===
               "submitting"
             }
-            className={`rounded-2xl px-6 py-3 text-white transition ${
+            className={`validation-form__submit-button${
               submitState ===
               "submitting"
-                ? "cursor-not-allowed bg-slate-400"
-                : "bg-blue-600 hover:bg-blue-700"
+                ? " validation-form__submit-button--disabled"
+                : ""
             }`}
           >
             {submitState ===
@@ -356,7 +356,7 @@ export default function ValidationForm() {
             data-testid="validation-reset-button"
             aria-label="Reset validation form"
             onClick={handleReset}
-            className="rounded-2xl bg-red-500 px-6 py-3 text-white transition hover:bg-red-600"
+            className="validation-form__reset-button"
           >
             Reset Form
           </button>
@@ -368,19 +368,19 @@ export default function ValidationForm() {
         id="validation-debug-panel"
         data-testid="validation-debug-panel"
         aria-label="Validation debug panel"
-        className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5"
+        className="validation-form__debug"
       >
-        <h3 className="mb-3 text-sm font-semibold text-slate-800">
+        <h3 className="validation-form__debug-title">
           Selenium Assertion Panel
         </h3>
 
-        <div className="space-y-2 text-sm text-slate-700">
+        <div className="validation-form__debug-content">
           <p
             id="validation-current-name"
             data-testid="validation-current-name"
           >
             Current Name:
-            <span className="ml-2 font-medium">
+            <span className="validation-form__debug-value">
               {name || "Empty"}
             </span>
           </p>
@@ -390,7 +390,7 @@ export default function ValidationForm() {
             data-testid="validation-current-email"
           >
             Current Email:
-            <span className="ml-2 font-medium">
+            <span className="validation-form__debug-value">
               {email || "Empty"}
             </span>
           </p>
@@ -400,7 +400,7 @@ export default function ValidationForm() {
             data-testid="validation-current-submit-state"
           >
             Submit State:
-            <span className="ml-2 font-medium capitalize">
+            <span className="validation-form__debug-value validation-form__debug-value--capitalize">
               {submitState}
             </span>
           </p>
