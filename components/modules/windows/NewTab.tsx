@@ -3,7 +3,7 @@
 export default function NewTab() {
   const openTab = () => {
     window.open(
-      "/windows/mock?name=naukri",
+      "https://www.naukri.com/",
       "_blank",
       "noopener,noreferrer"
     )
@@ -30,9 +30,9 @@ export default function NewTab() {
         data-testid="new-tab-description"
         className="new-tab__description"
       >
-        Opens an internal application page
-        in a new browser tab for Selenium
-        tab-handling practice.
+        Opens the live Naukri website in a new
+        browser tab for Selenium tab-handling
+        practice.
       </p>
 
       <button

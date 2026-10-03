@@ -101,14 +101,14 @@ export default function DragDropComponent({
             id="drag-drop-title"
             className="drag-drop__title"
           >
-            Drag and Drop
+            Simple Drag & Drop
           </h2>
 
           <p
             id="drag-drop-description"
             className="drag-drop__description"
           >
-            Practice Selenium drag-and-drop actions.
+            Practice single-item Selenium drag-and-drop actions.
           </p>
         </header>
 
@@ -231,11 +231,11 @@ export default function DragDropComponent({
         data-testid="drag-drop-title-html5"
         className="drag-drop-html5__title"
       >
-        HTML5 Drag & Drop
+        Multi-Item Drag & Drop
       </h2>
 
       <p className="drag-drop-html5__description">
-        Practice dragging source boxes into the target drop zone and validating
+        Practice dragging multiple items into the target drop zone and validating
         success flags.
       </p>
 

@@ -3,7 +3,7 @@
 export default function NewWindow() {
   const openWindow = () => {
     window.open(
-      "/windows/mock?name=naukri",
+      "https://www.naukri.com/",
       "_blank",
       "width=800,height=600,noopener,noreferrer"
     )
@@ -30,8 +30,9 @@ export default function NewWindow() {
         data-testid="new-window-description"
         className="new-window__description"
       >
-        Opens an internal popup window for
-        Selenium window-handling practice.
+        Opens the live Naukri website in a
+        popup window for Selenium
+        window-handling practice.
       </p>
 
       <button

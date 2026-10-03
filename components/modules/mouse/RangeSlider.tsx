@@ -33,7 +33,7 @@ export default function RangeSlider() {
         data-testid="range-slider-title-html5"
         className="range-slider__title"
       >
-        HTML5 Range Slider
+        Target Matching Slider
       </h2>
 
       <p className="range-slider__description">

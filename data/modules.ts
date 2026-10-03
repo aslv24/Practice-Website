@@ -2,6 +2,7 @@ import {
   FaBell,
   FaCalendarAlt,
   FaCheckSquare,
+  FaHourglassHalf,
   FaList,
   FaStopwatch,
   FaUpload,
@@ -80,9 +81,9 @@ export const modules: PracticeModule[] = [
   },
   {
     id: "file-upload",
-    title: "File Upload",
+    title: "Files",
     description:
-      "Validate file inputs, upload states, metadata, and removal flows used in real test suites.",
+      "Practice single & batch file uploads, dropzones without inputs, and automated file downloads.",
     icon: FaUpload,
     color: "module-card__icon--yellow",
     link: "/file-upload",
@@ -139,11 +140,21 @@ export const modules: PracticeModule[] = [
     category: "inputs",
   },
   {
-    id: "waits",
-    title: "Waits",
+    id: "explicit-wait",
+    title: "Explicit Wait",
     description:
-      "Build confidence with implicit waits, explicit waits, loading states, and delayed elements.",
+      "Wait for alerts, text changes, displayed elements, enabled controls, and checkbox state changes.",
     icon: FaStopwatch,
+    color: "module-card__icon--waits",
+    link: "/explicit-wait",
+    category: "synchronization",
+  },
+  {
+    id: "waits",
+    title: "Implicit Wait",
+    description:
+      "Practice progressive element rendering and delayed form controls with Selenium implicit waits.",
+    icon: FaHourglassHalf,
     color: "module-card__icon--waits",
     link: "/waits",
     category: "synchronization",

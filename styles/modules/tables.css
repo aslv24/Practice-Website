@@ -86,6 +86,18 @@
   @apply text-sm font-semibold uppercase tracking-wider text-gray-400;
 }
 
+.web-tables__toolbar-left {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-center;
+}
+
+.web-tables__entries-label {
+  @apply flex items-center gap-2 text-sm text-gray-500;
+}
+
+.web-tables__entries-select {
+  @apply rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1;
+}
+
 .web-tables__search {
   @apply w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-800 transition-all focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 md:w-80;
 }
@@ -192,6 +204,8 @@
 
 .web-tables__pagination-button--active {
   @apply bg-blue-600 text-white shadow-sm ring-2 ring-blue-500 ring-offset-1;
+  background-color: #2563eb;
+  color: #ffffff;
 }
 
 .web-tables-page {
@@ -211,5 +225,5 @@
 }
 
 .web-tables-page__content {
-  @apply mx-auto max-w-5xl;
+  @apply mx-auto max-w-5xl space-y-6;
 }

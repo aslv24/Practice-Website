@@ -1,4 +1,5 @@
 import DashboardBackLink from "@/components/layout/DashboardBackLink"
+import WebTable from "@/components/modules/calendar/WebTable"
 import WebTables from "@/components/modules/tables/WebTables"
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default function WebTablesPage() {
       </div>
 
       <div className="web-tables-page__content">
+        <WebTable />
         <WebTables />
       </div>
     </div>

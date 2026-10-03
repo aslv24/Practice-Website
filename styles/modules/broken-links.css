@@ -131,5 +131,5 @@
 }
 
 .broken-links-page__content {
-  @apply mx-auto max-w-3xl;
+  @apply mx-auto grid max-w-6xl gap-6 md:grid-cols-2;
 }

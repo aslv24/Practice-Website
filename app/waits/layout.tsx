@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Waits",
+  title: "Implicit Wait",
   description:
-    "Build Selenium synchronization confidence with implicit waits, explicit waits, loading spinners, and delayed element appearance scenarios."
+    "Practice Selenium implicit waits with progressive element rendering and delayed form controls."
 }
 
 export default function WaitsLayout({

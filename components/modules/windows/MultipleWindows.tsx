@@ -1,45 +1,33 @@
 "use client"
 
-const WINDOW_LINKS = [
+const TABS = [
   {
     id: "facebook",
-    label: "Facebook Window",
-    url: "/windows/mock?name=facebook",
-    buttonClass:
-      "multiple-windows__button--facebook",
+    label: "Open Facebook Tab",
+    url: "https://www.facebook.com/",
+    buttonClass: "multiple-windows__button--facebook",
   },
   {
     id: "instagram",
-    label: "Instagram Window",
-    url: "/windows/mock?name=instagram",
-    buttonClass:
-      "multiple-windows__button--instagram",
+    label: "Open Instagram Tab",
+    url: "https://www.instagram.com/",
+    buttonClass: "multiple-windows__button--instagram",
   },
   {
     id: "linkedin",
-    label: "LinkedIn Window",
-    url: "/windows/mock?name=linkedin",
-    buttonClass:
-      "multiple-windows__button--linkedin",
+    label: "Open LinkedIn Tab",
+    url: "https://www.linkedin.com/",
+    buttonClass: "multiple-windows__button--linkedin",
   },
   {
     id: "naukri",
-    label: "Naukri Window",
-    url: "/windows/mock?name=naukri",
-    buttonClass:
-      "multiple-windows__button--naukri",
+    label: "Open Naukri Tab",
+    url: "https://www.naukri.com/",
+    buttonClass: "multiple-windows__button--naukri",
   },
 ]
 
 export default function MultipleWindows() {
-  const openWindow = (url: string) => {
-    window.open(
-      url,
-      "_blank",
-      "noopener,noreferrer"
-    )
-  }
-
   return (
     <section
       id="multiple-windows-card"
@@ -53,7 +41,7 @@ export default function MultipleWindows() {
         data-testid="multiple-windows-title"
         className="multiple-windows__title"
       >
-        Multiple Windows
+        Multiple Tabs
       </h2>
 
       <p
@@ -61,9 +49,8 @@ export default function MultipleWindows() {
         data-testid="multiple-windows-description"
         className="multiple-windows__description"
       >
-        Opens internal application windows
-        for Selenium window-handling
-        practice.
+        Open four live websites in separate browser
+        tabs for Selenium tab-handling practice.
       </p>
 
       <div
@@ -71,29 +58,19 @@ export default function MultipleWindows() {
         aria-describedby="multiple-windows-description"
         className="multiple-windows__button-group"
       >
-        {WINDOW_LINKS.map(
-          (windowItem) => (
-            <button
-              key={windowItem.id}
-              type="button"
-              id={`open-${windowItem.id}-button`}
-              name={`open${windowItem.label.replace(
-                /\s/g,
-                ""
-              )}`}
-              data-testid={`open-${windowItem.id}-button`}
-              aria-label={`Open ${windowItem.label}`}
-              onClick={() =>
-                openWindow(
-                  windowItem.url
-                )
-              }
-              className={`multiple-windows__button ${windowItem.buttonClass}`}
-            >
-              {windowItem.label}
-            </button>
-          )
-        )}
+        {TABS.map((tab) => (
+          <a
+            key={tab.id}
+            id={`open-${tab.id}-tab-link`}
+            data-testid={`open-${tab.id}-tab-link`}
+            href={tab.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`multiple-windows__button ${tab.buttonClass}`}
+          >
+            {tab.label}
+          </a>
+        ))}
       </div>
 
       <div
@@ -102,8 +79,9 @@ export default function MultipleWindows() {
         aria-live="polite"
         className="multiple-windows__helper"
       >
-        Use Selenium window handles to switch
-        between tabs and validate page titles.
+        Open each tab with its button, then use
+        Selenium window handles to switch between
+        the live pages and validate their titles.
       </div>
     </section>
   )

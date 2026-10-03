@@ -1,0 +1,4 @@
+id,filename,format,size_kb,category
+101,sample-document.pdf,PDF,120,Documents
+102,sample-image.png,PNG,45,Images
+103,test-dataset.csv,CSV,15,Data

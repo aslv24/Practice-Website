@@ -5,7 +5,6 @@ import { useState } from "react"
 import DashboardBackLink from "@/components/layout/DashboardBackLink"
 import CalendarTable from "@/components/modules/calendar/CalendarTable"
 import DateInput from "@/components/modules/calendar/DateInput"
-import WebTable from "@/components/modules/calendar/WebTable"
 
 export default function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState("")
@@ -30,8 +29,6 @@ export default function CalendarPage() {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
-
-        <WebTable />
       </div>
     </div>
   )

@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "File Upload",
+  title: "Files",
   description:
-    "Validate file input Selenium automation including upload state detection, file metadata assertions, and removal flows used in real test suites."
+    "Practice single and batch file uploads, dropzones without inputs, and automated file downloads for Selenium and Playwright."
 }
 
 export default function FileUploadLayout({

@@ -102,6 +102,26 @@ const INITIAL_USERS: User[] = [
   },
 ]
 
+const ALL_USERS: User[] = Array.from(
+  { length: 500 },
+  (_, index) => {
+    const seed = INITIAL_USERS[index % INITIAL_USERS.length]
+
+    if (index < INITIAL_USERS.length) {
+      return seed
+    }
+
+    const [emailName, domain] = seed.email.split("@")
+
+    return {
+      ...seed,
+      id: index + 1,
+      name: seed.name,
+      email: `${emailName}.${index + 1}@${domain}`,
+    }
+  }
+)
+
 type SortField =
   | "name"
   | "email"
@@ -112,7 +132,7 @@ type SortOrder = "asc" | "desc" | null
 
 export default function WebTables() {
   const [users, setUsers] =
-    useState<User[]>(INITIAL_USERS)
+    useState<User[]>(ALL_USERS)
 
   const [search, setSearch] =
     useState("")
@@ -126,7 +146,8 @@ export default function WebTables() {
   const [currentPage, setCurrentPage] =
     useState(1)
 
-  const itemsPerPage = 5
+  const [itemsPerPage, setItemsPerPage] =
+    useState(5)
 
   // Handle delete action to simulate dynamic modifications
   const handleDelete = (id: number) => {
@@ -218,6 +239,19 @@ export default function WebTables() {
     )
   )
 
+  const pageWindowStart =
+    Math.floor((currentPage - 1) / 10) * 10 + 1
+
+  const visiblePages = Array.from(
+    {
+      length: Math.min(
+        10,
+        totalPages - pageWindowStart + 1
+      ),
+    },
+    (_, index) => pageWindowStart + index
+  )
+
   const paginatedUsers = useMemo(() => {
     const startIndex =
       (currentPage - 1) *
@@ -227,7 +261,7 @@ export default function WebTables() {
       startIndex,
       startIndex + itemsPerPage
     )
-  }, [processedUsers, currentPage])
+  }, [processedUsers, currentPage, itemsPerPage])
 
   // Get sorting icon
   const getSortIcon = (
@@ -277,10 +311,34 @@ export default function WebTables() {
       </header>
 
       <div className="web-tables__toolbar">
-        <div>
+        <div className="web-tables__toolbar-left">
           <h3 className="web-tables__directory-title">
             User Directory
           </h3>
+
+          <label
+            htmlFor="items-per-page"
+            className="web-tables__entries-label"
+          >
+            Show
+            <select
+              id="items-per-page"
+              data-testid="items-per-page"
+              value={itemsPerPage}
+              onChange={(event) => {
+                setItemsPerPage(Number(event.target.value))
+                setCurrentPage(1)
+              }}
+              className="web-tables__entries-select"
+            >
+              {[5, 10, 15].map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            entries
+          </label>
         </div>
 
         <div>
@@ -486,16 +544,24 @@ export default function WebTables() {
             Previous
           </button>
 
-          {Array.from(
-            { length: totalPages },
-            (_, i) => i + 1
-          ).map((page) => (
+          {visiblePages.map((page) => (
             <button
               key={page}
               id={`page-btn-${page}`}
               data-testid={`page-btn-${page}`}
-              onClick={() =>
-                setCurrentPage(page)
+              aria-current={
+                currentPage === page
+                  ? "page"
+                  : undefined
+              }
+              onClick={() => setCurrentPage(page)}
+              style={
+                currentPage === page
+                  ? {
+                      backgroundColor: "#2563eb",
+                      color: "#ffffff",
+                    }
+                  : undefined
               }
               className={`web-tables__pagination-button ${
                 currentPage === page

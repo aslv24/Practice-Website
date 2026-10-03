@@ -102,15 +102,14 @@ export default function Slider() {
           id="slider-title"
           className="slider__title"
         >
-          🖱️ Slider
+          🖱️ Continuous Slider
         </h2>
 
         <p
           id="slider-description"
           className="slider__description"
         >
-          Practice Selenium slider interactions
-          and value validation.
+          Practice continuous slider interactions and threshold value validation.
         </p>
       </header>
 

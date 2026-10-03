@@ -15,7 +15,7 @@
 }
 
 .multiple-windows__button-group {
-  @apply flex flex-wrap gap-3;
+  @apply flex flex-nowrap gap-3 overflow-x-auto;
 }
 
 .multiple-windows__button {
@@ -38,6 +38,10 @@
 
 .multiple-windows__button--naukri {
   @apply bg-yellow-500 text-black hover:bg-yellow-600;
+}
+
+.multiple-windows__button--all-tabs {
+  @apply bg-yellow-500 text-black hover:bg-yellow-600 focus-visible:ring-yellow-500;
 }
 
 .multiple-windows__helper {
@@ -105,7 +109,7 @@
 }
 
 .windows-page__content {
-  @apply mt-6 w-full max-w-2xl space-y-6;
+  @apply mt-6 grid w-full max-w-6xl gap-6 md:grid-cols-2;
 }
 
 .windows-mock {

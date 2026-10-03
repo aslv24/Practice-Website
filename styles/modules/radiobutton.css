@@ -155,5 +155,5 @@
 }
 
 .radio-button-page__content {
-  @apply mt-6 w-full max-w-2xl space-y-6;
+  @apply mt-6 grid w-full max-w-6xl gap-6 md:grid-cols-2;
 }
