@@ -21,37 +21,49 @@ const ModuleCard = memo(function ModuleCard({
 }) {
   const Icon = module.icon
   const moduleSlug = module.id
+  const linkProps = {
+    id: `${moduleSlug}-link`,
+    "data-testid": `${moduleSlug}-link`,
+    "aria-label": `Open ${module.title} module`,
+    className: "module-card__link",
+  }
+
+  const card = (
+    <div
+      id={`${moduleSlug}-card`}
+      data-testid={`${moduleSlug}-card`}
+      aria-label={`${module.title} module card`}
+      className="module-card"
+    >
+      <div className={`module-card__icon ${module.color}`}>
+        <Icon aria-hidden="true" />
+      </div>
+
+      <h3 className="module-card__title">
+        {module.title}
+      </h3>
+
+      <p className="module-card__description">
+        {module.description}
+      </p>
+
+      <span className="module-card__action">
+        Open Module
+      </span>
+    </div>
+  )
+
+  if (moduleSlug === "basic-auth") {
+    return (
+      <a href={module.link} {...linkProps}>
+        {card}
+      </a>
+    )
+  }
 
   return (
-    <Link
-      href={module.link}
-      id={`${moduleSlug}-link`}
-      data-testid={`${moduleSlug}-link`}
-      aria-label={`Open ${module.title} module`}
-      className="module-card__link"
-    >
-      <div
-        id={`${moduleSlug}-card`}
-        data-testid={`${moduleSlug}-card`}
-        aria-label={`${module.title} module card`}
-        className="module-card"
-      >
-        <div className={`module-card__icon ${module.color}`}>
-          <Icon aria-hidden="true" />
-        </div>
-
-        <h3 className="module-card__title">
-          {module.title}
-        </h3>
-
-        <p className="module-card__description">
-          {module.description}
-        </p>
-
-        <span className="module-card__action">
-          Open Module
-        </span>
-      </div>
+    <Link href={module.link} {...linkProps}>
+      {card}
     </Link>
   )
 })

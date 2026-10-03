@@ -4,12 +4,15 @@ import {
   FaCheckSquare,
   FaHourglassHalf,
   FaList,
+  FaLock,
+  FaShieldAlt,
   FaStopwatch,
   FaUpload,
   FaWindowMaximize,
   FaWpforms,
   FaGhost,
   FaLink,
+  FaKeyboard,
 } from "react-icons/fa"
 
 import {
@@ -27,6 +30,7 @@ export type ModuleCategory =
   | "synchronization"
   | "data"
   | "advanced"
+  | "security"
 
 export type PracticeModule = {
   id: string
@@ -38,6 +42,7 @@ export type PracticeModule = {
   category: ModuleCategory
 }
 
+// Sorted A → Z by title
 export const modules: PracticeModule[] = [
   {
     id: "alerts",
@@ -48,6 +53,26 @@ export const modules: PracticeModule[] = [
     color: "module-card__icon--red",
     link: "/alerts",
     category: "dialogs",
+  },
+  {
+    id: "basic-auth",
+    title: "Basic Auth Login",
+    description:
+      "Sign in with username admin and password admin. Each visit opens the browser's Basic Auth prompt.",
+    icon: FaLock,
+    color: "module-card__icon--rose",
+    link: "/basic-auth",
+    category: "security",
+  },
+  {
+    id: "broken-links",
+    title: "Broken Links",
+    description:
+      "Detect broken links and missing images by checking HTTP status codes and load failures.",
+    icon: FaLink,
+    color: "module-card__icon--fuchsia",
+    link: "/broken-links",
+    category: "advanced",
   },
   {
     id: "calendar",
@@ -80,6 +105,16 @@ export const modules: PracticeModule[] = [
     category: "inputs",
   },
   {
+    id: "explicit-wait",
+    title: "Explicit Wait",
+    description:
+      "Wait for alerts, text changes, displayed elements, enabled controls, and checkbox state changes.",
+    icon: FaStopwatch,
+    color: "module-card__icon--waits",
+    link: "/explicit-wait",
+    category: "synchronization",
+  },
+  {
     id: "file-upload",
     title: "Files",
     description:
@@ -110,6 +145,46 @@ export const modules: PracticeModule[] = [
     category: "browser",
   },
   {
+    id: "https-errors",
+    title: "HTTPS Context Errors",
+    description:
+      "Practice Playwright's ignoreHTTPSErrors context option with real SSL/certificate error pages.",
+    icon: FaLock,
+    color: "module-card__icon--zinc",
+    link: "/https-errors",
+    category: "security",
+  },
+  {
+    id: "waits",
+    title: "Implicit Wait",
+    description:
+      "Practice progressive element rendering and delayed form controls with Selenium implicit waits.",
+    icon: FaHourglassHalf,
+    color: "module-card__icon--waits",
+    link: "/waits",
+    category: "synchronization",
+  },
+  {
+    id: "keyboard-events",
+    title: "Keyboard Events",
+    description:
+      "Practice key combos (Ctrl+A/C/V/Z), special keys, Tab navigation, and keyboard-driven form interactions.",
+    icon: FaKeyboard,
+    color: "module-card__icon--indigo",
+    link: "/keyboard-events",
+    category: "interactions",
+  },
+  {
+    id: "locators",
+    title: "Locator Practice",
+    description:
+      "Target SVG elements and use XPath functions: normalize-space(), string-length(), floor(), and round().",
+    icon: FaShieldAlt,
+    color: "module-card__icon--teal",
+    link: "/locators",
+    category: "advanced",
+  },
+  {
     id: "mouse",
     title: "Mouse Events",
     description:
@@ -130,6 +205,16 @@ export const modules: PracticeModule[] = [
     category: "inputs",
   },
   {
+    id: "shadow-dom",
+    title: "Shadow DOM",
+    description:
+      "Locate and interact with elements encapsulated inside an open Shadow DOM boundary.",
+    icon: FaGhost,
+    color: "module-card__icon--zinc",
+    link: "/shadow-dom",
+    category: "advanced",
+  },
+  {
     id: "suggestion-list",
     title: "Suggestion List",
     description:
@@ -138,36 +223,6 @@ export const modules: PracticeModule[] = [
     color: "module-card__icon--cyan",
     link: "/suggestion-list",
     category: "inputs",
-  },
-  {
-    id: "explicit-wait",
-    title: "Explicit Wait",
-    description:
-      "Wait for alerts, text changes, displayed elements, enabled controls, and checkbox state changes.",
-    icon: FaStopwatch,
-    color: "module-card__icon--waits",
-    link: "/explicit-wait",
-    category: "synchronization",
-  },
-  {
-    id: "waits",
-    title: "Implicit Wait",
-    description:
-      "Practice progressive element rendering and delayed form controls with Selenium implicit waits.",
-    icon: FaHourglassHalf,
-    color: "module-card__icon--waits",
-    link: "/waits",
-    category: "synchronization",
-  },
-  {
-    id: "windows",
-    title: "Windows",
-    description:
-      "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling.",
-    icon: FaWindowMaximize,
-    color: "module-card__icon--rose",
-    link: "/windows",
-    category: "browser",
   },
   {
     id: "tables",
@@ -180,23 +235,13 @@ export const modules: PracticeModule[] = [
     category: "data",
   },
   {
-    id: "shadow-dom",
-    title: "Shadow DOM",
+    id: "windows",
+    title: "Windows",
     description:
-      "Locate and interact with elements encapsulated inside an open Shadow DOM boundary.",
-    icon: FaGhost,
-    color: "module-card__icon--zinc",
-    link: "/shadow-dom",
-    category: "advanced",
-  },
-  {
-    id: "broken-links",
-    title: "Broken Links",
-    description:
-      "Detect broken links and missing images by checking HTTP status codes and load failures.",
-    icon: FaLink,
-    color: "module-card__icon--fuchsia",
-    link: "/broken-links",
-    category: "advanced",
+      "Practice new tabs, popup windows, and multi-window Selenium WebDriver handling.",
+    icon: FaWindowMaximize,
+    color: "module-card__icon--rose",
+    link: "/windows",
+    category: "browser",
   },
 ]

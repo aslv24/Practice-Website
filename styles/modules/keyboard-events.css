@@ -1,0 +1,156 @@
+/* -------------------------------------------------------------------------- */
+/* Keyboard Events Module                                                      */
+/* -------------------------------------------------------------------------- */
+
+.kb-page {
+  @apply min-h-screen bg-gray-50 px-6 py-10;
+}
+
+.kb-page__header {
+  @apply mb-10 text-center;
+}
+
+.kb-page__title {
+  @apply text-3xl font-semibold text-gray-800;
+}
+
+.kb-page__desc {
+  @apply mb-4 mt-2 text-gray-500;
+}
+
+.kb-page__content {
+  @apply mx-auto grid max-w-6xl gap-6 md:grid-cols-2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card                                                                        */
+/* -------------------------------------------------------------------------- */
+
+.kb-card {
+  @apply rounded-xl border bg-white p-6 shadow-sm flex flex-col gap-4;
+}
+
+.kb-card__title {
+  @apply text-lg font-semibold tracking-tight text-gray-800;
+}
+
+.kb-card__desc {
+  @apply text-sm text-gray-500 leading-relaxed;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inputs                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.kb-input {
+  @apply w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm font-mono
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.kb-textarea {
+  @apply w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm font-mono resize-none
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Key Display                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.kb-display {
+  @apply rounded-lg border bg-gray-900 p-3 min-h-[7rem] flex flex-col gap-1.5 overflow-y-auto;
+}
+
+.kb-display__placeholder {
+  @apply text-sm text-gray-500 italic self-center m-auto;
+}
+
+.kb-display__row {
+  @apply flex items-center gap-2 text-xs font-mono;
+}
+
+.kb-display__row--new {
+  @apply text-green-400;
+}
+
+.kb-display__key {
+  @apply bg-gray-700 text-white px-2 py-0.5 rounded text-xs font-bold min-w-[2rem] text-center;
+}
+
+.kb-display__code {
+  @apply text-gray-400;
+}
+
+.kb-display__mods {
+  @apply text-yellow-400 ml-auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Key Chips                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.kb-keys-grid {
+  @apply flex flex-wrap gap-2;
+}
+
+.kb-key-chip {
+  @apply rounded-md border border-gray-300 bg-gray-100 px-2.5 py-1 text-xs font-mono font-semibold
+    text-gray-700 shadow-sm select-none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shortcut grid                                                               */
+/* -------------------------------------------------------------------------- */
+
+.kb-shortcut-grid {
+  @apply flex flex-wrap gap-2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tab Navigation Form                                                         */
+/* -------------------------------------------------------------------------- */
+
+.kb-form-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.kb-form-field {
+  @apply flex flex-col gap-1;
+}
+
+.kb-form-label {
+  @apply text-sm font-medium text-gray-700 flex items-center gap-2;
+}
+
+.kb-focus-badge {
+  @apply inline-block text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-semibold;
+}
+
+.kb-form-input {
+  @apply rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+.kb-form-input--focused {
+  @apply border-blue-500 bg-blue-50;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Status                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.kb-status {
+  @apply rounded-md border bg-gray-50 px-3 py-2 text-sm text-gray-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.kb-btn {
+  @apply w-fit rounded-lg px-4 py-2 text-sm font-medium transition-colors
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+}
+
+.kb-btn--secondary {
+  @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus-visible:ring-gray-400;
+}

@@ -1,0 +1,195 @@
+/* -------------------------------------------------------------------------- */
+/* HTTPS Context Errors Module                                                 */
+/* -------------------------------------------------------------------------- */
+
+.https-page {
+  @apply min-h-screen bg-gray-50 px-6 py-10;
+}
+
+.https-page__header {
+  @apply mb-10 text-center;
+}
+
+.https-page__title {
+  @apply text-3xl font-semibold text-gray-800;
+}
+
+.https-page__desc {
+  @apply mb-4 mt-2 text-gray-500;
+}
+
+.https-page__content {
+  @apply mx-auto grid max-w-6xl gap-6 md:grid-cols-2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card                                                                        */
+/* -------------------------------------------------------------------------- */
+
+.https-card {
+  @apply rounded-xl border bg-white p-6 shadow-sm flex flex-col gap-4;
+}
+
+.https-card__title {
+  @apply text-lg font-semibold tracking-tight text-gray-800;
+}
+
+.https-card__desc {
+  @apply text-sm text-gray-500 leading-relaxed;
+}
+
+/* -------------------------------------------------------------------------- */
+/* True / False Compare                                                        */
+/* -------------------------------------------------------------------------- */
+
+.https-compare {
+  @apply grid grid-cols-1 gap-3 sm:grid-cols-2;
+}
+
+.https-compare__side {
+  @apply rounded-lg border p-4 flex flex-col gap-3;
+}
+
+.https-compare__side--fail {
+  @apply border-red-200 bg-red-50;
+}
+
+.https-compare__side--pass {
+  @apply border-green-200 bg-green-50;
+}
+
+.https-compare__badge {
+  @apply inline-flex self-start items-center rounded-full px-2.5 py-0.5 text-xs font-semibold font-mono;
+}
+
+.https-compare__badge--fail {
+  @apply bg-red-100 text-red-700 border border-red-200;
+}
+
+.https-compare__badge--pass {
+  @apply bg-green-100 text-green-700 border border-green-200;
+}
+
+.https-compare__icon {
+  @apply text-2xl text-center;
+}
+
+.https-compare__text {
+  @apply text-sm text-gray-600 leading-relaxed;
+}
+
+.https-compare__code {
+  @apply block text-xs font-mono bg-gray-900 text-green-400 rounded-lg p-3 whitespace-pre leading-relaxed;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Code Snippet                                                                */
+/* -------------------------------------------------------------------------- */
+
+.https-snippet {
+  @apply rounded-xl overflow-hidden border border-gray-200;
+}
+
+.https-snippet__header {
+  @apply flex items-center justify-between bg-gray-800 px-4 py-2.5;
+}
+
+.https-snippet__lang {
+  @apply text-xs text-gray-400 font-mono;
+}
+
+.https-snippet__code {
+  @apply bg-gray-900 text-green-300 text-xs font-mono p-4 overflow-x-auto leading-relaxed whitespace-pre m-0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Practice Sites                                                              */
+/* -------------------------------------------------------------------------- */
+
+.https-sites {
+  @apply grid grid-cols-1 gap-3;
+}
+
+.https-site {
+  @apply rounded-lg border border-gray-200 bg-gray-50 p-4 flex flex-col gap-1.5 hover:bg-gray-100 transition-colors;
+}
+
+.https-site__top {
+  @apply flex items-center justify-between gap-3;
+}
+
+.https-site__link {
+  @apply text-sm text-blue-600 hover:underline font-mono;
+}
+
+.https-site__desc {
+  @apply text-xs text-gray-500;
+}
+
+.https-site__error {
+  @apply text-xs text-red-600 font-mono;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tags                                                                        */
+/* -------------------------------------------------------------------------- */
+
+.https-tag {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+}
+
+.https-tag--red {
+  @apply bg-red-100 text-red-700;
+}
+
+.https-tag--orange {
+  @apply bg-orange-100 text-orange-700;
+}
+
+.https-tag--yellow {
+  @apply bg-yellow-100 text-yellow-700;
+}
+
+.https-tag--purple {
+  @apply bg-purple-100 text-purple-700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Assertions                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.https-assertions {
+  @apply flex flex-col gap-3;
+}
+
+.https-assert {
+  @apply flex items-start gap-3 rounded-lg border p-3;
+}
+
+.https-assert--pass {
+  @apply border-green-200 bg-green-50;
+}
+
+.https-assert--fail {
+  @apply border-red-200 bg-red-50;
+}
+
+.https-assert__icon {
+  @apply flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold;
+}
+
+.https-assert--pass .https-assert__icon {
+  @apply bg-green-200 text-green-800;
+}
+
+.https-assert--fail .https-assert__icon {
+  @apply bg-red-200 text-red-800;
+}
+
+.https-assert__code {
+  @apply block text-xs font-mono text-gray-700 mb-1;
+}
+
+.https-assert__label {
+  @apply text-xs text-gray-500;
+}
