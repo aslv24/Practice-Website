@@ -26,19 +26,24 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 - Dashboard landing page with module cards for every automation practice category.
 - Public SaaS-style homepage with module showcase, benefits, production links, and real dashboard imagery.
 - Alerts practice covering simple alerts, confirmation alerts, and prompt alerts.
+- Basic authentication practice using the browser's native HTTP Basic Authentication challenge.
 - Broken links & status codes practice for HTTP validation and image integrity.
 - Calendar practice with date input, custom calendar table navigation, and tabular data.
 - Checkbox practice for single checkbox, multiple checkbox, and select-all scenarios.
 - Dropdown practice for single-select, multi-select, and dynamically loaded options.
-- File upload practice with file metadata, validation states, progress simulation, and removal flows.
+- Explicit-wait practice for alerts, text changes, visibility, enabled controls, and checkbox state.
+- Files practice for single and multiple uploads, native file-picker flows, and download assertions.
 - Forms practice with validation, controlled inputs, country suggestions, radio buttons, checkboxes, dates, alerts, submit/reset flows, and result rendering.
 - Frames practice with single iframe and nested iframe scenarios.
+- HTTPS error practice for Playwright browser-context certificate handling.
+- Keyboard practice for key combinations, special keys, tab navigation, and keyboard-driven forms.
+- Locator practice for SVG targets and XPath function strategies.
 - Mouse actions practice for click variants, hover interactions, drag-and-drop, and range slider handling.
 - Radio button practice for single and grouped radio selection.
 - Shadow DOM practice for penetrating encapsulated web components.
 - Suggestion list practice for static and dynamic autocomplete behavior.
 - Tables practice for complex web tables, pagination, sorting, and cell extraction.
-- Waits practice for delayed fields, loading states, and explicit/implicit wait training.
+- Implicit-wait practice for delayed fields and progressive rendering.
 - Windows practice for opening new tabs, popup windows, and multiple external windows.
 
 ### Advanced Features
@@ -160,13 +165,18 @@ Design patterns used:
 automation-practice/
 |-- app/
 |   |-- alerts/
+|   |-- basic-auth/
 |   |-- broken-links/
 |   |-- calendar/
 |   |-- checkbox/
 |   |-- dropdown/
-|   |-- file-upload/
+|   |-- explicit-wait/
+|   |-- files/
 |   |-- forms/
 |   |-- frames/
+|   |-- https-errors/
+|   |-- keyboard-events/
+|   |-- locators/
 |   |-- mouse/
 |   |-- radiobutton/
 |   |-- shadow-dom/
@@ -206,6 +216,7 @@ automation-practice/
 |   `-- useDebounce.ts
 |-- lib/
 |   |-- dynamicStyles.ts
+|   |-- openFilePicker.ts
 |   `-- utils.ts
 |-- styles/
 |   |-- dashboard.css
@@ -219,6 +230,9 @@ automation-practice/
 |       |-- file-upload.css
 |       |-- forms.css
 |       |-- frames.css
+|       |-- https-errors.css
+|       |-- keyboard-events.css
+|       |-- locators.css
 |       |-- mouse.css
 |       |-- popups.css
 |       |-- radiobutton.css
@@ -543,29 +557,47 @@ Recommended future additions:
 
 ### Screenshots
 
-| Dashboard | Forms |
-| --- | --- |
-| <img src="public/screenshots/dashboard.png" alt="Selenium Practice Dashboard home page" width="420" /> | <img src="public/screenshots/forms.png" alt="Forms practice page" width="420" /> |
+Screenshots below are refreshed from the current practice pages. The gallery includes the dashboard and all 20 modules.
 
-| Alerts | Calendar |
+| Dashboard | Alerts |
 | --- | --- |
-| <img src="public/screenshots/alerts.png" alt="Alerts practice page" width="420" /> | <img src="public/screenshots/calendar.png" alt="Calendar practice page" width="420" /> |
+| <img src="public/screenshots/dashboard.png" alt="Selenium Automation Practice dashboard" width="420" /> | <img src="public/screenshots/alerts.png" alt="Alerts practice page" width="420" /> |
 
-| Checkbox | Dropdown |
+| Basic Auth | Broken Links |
 | --- | --- |
-| <img src="public/screenshots/checkbox.png" alt="Checkbox practice page" width="420" /> | <img src="public/screenshots/dropdown.png" alt="Dropdown practice page" width="420" /> |
+| <img src="public/screenshots/basic-auth.png" alt="HTTP Basic Authentication success page" width="420" /> | <img src="public/screenshots/broken-links.png" alt="Broken links and images practice page" width="420" /> |
 
-| File Upload | Frames |
+| Calendar | Checkbox |
 | --- | --- |
-| <img src="public/screenshots/file-upload.png" alt="File upload practice page" width="420" /> | <img src="public/screenshots/frames.png" alt="Frames practice page" width="420" /> |
+| <img src="public/screenshots/calendar.png" alt="Calendar practice page" width="420" /> | <img src="public/screenshots/checkbox.png" alt="Checkbox practice page" width="420" /> |
 
-| Mouse Actions | Radio Button |
+| Dropdown | Explicit Wait |
 | --- | --- |
-| <img src="public/screenshots/mouse-actions.png" alt="Mouse actions practice page" width="420" /> | <img src="public/screenshots/radio-button.png" alt="Radio button practice page" width="420" /> |
+| <img src="public/screenshots/dropdown.png" alt="Dropdown practice page" width="420" /> | <img src="public/screenshots/explicit-wait.png" alt="Explicit wait practice page" width="420" /> |
 
-| Suggestion List | Waits |
+| Files | Forms |
 | --- | --- |
-| <img src="public/screenshots/suggestion-list.png" alt="Suggestion list practice page" width="420" /> | <img src="public/screenshots/waits.png" alt="Waits practice page" width="420" /> |
+| <img src="public/screenshots/files.png" alt="File upload and download practice page" width="420" /> | <img src="public/screenshots/forms.png" alt="Forms practice page" width="420" /> |
+
+| Frames | HTTPS Errors |
+| --- | --- |
+| <img src="public/screenshots/frames.png" alt="Frames practice page" width="420" /> | <img src="public/screenshots/https-errors.png" alt="HTTPS context errors practice page" width="420" /> |
+
+| Implicit Wait | Keyboard Events |
+| --- | --- |
+| <img src="public/screenshots/waits.png" alt="Implicit wait practice page" width="420" /> | <img src="public/screenshots/keyboard-events.png" alt="Keyboard events practice page" width="420" /> |
+
+| Locator Practice | Mouse Events |
+| --- | --- |
+| <img src="public/screenshots/locators.png" alt="Locator practice page" width="420" /> | <img src="public/screenshots/mouse-actions.png" alt="Mouse events practice page" width="420" /> |
+
+| Radio Button | Shadow DOM |
+| --- | --- |
+| <img src="public/screenshots/radio-button.png" alt="Radio button practice page" width="420" /> | <img src="public/screenshots/shadow-dom.png" alt="Shadow DOM practice page" width="420" /> |
+
+| Suggestion List | Web Tables |
+| --- | --- |
+| <img src="public/screenshots/suggestion-list.png" alt="Suggestion list practice page" width="420" /> | <img src="public/screenshots/tables.png" alt="Web tables practice page" width="420" /> |
 
 | Windows |
 | --- |
@@ -588,7 +620,6 @@ https://automation-practice-theta.vercel.app/
 - [ ] Add GitHub Actions workflow for lint, build, and tests.
 - [ ] Add Docker production image support.
 - [ ] Add custom `app/error.tsx` and `app/not-found.tsx` pages.
-- [ ] Add screenshots and a hosted live demo link.
 - [ ] Add accessibility testing with automated checks.
 - [ ] Add structured documentation for locator strategies.
 - [ ] Add downloadable sample Selenium scripts in Java, Python, and JavaScript.

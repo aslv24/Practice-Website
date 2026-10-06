@@ -4,6 +4,7 @@ import WebTables from "@/components/modules/tables/WebTables"
 
 export const metadata = {
   title: "Web Tables & Pagination Practice | Selenium Automation Practice Website",
+  alternates: { canonical: "/tables" },
   description:
     "Practice searching, sorting, paginating, and deleting rows in a dynamic HTML table.",
 }

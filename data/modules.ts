@@ -115,13 +115,13 @@ export const modules: PracticeModule[] = [
     category: "synchronization",
   },
   {
-    id: "file-upload",
+    id: "files",
     title: "Files",
     description:
-      "Practice single & batch file uploads, dropzones without inputs, and automated file downloads.",
+      "Practice single and batch uploads with file inputs or picker buttons, plus automated file downloads.",
     icon: FaUpload,
     color: "module-card__icon--yellow",
-    link: "/file-upload",
+    link: "/files",
     category: "inputs",
   },
   {

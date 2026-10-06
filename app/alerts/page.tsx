@@ -7,6 +7,7 @@ import SimpleAlert from "@/components/modules/alerts/SimpleAlert"
 
 export const metadata: Metadata = {
   title: "Alerts",
+  alternates: { canonical: "/alerts" },
   description:
     "Practice handling Selenium alerts including simple alerts, confirmation dialogs, and prompt inputs with reliable WebDriver commands.",
 }

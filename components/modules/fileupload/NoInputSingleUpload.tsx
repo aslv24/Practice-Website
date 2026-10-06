@@ -1,14 +1,27 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { FaCheckCircle, FaCloudUploadAlt, FaExclamationCircle, FaFileAlt, FaTrashAlt } from "react-icons/fa"
+import {
+  FaCheckCircle,
+  FaCloudUploadAlt,
+  FaExclamationCircle,
+  FaFileAlt,
+  FaFolderOpen,
+  FaTrashAlt,
+} from "react-icons/fa"
 import { dynamicWidth } from "@/lib/dynamicStyles"
+import { openFilePicker } from "@/lib/openFilePicker"
 
 type UploadStatus = "idle" | "uploading" | "success" | "error"
 
+interface UploadedFile {
+  name: string
+  size: number
+  type: string
+}
+
 export default function NoInputSingleUpload() {
-  const [file, setFile] = useState<{ name: string; size: number; type: string } | null>(null)
-  const [isDragOver, setIsDragOver] = useState(false)
+  const [file, setFile] = useState<UploadedFile | null>(null)
   const [status, setStatus] = useState<UploadStatus>("idle")
   const [progress, setProgress] = useState(0)
   const [message, setMessage] = useState("")
@@ -17,61 +30,40 @@ export default function NoInputSingleUpload() {
     if (status !== "uploading") return
 
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
+      setProgress((current) => {
+        if (current >= 100) {
           clearInterval(interval)
           setStatus("success")
           return 100
         }
-        return prev + 25
+        return current + 25
       })
     }, 200)
 
     return () => clearInterval(interval)
   }, [status])
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragOver(true)
-  }
-
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragOver(false)
-  }
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragOver(false)
+  const handleChooseFile = async () => {
     setMessage("")
-    setProgress(0)
 
-    const droppedFiles = e.dataTransfer.files
-    if (!droppedFiles || droppedFiles.length === 0) return
+    try {
+      const [selectedFile] = await openFilePicker(false)
+      if (!selectedFile) return
 
-    if (droppedFiles.length > 1) {
-      setMessage("Multiple files detected! Only the first file was accepted for this single-upload zone.")
-    }
-
-    const selectedFile = droppedFiles[0]
-    const allowedExtensions = [".pdf", ".png", ".jpg", ".jpeg", ".csv", ".txt"]
-    const fileExt = "." + selectedFile.name.split(".").pop()?.toLowerCase()
-
-    if (!allowedExtensions.includes(fileExt)) {
+      setFile({
+        name: selectedFile.name,
+        size: selectedFile.size,
+        type: selectedFile.type || "unknown",
+      })
+      setProgress(0)
+      setStatus("uploading")
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return
       setStatus("error")
-      setMessage(`Unsupported file '${fileExt}'. Allowed: PDF, PNG, JPG, CSV, TXT`)
-      return
+      setMessage(
+        error instanceof Error ? error.message : "Unable to open the file picker."
+      )
     }
-
-    setFile({
-      name: selectedFile.name,
-      size: selectedFile.size,
-      type: selectedFile.type || "unknown",
-    })
-    setStatus("uploading")
   }
 
   const handleReset = () => {
@@ -87,7 +79,7 @@ export default function NoInputSingleUpload() {
       data-testid="no-input-single-card"
       data-component="no-input-single-upload"
       data-upload-state={status}
-      aria-label="Single File Upload Without Input Tag"
+      aria-label="Single file upload without an input tag"
       className="file-card"
     >
       <header className="file-card__header">
@@ -97,44 +89,38 @@ export default function NoInputSingleUpload() {
           </span>
           <div>
             <h2 id="no-input-single-title" data-testid="no-input-single-title" className="file-card__title">
-              Single File Drop Zone
+              Single File Upload Without Input
             </h2>
-            <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700 border border-amber-200">
-              No &lt;input&gt; Tag (Pure Dropzone)
+            <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700">
+              No &lt;input type=&quot;file&quot;&gt; tag · Any file type
             </span>
           </div>
         </div>
         <p className="file-card__description">
-          Contains <strong>zero</strong> <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">&lt;input&gt;</code> tags. Test synthetic drag-and-drop event dispatching or custom JS <code className="text-xs bg-gray-100 px-1 py-0.5 rounded">DataTransfer</code> injection.
+          Choose any file type using a button that opens the browser file picker without a file input.
+        </p>
+        <p className="file-card__helper">
+          Requires a browser that supports the File System Access API, such as Chrome or Edge.
         </p>
       </header>
 
-      {/* Pure Drop Area - Absolutely NO input tag */}
-      <div
-        id="no-input-single-dropzone"
-        data-testid="no-input-single-dropzone"
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        className={`file-card__dropzone ${
-          isDragOver ? "file-card__dropzone--active" : "file-card__dropzone--idle"
-        }`}
+      <button
+        id="no-input-single-select-button"
+        data-testid="no-input-single-select-button"
+        type="button"
+        onClick={handleChooseFile}
+        className="inline-flex w-fit items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 font-medium text-white transition-colors hover:bg-amber-600"
       >
-        <FaCloudUploadAlt className={`h-10 w-10 transition-transform ${isDragOver ? "scale-110 text-amber-600" : "text-gray-400"}`} />
-        <p className="mt-2 text-sm font-semibold text-gray-700">
-          {isDragOver ? "Release to drop single file here" : "Drag & Drop 1 file here"}
-        </p>
-        <p className="mt-1 text-xs text-gray-400">
-          Pure event listener zone (no native file dialog trigger)
-        </p>
-      </div>
+        <FaFolderOpen aria-hidden="true" /> Choose File
+      </button>
 
-      {/* Progress Box */}
       {status === "uploading" && (
         <div id="no-input-single-progress" data-testid="no-input-single-progress" className="file-card__progress-box">
-          <div className="flex items-center justify-between text-xs font-semibold text-amber-700 mb-1">
-            <span>Processing dropped file...</span>
-            <span id="no-input-single-progress-value" data-testid="no-input-single-progress-value">{progress}%</span>
+          <div className="mb-1 flex items-center justify-between text-xs font-semibold text-amber-700">
+            <span>Uploading file...</span>
+            <span id="no-input-single-progress-value" data-testid="no-input-single-progress-value">
+              {progress}%
+            </span>
           </div>
           <div className="file-card__progress-track">
             <div className="file-card__progress-bar bg-amber-500" style={dynamicWidth(progress)} />
@@ -142,22 +128,13 @@ export default function NoInputSingleUpload() {
         </div>
       )}
 
-      {/* Error / Alert */}
       {status === "error" && (
         <div id="no-input-single-error" data-testid="no-input-single-error" className="file-card__alert file-card__alert--error">
-          <FaExclamationCircle className="h-4 w-4 shrink-0 text-red-600" />
-          <span className="text-sm font-medium text-red-800">{message}</span>
+          <FaExclamationCircle className="h-4 w-4 shrink-0" />
+          <span className="text-sm font-medium">{message}</span>
         </div>
       )}
 
-      {/* Warning message if multiple were dropped */}
-      {status !== "error" && message && (
-        <div id="no-input-single-warning" data-testid="no-input-single-warning" className="file-card__alert file-card__alert--warning">
-          <span className="text-xs font-medium text-amber-800">{message}</span>
-        </div>
-      )}
-
-      {/* Dropped File Meta */}
       {file && (
         <div id="no-input-single-result" data-testid="no-input-single-result" className="file-card__meta-box">
           <div className="flex items-center justify-between">
@@ -168,28 +145,31 @@ export default function NoInputSingleUpload() {
                   {file.name}
                 </p>
                 <p className="text-xs text-gray-500">
-                  <span id="no-input-single-filesize" data-testid="no-input-single-filesize">{(file.size / 1024).toFixed(1)} KB</span> •{" "}
-                  <span id="no-input-single-filetype" data-testid="no-input-single-filetype">{file.type}</span>
+                  <span id="no-input-single-filesize" data-testid="no-input-single-filesize">
+                    {(file.size / 1024).toFixed(1)} KB
+                  </span>
+                  {" · "}
+                  <span id="no-input-single-filetype" data-testid="no-input-single-filetype">
+                    {file.type}
+                  </span>
                 </p>
               </div>
             </div>
-
             {status === "success" && (
-              <span id="no-input-single-success-badge" data-testid="no-input-single-success-badge" className="inline-flex items-center gap-1 text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-md">
-                <FaCheckCircle className="h-3 w-3" /> Captured
+              <span id="no-input-single-success-badge" data-testid="no-input-single-success-badge" className="inline-flex items-center gap-1 rounded-md bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">
+                <FaCheckCircle className="h-3 w-3" /> Uploaded
               </span>
             )}
           </div>
-
           <div className="mt-4 flex justify-end">
             <button
               id="no-input-single-reset-btn"
               data-testid="no-input-single-reset-btn"
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-100 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
             >
-              <FaTrashAlt className="h-3 w-3" /> Reset Zone
+              <FaTrashAlt className="h-3 w-3" /> Remove File
             </button>
           </div>
         </div>

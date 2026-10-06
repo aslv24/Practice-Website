@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Dropdown",
+  alternates: { canonical: "/dropdown" },
   description:
     "Work through single-select, multi-select, and dynamic dropdown Selenium practice cases with stable locators and clear state feedback."
 }

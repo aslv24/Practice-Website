@@ -22,9 +22,6 @@ export const metadata: Metadata = {
   creator: "aslv24",
   publisher: "aslv24",
   manifest: "/manifest.webmanifest",
-  alternates: {
-    canonical: siteUrl,
-  },
   verification: {
     google: "B4-t2bRQ9_i_qdOLvMTZJl0wH5ju62QpjoJ_wKfvFXk",
   },

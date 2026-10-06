@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 
 import HomeClientEnhancements from "@/components/layout/HomeClientEnhancements"
 import ModulesList from "@/components/layout/ModulesList"
+import { modules } from "@/data/modules"
 
 const siteUrl = "https://automation-practice-theta.vercel.app"
 const repositoryUrl = "https://github.com/aslv24/Practice-Website"
@@ -66,8 +67,8 @@ export const metadata: Metadata = {
 }
 
 const stats = [
-  { value: "15+", label: "Practice Modules" },
-  { value: "50+", label: "Automation Scenarios" },
+  { value: String(modules.length), label: "Practice Modules" },
+  { value: "Interactive", label: "Automation Scenarios" },
   { value: "Cross Browser", label: "Compatible" },
   { value: "Framework", label: "Ready" },
 ]

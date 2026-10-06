@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Forms",
+  alternates: { canonical: "/forms" },
   description:
     "Practice Selenium form automation including text inputs, field validation, radio groups, checkboxes, date pickers, and submission assertions."
 }

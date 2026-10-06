@@ -5,7 +5,7 @@ import NoInputSingleUpload from "@/components/modules/fileupload/NoInputSingleUp
 import NoInputMultipleUpload from "@/components/modules/fileupload/NoInputMultipleUpload"
 import FileDownload from "@/components/modules/fileupload/FileDownload"
 
-export default function FileUploadPage() {
+export default function FilesPage() {
   return (
     <main
       id="file-upload-page"
@@ -27,7 +27,7 @@ export default function FileUploadPage() {
           data-testid="file-upload-page-description"
           className="file-upload-page__description"
         >
-          Practice single/multiple file uploads with standard &lt;input&gt;, dropzone interactions without inputs, and file download assertions for Selenium and Playwright
+          Practice single and multiple file uploads with and without file input tags, plus file download assertions for Selenium and Playwright
         </p>
 
         <DashboardBackLink />

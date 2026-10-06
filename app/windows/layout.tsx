@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Windows",
+  alternates: { canonical: "/windows" },
   description:
     "Practice Selenium multi-window automation including new tab handling, popup windows, and switching WebDriver focus across browser contexts."
 }

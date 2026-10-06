@@ -3,6 +3,7 @@ import ShadowDomComponent from "@/components/modules/shadowdom/ShadowDomComponen
 
 export const metadata = {
   title: "Shadow DOM Practice | Selenium Automation Practice Website",
+  alternates: { canonical: "/shadow-dom" },
   description:
     "Practice locating and interacting with input fields and buttons encapsulated inside an open Shadow root.",
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Explicit Wait",
+  alternates: { canonical: "/explicit-wait" },
   description:
     "Practice Selenium explicit waits for delayed alerts, dynamic text, displayed elements, enabled controls, and checkbox state changes.",
 }

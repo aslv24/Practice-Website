@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Checkbox",
+  alternates: { canonical: "/checkbox" },
   description:
     "Automate single checkbox, grouped checkboxes, and select-all patterns with Selenium using stable element selectors."
 }

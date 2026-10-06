@@ -3,6 +3,7 @@ import BrokenContent from "@/components/modules/brokenlinks/BrokenContent"
 
 export const metadata = {
   title: "Broken Links & Images Practice | Selenium Automation Practice Website",
+  alternates: { canonical: "/broken-links" },
   description:
     "Practice identifying broken links (HTTP 404) and broken image rendering (HTTP 404 or zero dimensions).",
 }
