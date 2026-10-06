@@ -142,6 +142,10 @@ export default function Home() {
         }}
       />
 
+      <a className="dashboard-page__skip-link" href="#dashboard-title">
+        Skip to main content
+      </a>
+
       <HomeClientEnhancements />
 
       <section className="dashboard-page__hero">
@@ -160,9 +164,9 @@ export default function Home() {
             </h1>
 
             <p className="dashboard-page__intro">
-              Practice real-world Selenium automation scenarios including
-              alerts, forms, waits, dropdowns, file uploads, frames, windows,
-              and advanced UI interactions.
+              Build confidence with hands-on browser automation challenges.
+              Explore real UI scenarios, then automate them with Selenium
+              WebDriver or Playwright.
             </p>
 
             <div className="dashboard-page__actions">
@@ -170,7 +174,13 @@ export default function Home() {
                 href="#practice-modules"
                 className="dashboard-page__start-link"
               >
-                Start Practicing
+                Explore practice modules
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="dashboard-page__secondary-link"
+              >
+                How it works
               </Link>
             </div>
           </div>
@@ -209,6 +219,67 @@ export default function Home() {
       </section>
 
       <section
+        id="how-it-works"
+        className="dashboard-page__onboarding"
+        aria-labelledby="dashboard-onboarding-title"
+      >
+        <div className="dashboard-page__onboarding-heading">
+          <p className="dashboard-page__section-eyebrow">Your practice plan</p>
+          <h2
+            id="dashboard-onboarding-title"
+            className="dashboard-page__section-title"
+          >
+            A hands-on playground for your next automation role
+          </h2>
+          <p className="dashboard-page__section-description">
+            No course setup needed. Choose a scenario, explore the page, and
+            write an automated test that verifies what happened.
+          </p>
+        </div>
+
+        <div className="dashboard-page__onboarding-grid">
+          <article className="dashboard-page__onboarding-card">
+            <span className="dashboard-page__onboarding-number" aria-hidden="true">
+              01
+            </span>
+            <h3>Who is it for?</h3>
+            <p>
+              QA candidates, software testers, and automation engineers
+              preparing for interviews or building browser-testing skills.
+            </p>
+          </article>
+
+          <article className="dashboard-page__onboarding-card">
+            <span className="dashboard-page__onboarding-number" aria-hidden="true">
+              02
+            </span>
+            <h3>How do I use it?</h3>
+            <p>
+              Try the controls, identify a reliable locator, perform an action,
+              then assert the visible result with Selenium or Playwright.
+            </p>
+          </article>
+
+          <article className="dashboard-page__onboarding-card">
+            <span className="dashboard-page__onboarding-number" aria-hidden="true">
+              03
+            </span>
+            <h3>What should I practice first?</h3>
+            <p>
+              Start with locators and forms, move to waits, then challenge
+              yourself with frames, windows, and file handling.
+            </p>
+            <Link
+              href="/locators"
+              className="dashboard-page__path-link"
+            >
+              Start with locators <span aria-hidden="true">→</span>
+            </Link>
+          </article>
+        </div>
+      </section>
+
+      <section
         id="practice-modules"
         className="dashboard-page__modules"
       >
@@ -228,14 +299,9 @@ export default function Home() {
           </p>
         </div>
 
-        <nav
-          id="dashboard-modules-navigation"
-          data-testid="dashboard-modules-navigation"
-          aria-label="Practice module navigation"
-          className="dashboard-page__navigation"
-        >
+        <div className="dashboard-page__navigation">
           <ModulesList />
-        </nav>
+        </div>
       </section>
 
       <section className="dashboard-page__benefits">

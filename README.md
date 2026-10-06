@@ -25,6 +25,9 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 
 - Dashboard landing page with module cards for every automation practice category.
 - Public SaaS-style homepage with module showcase, benefits, production links, and real dashboard imagery.
+- Homepage onboarding for the target audience, practice workflow, and recommended beginner path.
+- Browser-local learning progress with completed modules, practice-day streaks, and earned milestones.
+- Lead registration modal shown after desktop exit intent following active exploration, or offered as a dismissible form challenge after a module is completed on touch devices.
 - Alerts practice covering simple alerts, confirmation alerts, and prompt alerts.
 - Basic authentication practice using the browser's native HTTP Basic Authentication challenge.
 - Broken links & status codes practice for HTTP validation and image integrity.
@@ -55,7 +58,7 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 - Reusable UI primitives for buttons, cards, dialogs, inputs, and tables.
 - Tailwind CSS 4 theme tokens through global CSS variables.
 - Local browser-state examples using `localStorage`.
-- Browser API scenarios for notifications, alerts, file inputs, drag-and-drop, iframes, and windows.
+- Browser API scenarios for alerts, file inputs, drag-and-drop, iframes, and windows.
 - SEO-ready metadata, Open Graph images, Twitter Cards, sitemap, robots, web app manifest, app icons, and JSON-LD structured data.
 
 ## Tech Stack
@@ -119,7 +122,7 @@ Use it as a Selenium Practice Website, Selenium Testing Playground, Selenium Web
 | JWT | Not implemented | No token-based authentication exists. |
 | OAuth | Not implemented | No OAuth provider integration exists. |
 | Session auth | Not implemented | No server-side session handling exists. |
-| Client storage | Used for UX state | `localStorage` tracks lead popup and notification prompt state. |
+| Client storage | Used for UX state | `localStorage` tracks lead popup, module completion, and practice dates. |
 
 ### Tools
 
@@ -139,7 +142,7 @@ Key architectural decisions:
 
 - **App Router pages:** Each practice area is exposed through an `app/<module>/page.tsx` route.
 - **Feature-based module components:** Scenario implementations are grouped by domain under `components/modules/<feature>/`.
-- **Shared layout components:** Cross-page behavior such as dashboard navigation, notification prompts, and lead modal behavior lives in `components/layout/`.
+- **Shared layout components:** Cross-page behavior such as dashboard navigation, learning progress, and lead modal behavior lives in `components/layout/`.
 - **Modular CSS architecture:** Dedicated stylesheets organized by automation domain under `styles/modules/` and cleanly imported into `app/globals.css`.
 - **Reusable UI primitives:** Generic UI elements live in `components/ui/`.
 - **State management:** React Context providers (`context/`) manage user preferences and module search/filters.
@@ -189,6 +192,9 @@ automation-practice/
 |   `-- page.tsx
 |-- components/
 |   |-- layout/
+|   |   |-- LearningProgressSummary.tsx
+|   |   |-- LearningProgressTracker.tsx
+|   |   `-- ModulesList.tsx
 |   |-- modules/
 |   |   |-- alerts/
 |   |   |-- brokenlinks/
@@ -236,6 +242,7 @@ automation-practice/
 |       |-- mouse.css
 |       |-- popups.css
 |       |-- radiobutton.css
+|       |-- shared.css
 |       |-- shadow-dom.css
 |       |-- suggestion-list.css
 |       |-- tables.css
@@ -523,9 +530,12 @@ Accessibility considerations:
 
 - Semantic `main`, `section`, `nav`, `footer`, heading, list, and link structure.
 - Preserved automation-friendly `aria-label`, `id`, and `data-testid` attributes.
-- Visible keyboard focus indicators on primary navigation and calls to action.
+- Visible keyboard focus indicators, a homepage skip link, and labeled lead-registration fields.
 - Descriptive image alt text for the dashboard preview.
 - Screen-reader-friendly module navigation labels.
+
+Learning progress is stored in the current browser's `localStorage`; it is not
+synced between devices or accounts.
 
 Recommended future optimizations:
 
@@ -540,9 +550,7 @@ Recommended future optimizations:
 Current error handling:
 
 - Client-side validation messages for forms and file upload flows.
-- Graceful notification permission handling with `try/catch`.
 - User-visible success, error, and status states in interactive modules.
-- Console logging for notification permission failures.
 
 Logging and monitoring are not currently integrated.
 

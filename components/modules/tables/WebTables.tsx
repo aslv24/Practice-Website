@@ -364,7 +364,12 @@ export default function WebTables() {
         </div>
       </div>
 
-      <div className="web-tables__table-wrapper">
+      <div
+        className="web-tables__table-wrapper"
+        role="region"
+        aria-label="Scrollable user directory table"
+        tabIndex={0}
+      >
         <table
           id="users-table"
           data-testid="users-table"

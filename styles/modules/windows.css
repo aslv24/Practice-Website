@@ -15,11 +15,11 @@
 }
 
 .multiple-windows__button-group {
-  @apply flex flex-nowrap gap-3 overflow-x-auto;
+  @apply flex flex-wrap gap-3;
 }
 
 .multiple-windows__button {
-  @apply rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  @apply max-w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
 }
 
 /* Window-specific button variants */

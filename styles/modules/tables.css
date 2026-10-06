@@ -195,7 +195,7 @@
 }
 
 .web-tables__pagination-controls {
-  @apply inline-flex gap-1.5;
+  @apply flex max-w-full flex-wrap justify-center gap-1.5;
 }
 
 .web-tables__pagination-button {

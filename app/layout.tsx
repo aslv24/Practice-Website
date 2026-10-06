@@ -71,6 +71,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="app-root"
+      data-scroll-behavior="smooth"
     >
       <body
         suppressHydrationWarning

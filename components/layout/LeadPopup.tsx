@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { OPEN_LEAD_REGISTRATION_EVENT } from "@/lib/browserEvents"
 
 export default function LeadPopup() {
   const { userPreferences, setLeadPopupShown } = useModuleContext()
@@ -26,13 +28,58 @@ export default function LeadPopup() {
   const [mobileError, setMobileError] = useState("")
 
   useEffect(() => {
-    if (!userPreferences.leadPopupShown) {
-      const timer = window.setTimeout(() => {
-        setOpen(true)
-        setLeadPopupShown(true)
-      }, 1000)
+    if (userPreferences.leadPopupShown) return
 
-      return () => window.clearTimeout(timer)
+    let hasExplored = false
+    let dwellTimeElapsed = false
+
+    const openFromPrompt = () => {
+      setOpen(true)
+      setLeadPopupShown(true)
+    }
+
+    window.addEventListener(OPEN_LEAD_REGISTRATION_EVENT, openFromPrompt)
+
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return () =>
+        window.removeEventListener(
+          OPEN_LEAD_REGISTRATION_EVENT,
+          openFromPrompt
+        )
+    }
+
+    const timer = window.setTimeout(() => {
+      dwellTimeElapsed = true
+    }, 30_000)
+
+    const markExplored = () => {
+      hasExplored = true
+    }
+
+    const handleExitIntent = (event: MouseEvent) => {
+      if (
+        dwellTimeElapsed &&
+        hasExplored &&
+        event.clientY <= 0 &&
+        event.relatedTarget === null
+      ) {
+        openFromPrompt()
+      }
+    }
+
+    window.addEventListener("pointerdown", markExplored, { once: true })
+    window.addEventListener("scroll", markExplored, { once: true })
+    document.addEventListener("mouseout", handleExitIntent)
+
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener(
+        OPEN_LEAD_REGISTRATION_EVENT,
+        openFromPrompt
+      )
+      window.removeEventListener("pointerdown", markExplored)
+      window.removeEventListener("scroll", markExplored)
+      document.removeEventListener("mouseout", handleExitIntent)
     }
   }, [userPreferences.leadPopupShown, setLeadPopupShown])
 
@@ -91,7 +138,13 @@ export default function LeadPopup() {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(nextOpen) => {
+        setOpen(nextOpen)
+        if (!nextOpen) setLeadPopupShown(true)
+      }}
+    >
       <DialogContent
         id="lead-registration-modal"
         data-testid="lead-registration-modal"
@@ -104,14 +157,17 @@ export default function LeadPopup() {
             Join Selenium Practice
           </DialogTitle>
 
-          <p className="lead-popup__subtitle">
+          <DialogDescription className="lead-popup__subtitle">
             Register to explore real automation scenarios
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="lead-popup__form">
           {/* Name Input */}
           <div className="lead-popup__field">
+            <label className="sr-only" htmlFor="lead-name-input">
+              Name
+            </label>
             <div className="lead-popup__input-wrapper">
               <FaUser
                 className="lead-popup__icon"
@@ -122,9 +178,9 @@ export default function LeadPopup() {
                 id="lead-name-input"
                 name="leadName"
                 type="text"
+                required
                 autoComplete="name"
                 data-testid="lead-name-input"
-                aria-label="Lead name"
                 placeholder="Enter your name"
                 className="lead-popup__input"
                 value={name}
@@ -137,6 +193,9 @@ export default function LeadPopup() {
 
           {/* Email Input */}
           <div className="lead-popup__field">
+            <label className="sr-only" htmlFor="lead-email-input">
+              Email address
+            </label>
             <div className="lead-popup__input-wrapper">
               <FaEnvelope
                 className="lead-popup__icon"
@@ -147,9 +206,11 @@ export default function LeadPopup() {
                 id="lead-email-input"
                 type="email"
                 name="leadEmail"
+                required
                 autoComplete="email"
                 data-testid="lead-email-input"
-                aria-label="Lead email"
+                aria-invalid={Boolean(emailError)}
+                aria-describedby={emailError ? "lead-email-error" : undefined}
                 placeholder="Enter your email"
                 className="lead-popup__input"
                 value={email}
@@ -173,6 +234,9 @@ export default function LeadPopup() {
 
           {/* Mobile Input */}
           <div className="lead-popup__field">
+            <label className="sr-only" htmlFor="lead-mobile-input">
+              Mobile number
+            </label>
             <div className="lead-popup__input-wrapper">
               <FaPhone
                 className="lead-popup__icon"
@@ -183,10 +247,12 @@ export default function LeadPopup() {
                 id="lead-mobile-input"
                 type="tel"
                 name="leadMobile"
+                required
                 autoComplete="tel"
                 inputMode="numeric"
                 data-testid="lead-mobile-input"
-                aria-label="Lead mobile number"
+                aria-invalid={Boolean(mobileError)}
+                aria-describedby={mobileError ? "lead-mobile-error" : undefined}
                 placeholder="Enter your mobile number"
                 className="lead-popup__input"
                 value={mobile}

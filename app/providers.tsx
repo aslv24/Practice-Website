@@ -1,11 +1,17 @@
 "use client"
 
 import { ModuleProvider } from "@/context/ModuleContext"
+import LearningProgressTracker from "@/components/layout/LearningProgressTracker"
 
 /**
  * Client-side providers wrapper
  * Wraps the application with all necessary context providers
  */
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <ModuleProvider>{children}</ModuleProvider>
+  return (
+    <ModuleProvider>
+      <LearningProgressTracker />
+      {children}
+    </ModuleProvider>
+  )
 }

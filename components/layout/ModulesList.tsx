@@ -7,6 +7,7 @@ import { useModuleContext } from "@/hooks/useModuleContext"
 import { modules } from "@/data/modules"
 import { filterModules } from "@/lib/filterModules"
 import ModuleFilter from "@/components/layout/ModuleFilter"
+import LearningProgressSummary from "@/components/layout/LearningProgressSummary"
 import type { PracticeModule } from "@/data/modules"
 
 /**
@@ -19,8 +20,11 @@ const ModuleCard = memo(function ModuleCard({
 }: {
   module: PracticeModule
 }) {
+  const { learningProgress, setModuleCompleted } = useModuleContext()
   const Icon = module.icon
   const moduleSlug = module.id
+  const hasVisited = learningProgress.visitedModuleIds.includes(moduleSlug)
+  const isCompleted = learningProgress.completedModuleIds.includes(moduleSlug)
   const linkProps = {
     id: `${moduleSlug}-link`,
     "data-testid": `${moduleSlug}-link`,
@@ -28,12 +32,11 @@ const ModuleCard = memo(function ModuleCard({
     className: "module-card__link",
   }
 
-  const card = (
+  const cardContent = (
     <div
       id={`${moduleSlug}-card`}
       data-testid={`${moduleSlug}-card`}
-      aria-label={`${module.title} module card`}
-      className="module-card"
+      className={`module-card${isCompleted ? " module-card--completed" : ""}`}
     >
       <div className={`module-card__icon ${module.color}`}>
         <Icon aria-hidden="true" />
@@ -53,18 +56,47 @@ const ModuleCard = memo(function ModuleCard({
     </div>
   )
 
+  const completionButton = (
+    <button
+      type="button"
+      className="module-card__completion"
+      disabled={!hasVisited}
+      aria-pressed={isCompleted}
+      aria-label={
+        !hasVisited
+          ? `Visit ${module.title} to unlock completion`
+          : isCompleted
+            ? `Mark ${module.title} as not completed`
+            : `Mark ${module.title} as completed`
+      }
+      onClick={() => setModuleCompleted(moduleSlug, !isCompleted)}
+    >
+      {isCompleted
+        ? "✓ Completed"
+        : hasVisited
+          ? "Mark complete"
+          : "Visit to unlock"}
+    </button>
+  )
+
   if (moduleSlug === "basic-auth") {
     return (
-      <a href={module.link} {...linkProps}>
-        {card}
-      </a>
+      <div className="module-card-shell">
+        <a href={module.link} {...linkProps}>
+          {cardContent}
+        </a>
+        {completionButton}
+      </div>
     )
   }
 
   return (
-    <Link href={module.link} {...linkProps}>
-      {card}
-    </Link>
+    <div className="module-card-shell">
+      <Link href={module.link} {...linkProps}>
+        {cardContent}
+      </Link>
+      {completionButton}
+    </div>
   )
 })
 
@@ -92,6 +124,8 @@ const ModulesList = memo(function ModulesList() {
 
   return (
     <>
+      <LearningProgressSummary />
+
       {/* Module Filter */}
       <ModuleFilter />
 

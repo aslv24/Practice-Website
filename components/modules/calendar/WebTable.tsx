@@ -74,6 +74,9 @@ export default function WebTable() {
       <div
         id="web-table-container"
         data-testid="web-table-container"
+        role="region"
+        aria-label="Scrollable employee information table"
+        tabIndex={0}
         className="web-table__container"
       >
         <table

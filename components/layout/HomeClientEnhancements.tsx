@@ -2,14 +2,6 @@
 
 import dynamic from "next/dynamic"
 
-const NotificationPermission = dynamic(
-  () => import("@/components/layout/NotificationPermission"),
-  {
-    ssr: false,
-    loading: () => null
-  }
-)
-
 const LeadPopup = dynamic(
   () => import("@/components/layout/LeadPopup"),
   {
@@ -20,9 +12,6 @@ const LeadPopup = dynamic(
 
 export default function HomeClientEnhancements() {
   return (
-    <>
-      <NotificationPermission />
-      <LeadPopup />
-    </>
+    <LeadPopup />
   )
 }
